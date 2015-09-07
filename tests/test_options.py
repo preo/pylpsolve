@@ -4,7 +4,7 @@ from pylpsolve import LP, LPException
 from numpy import ndarray as ar, ones, eye
 
 class TestOptions(unittest.TestCase):
-    
+
     def testOptionRetrieval01(self):
 
         lp = LP()
@@ -12,7 +12,7 @@ class TestOptions(unittest.TestCase):
         self.assert_(lp.getOption("presolve_rows") == False)
 
         lp.setOption("presolve_rows", True)
-        
+
         self.assert_(lp.getOption("presolve_rows") == True)
         self.assert_(lp.getOptionDict()["presolve_rows"] == True)
 
@@ -23,7 +23,7 @@ class TestOptions(unittest.TestCase):
         self.assert_(lp.getOption("presolve_rows") == False)
 
         lp.setOption(presolve_rows = True)
-        
+
         self.assert_(lp.getOption("presolve_rows") == True)
         self.assert_(lp.getOptionDict()["presolve_rows"] == True)
 
@@ -34,7 +34,7 @@ class TestOptions(unittest.TestCase):
         self.assert_(lp.getOption("presolve_rows") == False)
 
         lp.setOption("presolve_cols", True, presolve_rows = True)
-        
+
         self.assert_(lp.getOption("presolve_rows") == True)
         self.assert_(lp.getOptionDict()["presolve_rows"] == True)
 
@@ -49,7 +49,7 @@ class TestOptions(unittest.TestCase):
 
         self.assertRaises(ValueError,
                           lambda: lp.setOption("presolve_rows", True, bad_option = None))
-        
+
         self.assert_(lp.getOption("presolve_rows") == False)
         self.assert_(lp.getOptionDict()["presolve_rows"] == False)
 
@@ -61,7 +61,7 @@ class TestOptions(unittest.TestCase):
 
         self.assertRaises(TypeError,
                           lambda: lp.setOption(None, True, presolve_rows = True))
-        
+
         self.assert_(lp.getOption("presolve_rows") == False)
         self.assert_(lp.getOptionDict()["presolve_rows"] == False)
 

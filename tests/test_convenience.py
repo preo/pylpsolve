@@ -12,7 +12,7 @@ class TestConvenience(unittest.TestCase):
     def checkBindEach(self, opts):
 
         idxlist = [{}, {}]
-        
+
         idxlist[0]["t"] = (0,3)
         idxlist[0]["N"] = "a"
         idxlist[0]["l"] = [0,1,2]
@@ -276,7 +276,7 @@ class TestConvenience(unittest.TestCase):
     def checkBindSandwich(self, opts):
 
         idxlist = [{}, {}]
-        
+
         idxlist[0]["t"] = (0,3)
         idxlist[0]["N"] = "a"
         idxlist[0]["l"] = [0,1,2]
@@ -297,7 +297,7 @@ class TestConvenience(unittest.TestCase):
             self.assert_(lp.getIndexBlock(idxlist[0]["N"], 3) == (0,3) )
 
         # Now bind the second group
-            
+
         lp.bindSandwich(idxlist[0][opts[0]], idxlist[1][opts[1]])
 
         if opts[2] == "u":

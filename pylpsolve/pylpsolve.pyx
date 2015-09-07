@@ -36,7 +36,7 @@ ctypedef unsigned char ecode
 ctypedef double real
 
 ############################################################
-# See if we can support sparse matrics in specifying constraints 
+# See if we can support sparse matrics in specifying constraints
 
 # cdef bint sparse_supported
 
@@ -67,7 +67,7 @@ cdef inline isnumeric(v):
     t_v = type(v)
 
     global IntType
-    
+
     if (t_v is IntType
         or t_v is LongType
         or t_v is FloatType):
@@ -95,7 +95,7 @@ cdef inline bint istuplelist(list l):
             return False
 
     return True
-        
+
 cdef inline bint isnumericlist(list l):
     for t in l:
         if not isnumeric(t):
@@ -133,7 +133,7 @@ cdef inline bint isfullindexarray(ar a_o, size_t n_cols):
     cdef ar[int, mode="c"] count = zeros(n_cols)
 
     cdef size_t i
-    cdef int v 
+    cdef int v
 
     with cython.boundscheck(False):
         for 0 <= i < n_cols:
@@ -293,11 +293,11 @@ cdef extern from "lp_solve_5.5/lp_lib.h":
     # pivoting
     void set_pivoting(lprec*, int rule)
     void set_sense(lprec *lp, bint maximize)
-    
+
     int solve(lprec *lp)
 
     int print_lp(lprec *lp)
-    
+
     void set_verbose(lprec*, int)
 
     # Retrieving statistics
@@ -330,7 +330,7 @@ DEF m_NewModel      = 0
 DEF m_UpdatingModel = 1
 
 # This is the size of the constraint buffer blocks
-DEF cStructBufferSize = 128  
+DEF cStructBufferSize = 128
 
 cdef class LP(object):
 
@@ -358,7 +358,7 @@ cdef class LP(object):
     cdef list _obj_func_keys
     cdef list _obj_func_values
     cdef bint _obj_func_specified
-    cdef size_t _obj_func_n_vals_count 
+    cdef size_t _obj_func_n_vals_count
     cdef bint _maximize_mode
 
     # Methods relating to named variable group
@@ -375,12 +375,12 @@ cdef class LP(object):
 
         self.current_c_buffer_size = 0
         self._c_buffer = NULL
-        
+
         self._clear(False)
 
     def __dealloc__(self):
         self.clearConstraintBuffers()
-        
+
         if self.lp != NULL:
             delete_lp(self.lp)
 
@@ -426,7 +426,7 @@ cdef class LP(object):
 
             self.n_rows = 0
             self.n_columns = 0
-            
+
             self._named_index_blocks = {}
             self._user_warned_about_nonindexed_blocks = False
             self._nonindexed_blocks_present = False
@@ -438,7 +438,7 @@ cdef class LP(object):
     cpdef dict getOptionDict(self):
         """
         Returns a copy of the dictionary containing all the current
-        default options.  
+        default options.
         """
 
         return self.options.copy()
@@ -466,7 +466,7 @@ cdef class LP(object):
 
 
         **Presolve options**
-        
+
         Presolve is off by default, as it prevents specifiying a basis
         or initial guess or modifying the constraint matrix
         afterwards.  To turn it on, set any of the options below to
@@ -507,7 +507,7 @@ cdef class LP(object):
             Identify implied free variables (releasing their explicit
             bounds).
 
-          presolve_reducegcd: 
+          presolve_reducegcd:
             Reduce (tighten) coefficients in integer models based on
             GCD argument.
 
@@ -517,7 +517,7 @@ cdef class LP(object):
           presolve_probereduce:
             Attempt to reduce coefficients in binary models.
 
-          presolve_rowdominate: 
+          presolve_rowdominate:
             Idenfify and delete qualifying constraints that are
             dominated by others, also fixes variables at a bound.
 
@@ -539,7 +539,7 @@ cdef class LP(object):
             risk of degeneracy. The combined function of this option
             can have a dramatic simplifying effect on some models.
 
-          presolve_colfixdual: 
+          presolve_colfixdual:
             Variable fixing and removal based on considering signs of
             the associated dual constraint.
 
@@ -562,28 +562,28 @@ cdef class LP(object):
 
 
         **Pricing and Pivoting Options**
-        
+
         The main pricing options can take the following values:
 
           ``"firstindex"``:
             Select first available pivot.
 
-          ``"dantzig"``: 
+          ``"dantzig"``:
             Select according to Dantzig.
 
           ``"devex"``:
              Devex pricing from Paula Harris.
-             
+
           ``"steepestedge"``:
              Steepest Edge.
 
-        
+
         Additional pricer options, which may be set using True:
-    
-          price_primalfallback: 
+
+          price_primalfallback:
             In case of Steepest Edge, fall back to DEVEX in primal.
 
-          price_multiple:       
+          price_multiple:
             Preliminary implementation of the multiple pricing
             scheme. This means that attractive candidate entering
             columns from one iteration may be used in the subsequent
@@ -591,32 +591,32 @@ cdef class LP(object):
             the current implementation, lp_solve only reuses the 2nd
             best entering column alternative.
 
-          price_partial:        
+          price_partial:
             Enable partial pricing.
 
-          price_adaptive:       
+          price_adaptive:
             Temporarily use alternative strategy if cycling is detected.
 
-          price_randomize:      
+          price_randomize:
             Adds a small randomization effect to the selected pricer.
 
-          price_autopartial:    
+          price_autopartial:
             Indicates automatic detection of segmented/staged/blocked
             models. It refers to partial pricing rather than full
             pricing. With full pricing, all non-basic columns are
             scanned, but with partial pricing only a subset is scanned
             for every iteration. This can speed up several models.
 
-          price_loopleft:       
+          price_loopleft:
             Scan entering/leaving columns left rather than right.
 
-          price_loopalternate:  
+          price_loopalternate:
             Scan entering/leaving columns alternatingly left/right.
 
-          price_harristwopass:  
+          price_harristwopass:
             Use Harris' primal pivot logic rather than the default.
 
-          price_truenorminit:   
+          price_truenorminit:
             Use true norms for Devex and Steepest Edge initializations.
 
 
@@ -625,7 +625,7 @@ cdef class LP(object):
         There's a primary scaling mode plus additional flags may be
         set.  The scaling mode can influence numerical stability
         considerably.  It is advisable to always use some sort of
-        scaling.  
+        scaling.
 
         The available scale modes are set using the ``scale_mode``
         option, which can take the following values:
@@ -661,13 +661,13 @@ cdef class LP(object):
           scale_power2:
             Also do Power scaling (off by default).
 
-          scale_equilibrate: 
+          scale_equilibrate:
             Make sure that no scaled number is above 1 (on by default).
 
           scale_integers:
             Scale integer variables (off by default).
 
-          scale_dynupdate: 
+          scale_dynupdate:
             It has always been so that scaling is done only once on
             the original model. If a solve is done again (most
             probably after changing some data in the model), the
@@ -687,11 +687,11 @@ cdef class LP(object):
             scaling algorithm between each solve. Note that the
             scaling done by the scale_dynupdate is incremental and the
             resulting scalars are typically different from scalars
-            recomputed from scratch. 
+            recomputed from scratch.
 
           scale_rowsonly:
             Scale only rows.
-            
+
           scale_colsonly:
             Scale only columns.
 
@@ -761,18 +761,18 @@ cdef class LP(object):
             tuple.  If a block named `name` does exist, it is
             returned; a ValueError is raised if the sizes don't match.
 
-          getIndexBlock(name): 
+          getIndexBlock(name):
             Returns an index block named `name`.  If it does not
             already exist, a value error is raised.
 
           getIndexBlock(size):
             Returns a new, unnamed index block of `size` variables.
         """
-        
+
         cdef str name
         cdef size_t size
 
-        cdef ar[size_t, ndim=2, mode="c"] B 
+        cdef ar[size_t, ndim=2, mode="c"] B
 
         if a2 is None:
             if type(a1) is str:
@@ -797,7 +797,7 @@ cdef class LP(object):
                 raise ValueError("getIndexBlock() arguments must be a block name/size, size, or name of prexisting block.")
 
             B = self._getVariableIndexBlock(size, name)
-            
+
         assert B.shape[0] == 1
         assert B.shape[1] == 2
 
@@ -805,7 +805,7 @@ cdef class LP(object):
 
     cdef ar _makeVarIdxRange(self, size_t lower, size_t upper):
         cdef ar[size_t, ndim=2, mode="c"] B = empty(range_tuple_size, npuint)
-        
+
         B[0,0] = lower
         B[0,1] = upper
 
@@ -815,7 +815,7 @@ cdef class LP(object):
 
     cdef ar _getVariableIndexBlock(self, size_t size, str name):
         # size = 0 denotes no checking
-    
+
         cdef ar[size_t, ndim=2,mode="c"] idx
 
         if name is None:
@@ -852,7 +852,7 @@ cdef class LP(object):
     ########################################
     # For internally resolving things
     cdef ar _resolveIdxBlock(self, idx, size_t n):
-    
+
         if idx is None:
             self.checkColumnCount(n, True)
             return None
@@ -874,7 +874,7 @@ cdef class LP(object):
                 raise ValueError("Index array must be 1d vector.")
 
             if n not in [ar_idx.shape[0], 1]:
-                raise ValueError("Number of values (%d) must equal number of indices (%d) or 1." 
+                raise ValueError("Number of values (%d) must equal number of indices (%d) or 1."
                                  % (n, ar_idx.shape[0]))
 
             # Need to freeze the data
@@ -882,15 +882,15 @@ cdef class LP(object):
                 ai = ar_idx.copy()
             else:
                 ai = array(ar_idx, npint)
-                
+
                 if (ai != ar_idx).any():
                     raise ValueError("Unable to convert index array to nonnegative integers")
-            
+
             if amin(ai) < 0:
                 raise ValueError("Unable to convert index array to nonnegative integers")
 
             self.checkColumnCount(amax(ai) + 1, True)
-            
+
             return ai
 
         elif type(idx) is tuple:
@@ -904,7 +904,7 @@ cdef class LP(object):
                 raise ValueError("Number of values (%d) does not equal size of index range (%d) or 1." % (n, t1 - t0))
 
             self.checkColumnCount(t1, True)
-            
+
             return self._makeVarIdxRange(t0,t1)
 
         elif type(idx) is list:
@@ -912,16 +912,16 @@ cdef class LP(object):
                 ar_idx = array(idx,dtype=npint)
             except Exception, e:
                 raise ValueError("Error converting index list to 1d integer array: %s" % str(e))
-            
+
             if ar_idx.ndim != 1:
                 raise ValueError("Error interpreting index list: Not 1 dimensional.")
             if n not in [ar_idx.shape[0], 1]:
-                raise ValueError("Number of values (%d) must equal number of indices (%d) or 1." 
+                raise ValueError("Number of values (%d) must equal number of indices (%d) or 1."
                                  % (n, ar_idx.shape[0]))
 
             if amin(ar_idx) < 0:
                 raise ValueError("Negative indices not allowed.")
-            
+
             self.checkColumnCount(amax(ar_idx) + 1, True)
 
             return ar_idx
@@ -967,30 +967,30 @@ cdef class LP(object):
     cdef _validateIndexTuple(self, tuple t):
         cdef int v_idx, w_idx
         cdef bint error = False
-    
-        if len(t) != 2: 
+
+        if len(t) != 2:
             self._raiseTupleValidationError(t)
 
         t1, t2 = t
 
         if not isnumeric(t1) or not isnumeric(t2):
             self._raiseTupleValidationError(t)
-            
+
         v_idx, w_idx = t1, t2
-            
+
         if v_idx < 0 or w_idx < 0:
             self._raiseTupleValidationError(t)
 
         if not w_idx > v_idx:
             self._raiseTupleValidationError(t)
-    
+
     cdef _raiseTupleValidationError(self, tuple t):
         raise ValueError("Index tuples must be of form (lower_index, upper_index), with nonnegative indices ( %s )." % str(t))
 
     cdef ar _resolveValues(self, v, bint ensure_1d):
         cdef ar ret
 
-        if type(v) is ndarray or type(v) is list or type(v) is tuple: 
+        if type(v) is ndarray or type(v) is list or type(v) is tuple:
             ret = asarray(v, npfloat)
         elif isnumeric(v):
             ret = empty(1, npfloat)
@@ -1007,7 +1007,7 @@ cdef class LP(object):
                 return ret
         else:
             raise ValueError("Dimension of values array must be either 1 or 2.")
-        
+
 
     ############################################################
     # Bookkeeping for the column counts
@@ -1034,16 +1034,16 @@ cdef class LP(object):
             #              "setting to lowest-indexed columns.")
             raise Exception("Non-indexed variable block present which does not span columns; "
                             "setting to lowest-indexed columns.")
-        
+
         # self._user_warned_about_nonindexed_blocks = True
-            
+
 
 
     ############################################################
     # Methods dealing with constraints
 
     cpdef addConstraint(self, coefficients, str ctypestr, rhs):
-        r"""        
+        r"""
         Adds a constraint or set of constraints to the lp, returning
         the indices of the corresponding rows as a list (possibly with
         one element).
@@ -1068,10 +1068,10 @@ cdef class LP(object):
         If the variables in the "b1" block are `x`, `y`, and `z`, the
         constraints would look like:
 
-           .. math:: 
-              \begin{array}{r} 
-              x + y \leq 3 \\ 
-              y + z \leq 4 
+           .. math::
+              \begin{array}{r}
+              x + y \leq 3 \\
+              y + z \leq 4
               \end{array}
 
         More detailed examples are given after specifying the
@@ -1114,14 +1114,14 @@ cdef class LP(object):
         with a list of such 2-tuples.  For example, if ``"a"``
         specifies indices 0 and 1, and ``"b"`` specifies indices 2,3,
         and 4, the following::
-        
+
            lp.addConstraint([("a", [1,2]), ("b", [-1,-2,0])], "<=", 5)
 
         would specify the constraint :math:`x_0 + 2x_1 - x_2 -2x_3 \leq 5`.
 
 
         **Constraint Type**
-        
+
         There are four possible types of constraint supported: equal,
         less-than-or-equal, greater-than-or-equal, or within an
         interval (range constraints).  The `ctypestr` argument is a
@@ -1133,19 +1133,19 @@ cdef class LP(object):
 
           Less than or equal:
             ``"<", "<=", "=<", "leq", "lt"``
-            
+
           Greater than or equal:
             ``">", ">=", "=>", "geq", "gt"``
 
-          Within an interval: 
+          Within an interval:
             ``"in", "between", "range"``
 
-          
-        **Right Hand Side** 
+
+        **Right Hand Side**
 
         The required type of the `rhs` argument is determined by the
         specified coefficients and the constraint type:
-        
+
         For 1d Coefficients:
           If `ctypestr` specifies an equality or inequality
           relationship, then `rhs` must be a scalar or a single
@@ -1154,7 +1154,7 @@ cdef class LP(object):
           points of the constraint.  For example::
 
             lp.addConstraint([1,2,3], "in", [0,2])
-            
+
           or::
 
             lp.addConstraint([1,2,3], ">=", 0)
@@ -1185,10 +1185,10 @@ cdef class LP(object):
 
           For example::
 
-            lp.addConstraint( [[1,1,0],[0,1,2]], "<=", 5) 
-            
+            lp.addConstraint( [[1,1,0],[0,1,2]], "<=", 5)
+
           or::
-            
+
             lp.addConstraint( [[1,1,0],[0,1,2]], "<=", [5,5])
 
           both specify the constraints:
@@ -1198,20 +1198,20 @@ cdef class LP(object):
               x_0 + x_1  \leq 5 \\
               x_1 + 2x_2 \leq 5
               \end{array}
-       
+
           And each of the following::
 
-            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [1, 5]) 
-            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [[1,1], [5,5]]) 
-            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [1, [5,5]]) 
+            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [1, 5])
+            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [[1,1], [5,5]])
+            lp.addConstraint( [[1,1,0],[0,1,2]], "in", [1, [5,5]])
 
           specifies the constraints:
 
-            .. math:: \begin{array}{r} 
-                         x_0 + x_1  \leq 5 \\ 
-                         x_0 + x_1  \geq 1 \\ 
-                         x_1 + 2x_2 \geq 1 \\ 
-                         x_1 + 2x_2 \leq 5 
+            .. math:: \begin{array}{r}
+                         x_0 + x_1  \leq 5 \\
+                         x_0 + x_1  \geq 1 \\
+                         x_1 + 2x_2 \geq 1 \\
+                         x_1 + 2x_2 \leq 5
                       \end{array}
 
 
@@ -1223,7 +1223,7 @@ cdef class LP(object):
         of 2 arrays/lists.  For example, to specify
         :math:`x_0 + 5x_3 + 10x_10 \in [-1,1]`,
         one could use The following::
-        
+
           lp.addConstraint( ([0, 3, 10], [1, 5, 10]), "in", [-1,1])
 
         *Specifying specific indices with a 2d Array*
@@ -1231,18 +1231,18 @@ cdef class LP(object):
         Similarly, one can replace the 1d array of coefficients in the
         previous example with a 2d array or nested list.  The
         following::
-        
+
           lp.addConstraint( ([0, 1, 5], [[1, 0, 3], [0,  5,  1]]), "<=", [1,2])
-          
+
         specifies:
 
-             .. math:: \begin{array}{r} 
-                         x_0  + 3x_5  \leq 1 \\ 
+             .. math:: \begin{array}{r}
+                         x_0  + 3x_5  \leq 1 \\
                          5x_1 +  x_5  \leq 2
                       \end{array}
 
         *Specifying a 2d constraint involving multiple blocks.*
-        
+
         Suppose :math:`\m A \in \mathcal{M}_{n\times k}`, :math:`\m B
         \in\mathcal{M}_{n\times\ell}` and :math:`\m C
         \in\mathcal{M}_{n\times m}` are all 2d matrices specified as
@@ -1250,10 +1250,10 @@ cdef class LP(object):
         :math:`\m x_c` be vectors of variables corresponding to these
         blocks. Then, we can specify the following constraints:
 
-         .. math:: \begin{array}{cccccll} 
-                \m A  \m x_a  &+& \m B \m x_b  & &               &\preceq & \m b \\ 
-                              & & \m B \m x_b  &+& \m C \m x_c   &\preceq & \m 1 \\ 
-                \m 1^T \m x_a &+& \m 1^T\m x_b & & \m 1^T \m x_c &\leq    & 1 
+         .. math:: \begin{array}{cccccll}
+                \m A  \m x_a  &+& \m B \m x_b  & &               &\preceq & \m b \\
+                              & & \m B \m x_b  &+& \m C \m x_c   &\preceq & \m 1 \\
+                \m 1^T \m x_a &+& \m 1^T\m x_b & & \m 1^T \m x_c &\leq    & 1
                       \end{array}
 
         using the following code::
@@ -1261,11 +1261,11 @@ cdef class LP(object):
           lp.addConstraint( {"A" : A, "B" : B}, "<=", b)
           lp.addConstraint( {"B" : B, "C" : C}, "<=", 1)
           lp.addConstraint( {"A" : 1, "B" : 1, "C" : 1}, "<=", 1)
-          
+
         Note that the index blocks are created implicitly based on the
         matrix sizes.  Each of the dictionaries above can also be
         replaced with a list of tuples, i.e.::
-        
+
           lp.addConstraint( [("A", A), ("B", B)], "<=", b)
           lp.addConstraint( [("B", B), ("C", C)], "<=", 1)
           lp.addConstraint( [("A", 1), ("B", 1), ("C", 1)], "<=", 1)
@@ -1297,17 +1297,17 @@ cdef class LP(object):
         elif coefftype is list:
             # Two possible ways to interpret a list; as a sequence of
             # tuples or as a representation of an array; if it is a
-            # sequence of 2-tuples, intepret it this way 
-            
+            # sequence of 2-tuples, intepret it this way
+
 
             # Test and see if it's a list of sequences or numerical list
             is_list_sequence = istuplelist(<list>coefficients)
 
-            if is_list_sequence: 
+            if is_list_sequence:
                 is_numerical_sequence = False
             else:
                 is_numerical_sequence = isnumericlist(<list>coefficients)
-            
+
             if is_list_sequence:
                 return self._addConstraintTupleList(<list>coefficients, ctype, rhs)
 
@@ -1353,11 +1353,11 @@ cdef class LP(object):
             return self._addConstraint(idx, A, ctype, rhs)
 
         elif A.ndim == 2:
-            
-            # For this, we need some extra work to resolve the 
+
+            # For this, we need some extra work to resolve the
 
             idx = self._resolveIdxBlock(t_idx, A.shape[1])
-            
+
             if ctype in [constraint_leq, constraint_geq, constraint_equal]:
                 rhs_a = self._resolveValues(rhs, True)
 
@@ -1373,7 +1373,7 @@ cdef class LP(object):
             elif ctype == constraint_in:
                 if not (type(rhs) is list or type(rhs) is tuple) or not len(rhs) == 2:
                     raise ValueError("Range constraints require rhs to be either 2-tuple or 2-list.")
-                
+
                 rhs_a = self._resolveValues(rhs[0], True)
                 rhs_b = self._resolveValues(rhs[1], True)
 
@@ -1385,7 +1385,7 @@ cdef class LP(object):
 
                 if not b_is_scalar and rhs_b.shape[0] != A.shape[0]:
                     raise ValueError("Length of upper bound in range constraint must be either 1 or match the number of constraints given.")
-                    
+
                 ret_idx_l = [None]*A.shape[0]
                 rhsl = [None, None]
 
@@ -1405,7 +1405,7 @@ cdef class LP(object):
     cdef _addConstraintDict(self, dict d, int ctype, rhs):
         I, V = self._getArrayPairFromDict(d)
         return self._addConstraintArray(I, V, ctype, rhs)
-            
+
     cdef _addConstraintTupleList(self, list l, int ctype, rhs):
         I, V = self._getArrayPairFromTupleList(l)
         return self._addConstraintArray(I, V, ctype, rhs)
@@ -1442,7 +1442,7 @@ cdef class LP(object):
 
         ########################################
         # Validate the indices
-        
+
         cdef ar idx_b1, idx_b2
         cdef size_t size
 
@@ -1501,7 +1501,7 @@ cdef class LP(object):
 
         ########################################
         # Validate the indices
-        
+
         cdef ar idx_b1, idx_b2
         cdef size_t size
 
@@ -1532,7 +1532,7 @@ cdef class LP(object):
 
         cdef ar[double, mode="c"] row_1 = empty(2, npfloat)
         cdef ar[double, mode="c"] row_2 = empty(2, npfloat)
-        
+
         row_1[0], row_1[1] = 1, -1
         row_2[0], row_2[1] = -1, -1
 
@@ -1556,8 +1556,8 @@ cdef class LP(object):
 
         cdef bint idx_b1_is_known = self._isCurrentIndexBlock(indices_1)
         cdef bint idx_b2_is_known = self._isCurrentIndexBlock(indices_2)
-        
-        cdef ar idx_b1, idx_b2 
+
+        cdef ar idx_b1, idx_b2
         cdef size_t idx_block_1_size, idx_block_2_size
 
         # Have to choose how to set these to handle the case of one
@@ -1583,7 +1583,7 @@ cdef class LP(object):
             idx_block_2_size = self._indexBlockSize(idx_b2)
             idx_b1 = self._resolveIdxBlock(indices_1, 1)
             idx_block_1_size = self._indexBlockSize(idx_b1)
-            
+
         if idx_block_1_size != idx_block_2_size:
             raise ValueError("Index blocks have inconsistent sizes.")
 
@@ -1600,14 +1600,14 @@ cdef class LP(object):
         self._obj_func_values = []
         self._obj_func_n_vals_count = 0
         self._obj_func_specified = False
-        
+
     cpdef clearObjective(self):
         """
         Resets the current objective function, clearing all
         coefficients and resetting the objective mode to the default
         (minimize).
         """
-        
+
         self._resetObjective()
         self.setMinimize(True)
         self._obj_func_specified = False
@@ -1657,7 +1657,7 @@ cdef class LP(object):
 
 
     cdef _addToObjective(self, coefficients):
-        
+
         # What we do depends on the type
         coefftype = type(coefficients)
 
@@ -1665,7 +1665,7 @@ cdef class LP(object):
 
         if coefftype is tuple:
             t = <tuple>coefficients
-            
+
             # It's split into index, value pair
             if len(t) != 2:
                 raise ValueError("coefficients must be a single array, list,"
@@ -1679,13 +1679,13 @@ cdef class LP(object):
         elif coefftype is list:
             # Two possible ways to interpret a list; as a sequence of
             # tuples or as a representation of an array; if it is a
-            # sequence of 2-tuples, intepret it this way 
-            
+            # sequence of 2-tuples, intepret it this way
+
             # Test and see if it's a list of sequences
             is_list_sequence = istuplelist(<list>coefficients)
 
             # Test and see if it's a list of scalars
-            if is_list_sequence: 
+            if is_list_sequence:
                 is_numerical_sequence = False
             else:
                 is_numerical_sequence = isnumericlist(<list>coefficients)
@@ -1696,7 +1696,7 @@ cdef class LP(object):
                 idx, val = None, array(<list>coefficients, npfloat)
             else:
                 raise TypeError("Coefficient list must be either list of scalars or list of 2-tuples.")
-                    
+
         elif coefftype is dict:
             idx, val = self._getArrayPairFromDict(<dict>coefficients)
 
@@ -1705,7 +1705,7 @@ cdef class LP(object):
 
         else:
             raise TypeError("Type of coefficients not recognized; must be dict, list, 2-tuple, or array.")
-        
+
         # debug note: at this point val is ndarray
         self._stackOnInterpretedKeyValuePair(
             self._obj_func_keys, self._obj_func_values, idx, val, &self._obj_func_n_vals_count, True)
@@ -1713,29 +1713,29 @@ cdef class LP(object):
         self._obj_func_specified = True
 
     cdef applyObjective(self):
-        
+
         assert self.lp != NULL
 
         cdef ar[int, mode="c"]    I
         cdef ar[double, mode="c"] V
-        cdef size_t i 
+        cdef size_t i
 
         if self._maximize_mode:
             set_maxim(self.lp)
         else:
             set_minim(self.lp)
-            
+
         if self._obj_func_specified:
 
             I, V = self._getIndexValueArraysFromIntepretedStack(
-                self._obj_func_keys, 
-                self._obj_func_values, 
+                self._obj_func_keys,
+                self._obj_func_values,
                 self._obj_func_n_vals_count)
 
             self._resetObjective()
 
             # necessary for the weird start-at-1 indexing
-            for 0 <= i < I.shape[0]: 
+            for 0 <= i < I.shape[0]:
                 I[i] += 1
 
             set_obj_fnex(self.lp, I.shape[0], <double*>V.data, <int*>I.data)
@@ -1783,7 +1783,7 @@ cdef class LP(object):
         >=0).  This is equivalent to ``setLowerBound(indices, None)``,
         ``setUpperBound(indices, None)``
         """
-        
+
         self.setLowerBound(indices, None)
         self.setUpperBound(indices, None)
 
@@ -1812,7 +1812,7 @@ cdef class LP(object):
         """
 
         self._setBound(indices, ub, False)
-        
+
 
     cpdef setInteger(self, indices):
         """
@@ -1840,12 +1840,12 @@ cdef class LP(object):
 
 
     cdef _setBound(self, varidx, b, bint lower_bound):
-        
+
         if b is None:
             b = neg_arinfty if lower_bound else pos_arinfty
 
         elif type(b) is list:
-            b = [(-infty if lower_bound else infty) 
+            b = [(-infty if lower_bound else infty)
                  if be is None else be for be in b]
 
         elif type(b) is ndarray:
@@ -1858,19 +1858,19 @@ cdef class LP(object):
             self._stackOnInterpretedKeyValuePair(
                 self._upper_bound_keys, self._upper_bound_values, varidx, b, &self._upper_bound_count, True)
 
-            
+
     cdef _setVarType(self, varidx, int type):
 
         self._stackOnInterpretedKeyValuePair(
             self._as_type_keys, self._as_type_values, varidx, type, &self._as_type_count, True)
 
     cdef applyVariableBounds(self):
-        
+
         assert self.lp != NULL
 
         cdef ar[int, mode="c"] I
         cdef ar[double, mode="c"] V
-               
+
         # First the lower bounds; thus we can use set_unbounded on them
         I, V = self._getIndexValueArraysFromIntepretedStack(
             self._lower_bound_keys, self._lower_bound_values, self._lower_bound_count)
@@ -1894,7 +1894,7 @@ cdef class LP(object):
             if V[i] == infty:
                 lb = get_lowbo(self.lp, I[i] + 1)
                 set_unbounded(self.lp, I[i] + 1)
-            
+
                 if lb != lp_infty:
                     set_lowbo(self.lp,  I[i] + 1, lb)
             else:
@@ -1913,7 +1913,7 @@ cdef class LP(object):
                 set_binary(self.lp, I[i] + 1, False)
             else:
                 assert False
-        
+
     ############################################################
     # Helper functions for turning dictionaries or tuple-lists into an
     # index array + value array.
@@ -1921,18 +1921,18 @@ cdef class LP(object):
     cdef ar _attemptArrayList(self, list l):
 
         # Now we need to specify that only lists of lists or lists of
-        # arrays are allowed, not lists of tuples.  
-    
+        # arrays are allowed, not lists of tuples.
+
         cdef bint is_l, is_a
         cdef int all_size = -1, size
         cdef bint inconsistent_lengths = False
         cdef ar A
 
         for t in l:
-            
+
             is_l = isinstance(t, list)
             is_a = isinstance(t, ndarray)
-            
+
             if not (is_l or is_a):
                 return None
 
@@ -1944,15 +1944,15 @@ cdef class LP(object):
 
             elif is_a:
                 A = <ar>t
-                
+
                 if A.ndim != 1:
                     return None
-                
+
                 size = A.shape[0]
 
             else:
                 return None
-            
+
             # Keep track of the sizes
             if all_size == -1:
                 all_size = size
@@ -1964,7 +1964,7 @@ cdef class LP(object):
             raise ValueError("Lengths of sublist in list of lists/arrays not consistent.")
         else:
             return array(l, npfloat)
-                    
+
     cdef tuple _getArrayPairFromDict(self, dict d):
         # Builds an array pair from a dictionary
 
@@ -1986,7 +1986,7 @@ cdef class LP(object):
             self._stackOnInterpretedKeyValuePair(key_buf, val_buf, k, v, &idx_count, False)
 
         return self._getIndexValueArraysFromIntepretedStack(key_buf, val_buf, idx_count)
-  
+
     cdef _stackOnInterpretedKeyValuePair(self, list key_buf, list val_buf, k, v,
                                          size_t *count, bint restrict_to_1d):
         # Appends interpreted key value pairs to the lists
@@ -1999,7 +1999,7 @@ cdef class LP(object):
 
         if isposint(k):
             tV = self._resolveValues(v, restrict_to_1d)
-            
+
             if tV.shape[0] != 1:
                 raise ValueError("Scalar index must specify only one value.")
 
@@ -2007,7 +2007,7 @@ cdef class LP(object):
             val_buf.append(tV[0])
             count[0] += 1
 
-        elif (type(k) is str or type(k) is tuple 
+        elif (type(k) is str or type(k) is tuple
               or type(k) is list or type(k) is ndarray):
 
             tV = self._resolveValues(v, restrict_to_1d)
@@ -2024,7 +2024,7 @@ cdef class LP(object):
                     tI = array(tI, npint)
                     if (tI != ptI).any():
                         raise ValueError("Could not convert index array into array of integers.")
-                    
+
                 count[0] += tI.shape[0]
             elif tI.ndim == 2:
                 count[0] += tI[0,1] - tI[0,0]
@@ -2032,7 +2032,7 @@ cdef class LP(object):
         elif k is None:
             tV = self._resolveValues(v, restrict_to_1d)
             tI = self._resolveIdxBlock(k, tV.shape[tV.ndim-1])
-            
+
             B = empty(range_tuple_size, npuint)
             B[0,0] = 0
             B[0,1] = self.n_columns
@@ -2049,7 +2049,7 @@ cdef class LP(object):
 
 
     cdef tuple _getIndexValueArraysFromIntepretedStack(self, list key_buf, list val_buf, size_t idx_count):
-        
+
         cdef ar[int] tI
         cdef ar[double] tV
         cdef ar arV
@@ -2083,7 +2083,7 @@ cdef class LP(object):
             V1d = empty( idx_count, npfloat)
 
             for k, v in zip(key_buf, val_buf):
-                
+
                 if isnumeric(k):
                     I[ii] = <size_t>k
                     V1d[ii] = <double>v
@@ -2132,7 +2132,7 @@ cdef class LP(object):
                         assert False
                 else:
                     assert False
-                    
+
             assert ii == I.shape[0], "ii=%d, I.shape[0]=%d" % (ii, I.shape[0])
 
             return (I, V1d)
@@ -2143,7 +2143,7 @@ cdef class LP(object):
             V2d = empty( (n_rows, idx_count), npfloat)
 
             for idx, (k, v) in enumerate(zip(key_buf, val_buf)):
-                
+
                 if isnumeric(k):
                     I[ii] = <size_t>k
                     V2d[:, ii] = <double>v
@@ -2165,7 +2165,7 @@ cdef class LP(object):
                         B = <ar>k
                         col_start = ii
                         col_end = ii + B[0,1] - B[0,0]
-                        
+
                         for col_start <= j < col_end:
                             I[ii] = j
                             ii += 1
@@ -2197,15 +2197,15 @@ cdef class LP(object):
                             raise IndexError("Inconsistent number of rows in set of 2d constraints "
                                              "(index = %d, expected = %d, received = %d"
                                              % (idx, n_rows, arV.shape[0]))
-                                
+
                         V2d[:,col_start:col_end] = arV[:,:]
 
                     else:
                         assert False
-                    
+
                 else:
                     assert False
-                    
+
             assert ii == I.shape[0], "ii=%d, I.shape[0]=%d" % (ii, I.shape[0])
 
             return (I, V2d)
@@ -2215,7 +2215,7 @@ cdef class LP(object):
     # Now stuff for solving the model
 
     cdef setupLP(self, dict option_dict):
-        
+
         ########################################
         # Go through and configure things depending on the options
 
@@ -2266,7 +2266,7 @@ cdef class LP(object):
         if option_dict["verbosity"] not in [1,2,3,4,5]:
             raise ValueError("Verbosity level must be 1,2,3,4, or 5 (highest).")
 
-        # Options are vetted now; basis and others might not be 
+        # Options are vetted now; basis and others might not be
 
         ########################################
         # Now set up the LP
@@ -2279,7 +2279,7 @@ cdef class LP(object):
         else:
             if not resize_lp(self.lp, self.n_rows, self.n_columns):
                 raise MemoryError("Out of memory resizing internal LP structure.")
-            
+
         ####################
         # Constraints
 
@@ -2340,7 +2340,7 @@ cdef class LP(object):
 
         ########################################
         # Set all the options
-            
+
         set_presolve(self.lp, presolve, 100)
         set_pivoting(self.lp, pricer_option)
         set_scaling(self.lp, scaling_option)
@@ -2351,7 +2351,7 @@ cdef class LP(object):
             set_basis(self.lp, <int*>start_basis.data, start_basis.shape[0] == full_basis_size)
 
         ####################
-        # Clear out all the temporary stuff 
+        # Clear out all the temporary stuff
         self._clear(True)
 
 
@@ -2386,15 +2386,15 @@ cdef class LP(object):
                 else:
                     warnings.warn(error_msg)
                     return None
-            
+
             return start_basis
 
         # Made it here, so the basis must be a different type
-        
+
         cdef ar[int, mode="c"]    I
         cdef ar[double, mode="c"] V
         cdef tuple t
-        
+
         cdef size_t prev_n_cols = self.n_columns
 
         if type(guess) is dict:
@@ -2419,7 +2419,7 @@ cdef class LP(object):
             return self._getBasisFromGuess(V[argsort(I)], error_on_bad_guess)
         else:
             raise ValueError("Variable guess not complete.")
-        
+
             # We could copy the LP, then set the parameters given via
             # identical lower/upper bounds, then allow the presolve to
             # modify the model as needed.  But that's for later.
@@ -2430,7 +2430,7 @@ cdef class LP(object):
         is raised.
 
         **Configuration**
-        
+
         Any of the options available to `setOption()` may also be
         passed in as keyword arguments.  These affect only the current
         run (as opposed to `setOption()`, which affects all subsequent
@@ -2483,14 +2483,14 @@ cdef class LP(object):
 
             option_dict[kl] = v
 
-        
+
         ########################################
         # Set up the LP
-        
+
         self.setupLP(option_dict)
 
         cdef int ret = solve(self.lp)
-        
+
         ########################################
         # Check the error codes
 
@@ -2507,11 +2507,11 @@ cdef class LP(object):
 
             # A timeout occured (set via set_timeout or with the -timeout option in lp_solve)
             # set_break_at_first was called so that the first found integer solution is found (-f option in lp_solve)
-            # set_break_at_value was called so that when integer solution is found 
+            # set_break_at_value was called so that when integer solution is found
             #   that is better than the specified value that it stops (-o option in lp_solve)
             # set_mip_gap was called (-g/-ga/-gr options in lp_solve) to specify a MIP gap
             # An abort function is installed (put_abortfunc) and this function returned TRUE
-            # At some point not enough memory could not be allocated 
+            # At some point not enough memory could not be allocated
 
             warnings.warn("Solver solution suboptimal")
         elif ret == 2:
@@ -2547,7 +2547,7 @@ cdef class LP(object):
             raise LPException("Error 11: B&B Stopped.")
         elif ret == 12:
             # FEASFOUND (12)    A feasible B&B solution was found
-            return 
+            return
         elif ret == 13:
              # NOFEASFOUND (13)         No feasible B&B solution found
             raise LPException("Error 13: No feasible B&B solution found")
@@ -2606,9 +2606,9 @@ cdef class LP(object):
                 idx_bounds = self._named_index_blocks[indices]
             except KeyError:
                 raise ValueError("Variable block '%s' not defined." % indices)
-            
+
             res = empty(idx_bounds[0,1] - idx_bounds[0,0], npfloat)
-    
+
             for 0 <= i < res.shape[0]:
                 res[i] = vars[idx_bounds[0,0] + i]
 
@@ -2618,12 +2618,12 @@ cdef class LP(object):
             l = <list>indices
             if not isposintlist(l):
                 raise ValueError("Requested index list must contain only valid indices.")
-            
+
             res = empty(len(l), npfloat)
 
             for 0 <= i < res.shape[0]:
                 idx = l[i]
-                
+
                 if idx < 0 or idx >= self.n_columns:
                     raise ValueError("Variable index not valid: %d" % idx)
 
@@ -2633,9 +2633,9 @@ cdef class LP(object):
 
         elif type(indices) is ndarray:
             idx_request = asarray(indices, npint)
-            
+
             res = empty(idx_request.shape[0], npfloat)
-            
+
             for 0 <= i < res.shape[0]:
                 idx = idx_request[i]
 
@@ -2643,7 +2643,7 @@ cdef class LP(object):
                     raise ValueError("Variable index not valid: %d" % idx)
 
                 res[i] = vars[idx]
-            
+
             return res
 
         elif type(indices) is tuple:
@@ -2654,7 +2654,7 @@ cdef class LP(object):
             idx_ub = t[1]
 
             res = empty(idx_ub - idx_lb, npfloat)
-    
+
             for 0 <= i < res.shape[0]:
                 res[i] = vars[idx_lb + i]
 
@@ -2665,7 +2665,7 @@ cdef class LP(object):
 
             if idx < 0 or idx >= self.n_columns:
                 raise ValueError("Variable index not valid: %d" % idx)
-            
+
             return vars[idx]
 
         else:
@@ -2683,7 +2683,7 @@ cdef class LP(object):
 
         for k in self._named_index_blocks.iterkeys():
             ret[k] = self.getSolution(k)
-            
+
         return ret
 
 
@@ -2721,7 +2721,7 @@ cdef class LP(object):
     cpdef printLP(self):
         """
         Prints the current LP.
-        
+
         Sets up the LP at the current stage and with the default
         options, if it is not already set up, and calls lpsolve's
         `print_lp()` method.
@@ -2729,7 +2729,7 @@ cdef class LP(object):
 
         self.setupLP(self.getOptionDict())
         print_lp(self.lp)
-        
+
 
     def getInfo(self, str info):
         """
@@ -2739,7 +2739,7 @@ cdef class LP(object):
           Iterations:
             The number of iterations required to solve the model.
         """
-        
+
         if self.lp == NULL:
             raise LPException("Info available only after solve() is called.")
 
@@ -2748,20 +2748,20 @@ cdef class LP(object):
         try:
             ret_stat = info_lookup[info.lower()]
         except KeyError:
-            raise ValueError("info must be one of: %s" % 
+            raise ValueError("info must be one of: %s" %
                              ", ".join(info_lookup.iterkeys()))
 
         if ret_stat == nIterations:
             return get_total_iter(self.lp)
         else:
             assert False
-            
+
 
     ############################################################
     # Methods for dealing with the constraint buffers
 
     cdef setConstraint(self, size_t row_idx, ar idx, ar row, int ctype, rhs):
-        
+
         # First get the right cstr
         cdef _Constraint* cstr = self.getConstraintStruct(row_idx)
 
@@ -2776,7 +2776,7 @@ cdef class LP(object):
         return row_idx
 
     cdef _Constraint* getConstraintStruct(self, size_t row_idx):
-        
+
         # First see if our double-buffer thing is ready to go
         cdef size_t buf_idx = <size_t>(row_idx // cStructBufferSize)
         cdef size_t idx     = <size_t>(row_idx % cStructBufferSize)
@@ -2787,7 +2787,7 @@ cdef class LP(object):
 
         # Ensure proper sizing of constraint buffer
         if buf_idx >= self.current_c_buffer_size:
-            
+
             # Be agressive, since we anticipate growing incrementally,
             # and each one is a lot of constraints
 
@@ -2801,9 +2801,9 @@ cdef class LP(object):
                 self._c_buffer = <_Constraint**>malloc(new_size*sizeof(_Constraint*))
             else:
                 self._c_buffer = <_Constraint**>realloc(self._c_buffer, new_size*sizeof(_Constraint*))
-            
+
             if self._c_buffer == NULL:
-                return NULL  
+                return NULL
 
             for self.current_c_buffer_size <= i < new_size:
                 self._c_buffer[i] = NULL
@@ -2815,11 +2815,11 @@ cdef class LP(object):
 
         # Now make sure that the buffer is ready
         buf = self._c_buffer[buf_idx]
-        
+
         if buf == NULL:
             buf = self._c_buffer[buf_idx] = \
                 <_Constraint*>malloc(cStructBufferSize*sizeof(_Constraint))
-            
+
             if buf == NULL:
                 raise MemoryError
 
@@ -2828,7 +2828,7 @@ cdef class LP(object):
         # Now finally this determines the new model size
         if row_idx >= self.n_rows:
             self.n_rows = row_idx + 1
-        
+
         return &buf[idx]
 
     cdef applyAllConstraints(self):
@@ -2848,7 +2848,7 @@ cdef class LP(object):
 
         for 0 <= i < self.current_c_buffer_size:
             buf = self._c_buffer[i]
-        
+
             if buf == NULL:
                 continue
 
@@ -2873,7 +2873,7 @@ cdef class LP(object):
         for 0 <= i < self.current_c_buffer_size:
 
             buf = self._c_buffer[i]
-            
+
             if buf == NULL:
                 continue
 
@@ -2884,7 +2884,7 @@ cdef class LP(object):
             free(buf)
 
         free(self._c_buffer)
-        
+
         self.current_c_buffer_size = 0
         self._c_buffer = NULL
 
@@ -2950,7 +2950,7 @@ cdef inline setupConstraint(_Constraint* cstr, size_t row_idx, ar idx, ar row, i
     ############################################################
     # Set the row indices
     cstr.row_idx = row_idx
-    
+
     ########################################
     # Now that these tests pass, copy all the values in.
 
@@ -2976,7 +2976,7 @@ cdef inline setupConstraint(_Constraint* cstr, size_t row_idx, ar idx, ar row, i
             else:
                 assert False
 
-        elif idx.ndim == 2:  
+        elif idx.ndim == 2:
 
             # this means it defines a range instead of individual values
             assert idx.shape[0] == 1
@@ -3062,7 +3062,7 @@ cdef inline copyIntoIndices(_Constraint* cstr, ar a):
     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
     elif dt is int64:    copyIntoIndices_int64(cstr, a)
     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
-    else:                
+    else:
         if sizeof(int) == 4:
             ua = uint32(a)
             if (ua != a).any():
@@ -3075,7 +3075,7 @@ cdef inline copyIntoIndices(_Constraint* cstr, ar a):
                 raise ValueError("Error converting index array to 64bit integers.")
 
             copyIntoIndices_uint64(cstr, ua)
-            
+
 cdef inline copyIntoIndices_int32(_Constraint *cstr, ar a_o):
 
     cdef ar[int32_t] a = a_o
@@ -3168,7 +3168,7 @@ cdef inline _setRow(_Constraint *cstr, lprec *lp, int ctype, double rhs, int *co
 cdef inline void clearConstraint(_Constraint *cstr):
     if cstr.indices != NULL: free(cstr.indices)
     if cstr.values  != NULL: free(cstr.values)
-    
+
     cstr.indices = NULL
     cstr.values = NULL
     cstr.n = 0

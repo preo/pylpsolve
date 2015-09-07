@@ -85,12 +85,12 @@ extra_include_dirs = [join(lpsolve_base, d) for d in ['.', 'shared', 'bfp', 'bfp
 library_includes = []
 specific_libraries = {}
 
-extra_sources = {'pylpsolve.pylpsolve' : [join(lpsolve_base, f) for f in 
-                                          ['lp_MDO.c', 'shared/commonlib.c', 'shared/mmio.c', 'shared/myblas.c', 
-                                           'ini.c', 'fortify.c', 'colamd/colamd.c', 'lp_rlp.c', 'lp_crash.c', 
-                                           'bfp/bfp_LUSOL/lp_LUSOL.c', 'bfp/bfp_LUSOL/LUSOL/lusol.c', 'lp_Hash.c', 
-                                           'lp_lib.c', 'lp_wlp.c', 'lp_matrix.c', 'lp_mipbb.c', 'lp_MPS.c', 'lp_params.c', 
-                                           'lp_presolve.c', 'lp_price.c', 'lp_pricePSE.c', 'lp_report.c', 'lp_scale.c', 
+extra_sources = {'pylpsolve.pylpsolve' : [join(lpsolve_base, f) for f in
+                                          ['lp_MDO.c', 'shared/commonlib.c', 'shared/mmio.c', 'shared/myblas.c',
+                                           'ini.c', 'fortify.c', 'colamd/colamd.c', 'lp_rlp.c', 'lp_crash.c',
+                                           'bfp/bfp_LUSOL/lp_LUSOL.c', 'bfp/bfp_LUSOL/LUSOL/lusol.c', 'lp_Hash.c',
+                                           'lp_lib.c', 'lp_wlp.c', 'lp_matrix.c', 'lp_mipbb.c', 'lp_MPS.c', 'lp_params.c',
+                                           'lp_presolve.c', 'lp_price.c', 'lp_pricePSE.c', 'lp_report.c', 'lp_scale.c',
                                            'lp_simplex.c', 'lp_SOS.c', 'lp_utils.c', 'yacc_read.c']]}
 
 
@@ -169,7 +169,7 @@ def get_python_modules(f):
     return m if len(d) == 0 else d + "." + m
 
 exclude_files = set(["setup.py"])
-python_files = set(chain(* (list(glob(join(d, "*.py")) for d in source_directory_list) + [glob("*.py")]))) 
+python_files = set(chain(* (list(glob(join(d, "*.py")) for d in source_directory_list) + [glob("*.py")])))
 python_files -= exclude_files
 
 python_modules = [get_python_modules(f) for f in python_files]
@@ -178,7 +178,7 @@ print "Relevant Python Files Found: \n%s\n+++++++++++++++++++++" % ", ".join(sor
 
 if __name__ == '__main__':
     # The rest is also shared with the setup.py file, in addition to
-    # this one, so 
+    # this one, so
 
     def get_include_dirs(m):
         return [l.strip() for l in extra_include_dirs + include_paths
@@ -190,10 +190,10 @@ if __name__ == '__main__':
 
     def get_libraries(m):
         return library_includes + (specific_libraries[m] if m in specific_libraries else [])
-    
+
     def get_extra_compile_args(m):
         return compiler_args + (['-g', '-O0', '-DCYTHON_REFNANNY'] if debug_mode_c_code else [])
-    
+
     def get_extra_link_args(m):
         return link_args + (['-g'] if debug_mode_c_code else [])
 
@@ -210,7 +210,7 @@ if __name__ == '__main__':
             f_no_ext = f[:f.rfind('.')]
             f_mod = split(f_no_ext)[1]
             modname = "%s.%s" % (d, f_mod) if d != '.' else f_mod
-            
+
             ext_modules.append(Extension(
                     modname,
                     [f] + get_extra_source_files(modname),
@@ -231,9 +231,9 @@ if __name__ == '__main__':
     if cython_mode:
         from Cython.Distutils import build_ext
 
-        ext_modules += list(chain(*list(makeExtensionList(d, l) 
+        ext_modules += list(chain(*list(makeExtensionList(d, l)
                                         for d, l in cython_files.iteritems())))
-        
+
         cmdclass = {'build_ext' : build_ext}
     else:
         cmdclass = {}
@@ -243,7 +243,7 @@ if __name__ == '__main__':
     setup(
         version = version,
         description = description,
-        author = author, 
+        author = author,
         author_email = author_email,
         name = name,
         cmdclass = cmdclass,
