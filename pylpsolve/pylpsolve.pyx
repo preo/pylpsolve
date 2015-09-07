@@ -255,6 +255,9 @@ cdef extern from "lp_solve_5.5/lp_lib.h":
 
     ecode set_add_rowmode(lprec*, unsigned char turn_on)
 
+    ecode set_col_name(lprec*, int colnr, char *new_name)
+    ecode set_row_name(lprec*, int colnr, char *new_name)
+
     # Variable bounds
     ecode set_lowbo(lprec*, int column, real value)
     ecode set_upbo(lprec*, int column, real value)
@@ -1914,6 +1917,13 @@ cdef class LP(object):
             else:
                 assert False
 
+    def applyIndexNames(self):
+        for name, idx in self._named_index_blocks.iteritems():
+            if idx[0,0] + 1 == idx[0,1]:
+                py_byte_string = <str>(name)
+                set_col_name(self.lp, idx[0,0] + 1, py_byte_string)
+
+
     ############################################################
     # Helper functions for turning dictionaries or tuple-lists into an
     # index array + value array.
@@ -2294,6 +2304,11 @@ cdef class LP(object):
         # Objective
 
         self.applyObjective()
+
+        ####################
+        # Index Names
+
+        self.applyIndexNames()
 
         ####################
         # Set the basis/guess
