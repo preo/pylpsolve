@@ -25,7 +25,7 @@ cdef inline isnumeric(v):
     t_v = type(v)
 
     global IntType
-    
+
     if (t_v is IntType
         or t_v is LongType
         or t_v is FloatType):
@@ -53,7 +53,7 @@ cdef inline bint istuplelist(list l):
             return False
 
     return True
-        
+
 cdef inline bint isnumericlist(list l):
     for t in l:
         if not isnumeric(t):
@@ -74,4 +74,4 @@ cdef inline bint is2dlist(list l):
                 return False
     else:
         return True
-        
+

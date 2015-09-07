@@ -73,7 +73,7 @@ _default_options = {
     "error_on_bad_guess"   :  False
 }
 
-     
+
 # Set the presolve flags
 _presolve_flags = {
     "presolve_none"        : 0,
@@ -98,7 +98,7 @@ _presolve_flags = {
     "presolve_bounds"      : 262144,
     "presolve_duals"       : 524288,
     "presolve_sensduals"   : 1048576}
-   
+
 _pricer_lookup = {
     "firstindex"           : 0,
     "danzig"               : 1,
@@ -127,7 +127,7 @@ _scaling_lookup = {
     "curtisreid"           : 7}
 
 _scaling_flags = {
-    "scale_quadratic"      : 8,	 
+    "scale_quadratic"      : 8,
     "scale_logarithmic"    : 16,
     "scale_userweight"     : 31,
     "scale_power2"         : 32,
@@ -136,4 +136,4 @@ _scaling_flags = {
     "scale_dynupdate"      : 256,
     "scale_rowsonly"       : 512,
     "scale_colsonly"       : 1024}
-    
+

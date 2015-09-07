@@ -18,7 +18,7 @@ for i, t in enumerate(product(*V)):
 
     if t[1] == "n" and t[3] == "s":
 	continue
-     
+
     if i % (len(V[-1])) == 0:
 	print ""
 

@@ -4,9 +4,9 @@ from pylpsolve import LP, LPException
 from numpy import array as ar, ones, eye, float64, uint
 
 class TestBases(unittest.TestCase):
-    
+
     def testBasicBasis(self):
-        
+
         # this should work as it's in the examples
 
         lp = LP()
@@ -34,7 +34,7 @@ class TestBases(unittest.TestCase):
             lp.setObjective(objective)
 
             return lp
-    
+
         lp1 = getLP()
 
         #lp1.print_lp()
@@ -71,7 +71,7 @@ class TestBases(unittest.TestCase):
     lp_01 = [( ([0,1], [1,1]), ">", 2),
              ( ([1,2], [1,1]), ">", 2)]
     lp_01_obj = [1,1,1]
-             
+
     def testBasis_01_fb(self): self.checkBasisRecycling("fb", self.lp_01, self.lp_01_obj)
     def testBasis_01_fg(self): self.checkBasisRecycling("fg", self.lp_01, self.lp_01_obj)
     def testBasis_01_fB(self): self.checkBasisRecycling("fB", self.lp_01, self.lp_01_obj)

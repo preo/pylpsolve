@@ -47,27 +47,27 @@ class TestBlocks(unittest.TestCase):
 
     def test04_bad_size_01(self):
         lp = LP()
-        
+
         self.assertRaises(ValueError, lambda: lp.getIndexBlock("a1", 0))
 
     def test04_bad_size_02(self):
         lp = LP()
-        
+
         self.assertRaises(ValueError, lambda: lp.getIndexBlock("a1", 0.5))
 
     def test04_bad_size_03(self):
         lp = LP()
-        
+
         self.assertRaises(ValueError, lambda: lp.getIndexBlock("a1", -1))
 
     def test04_bad_size_04(self):
         lp = LP()
-        
+
         self.assertRaises(ValueError, lambda: lp.getIndexBlock("a1", "a2"))
 
     def test04_bad_size_05(self):
         lp = LP()
-        
+
         self.assertRaises(ValueError, lambda: lp.getIndexBlock(0, 2))
 
 if __name__ == '__main__':

@@ -30,9 +30,9 @@ class TestErrorCatch(unittest.TestCase):
         self.assertRaises(ValueError,
                           lambda: lp.setObjective( (ar([0, -1, 2]), ar([1,1,1],dtype=float64) )))
 
-    
+
     def checkBadSizingTooLarge(self, opts):
-        
+
         lp = LP()
 
         def run_test(c_arg, o_arg):
@@ -62,7 +62,7 @@ class TestErrorCatch(unittest.TestCase):
 
 
         # Some ones used in the dict's case
-        il = indices["l"] 
+        il = indices["l"]
         assert len(il) == 3
 
         wl = weights["l"]
@@ -77,7 +77,7 @@ class TestErrorCatch(unittest.TestCase):
                 lp.getIndexBlock("b", 1)
                 cd = [ ("a", wl[:2]), ("b", wl[2:])]
                 od = [ ("a", ol[:2]), ("b", ol[2:])]
-            
+
             elif opts[1] == "3":
                 cd = [((0,2), wl[:2]), (2, wl[2:])]
                 od = [((0,2), ol[:2]), (2, ol[2:])]
@@ -89,7 +89,7 @@ class TestErrorCatch(unittest.TestCase):
             elif opts[1] == "5":  # bad for out of order
                 cd = [("a", wl[:2]), ( (2,3), wl[2:])]
                 od = [("a", ol[:2]), ( (2,3), ol[2:])]
-            
+
             elif opts[1] in indices.keys() and opts[2] in weights.keys():
 
                 if "N" in opts:
@@ -110,11 +110,11 @@ class TestErrorCatch(unittest.TestCase):
                 assert False
         else:
             assert len(opts) == 3
-            
+
             # No little n option here
             if "N" in opts:
                 lp.getIndexBlock(indices["N"], 3)
-            
+
             run_test( (indices[opts[0]], weights[opts[1]]),
                       (indices[opts[0]], obj_func[opts[1]]))
             return
@@ -260,7 +260,7 @@ class TestErrorCatch(unittest.TestCase):
 
 
     def checkBadSizingTooSmall(self, opts):
-        
+
         lp = LP()
 
         def run_test(c_arg, o_arg):
@@ -290,7 +290,7 @@ class TestErrorCatch(unittest.TestCase):
 
 
         # Some ones used in the dict's case
-        il = indices["l"] 
+        il = indices["l"]
         assert len(il) == 5
 
         wl = weights["l"]
@@ -313,7 +313,7 @@ class TestErrorCatch(unittest.TestCase):
             elif opts[1] == "5":  # bad for out of order
                 cd = [("a", wl[:2]), ( (2,5), wl[2:])]
                 od = [("a", ol[:2]), ( (2,5), ol[2:])]
-            
+
             elif opts[1] in indices.keys() and opts[2] in weights.keys():
 
                 if "N" in opts:
@@ -334,11 +334,11 @@ class TestErrorCatch(unittest.TestCase):
                 assert False
         else:
             assert len(opts) == 3
-            
+
             # No little n option here
             if "N" in opts:
                 lp.getIndexBlock(indices["N"], 5)
-            
+
             run_test( (indices[opts[0]], weights[opts[1]]),
                       (indices[opts[0]], obj_func[opts[1]]))
             return
@@ -510,7 +510,7 @@ class TestErrorCatch(unittest.TestCase):
         vl = values [opts[1]]
         tr = targets[opts[2]]
         ob = [1,2,3]
-        
+
         if io is None:
             self.assertRaises(ValueError, lambda: lp.addConstraint(vl, ">=", tr))
         else:
@@ -526,7 +526,7 @@ class TestErrorCatch(unittest.TestCase):
     def testInconsistentSubarrays_tla(self): self.checkInconsistentSubarrays("tla")
     def testInconsistentSubarrays_tlf(self): self.checkInconsistentSubarrays("tlf")
 
-    
+
     def testInconsistentSubarrays_nLs(self): self.checkInconsistentSubarrays("nLs")
     def testInconsistentSubarrays_nLl(self): self.checkInconsistentSubarrays("nLl")
     def testInconsistentSubarrays_nLa(self): self.checkInconsistentSubarrays("nLa")
@@ -681,7 +681,7 @@ class TestErrorCatch(unittest.TestCase):
     def testInconsistentSubarrays_eDl(self): self.checkInconsistentSubarrays("eDl")
     def testInconsistentSubarrays_eDa(self): self.checkInconsistentSubarrays("eDa")
     def testInconsistentSubarrays_eDf(self): self.checkInconsistentSubarrays("eDf")
-    
+
 
 
 if __name__ == '__main__':

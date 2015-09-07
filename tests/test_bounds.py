@@ -4,7 +4,7 @@ from pylpsolve import LP, LPException
 from numpy import array as ar, ones, eye, float64, uint, inf
 
 class TestBounds(unittest.TestCase):
-    
+
     def checkLB(self, opts, lb):
 
         # these are indices to bound
@@ -39,12 +39,12 @@ class TestBounds(unittest.TestCase):
             self.assert_(len(v) == 6)
             self.assertAlmostEqual(v[0], lb)
             self.assertAlmostEqual(v[1], lb)
-            self.assertAlmostEqual(v[2], lb) 
+            self.assertAlmostEqual(v[2], lb)
 
             self.assertAlmostEqual(v[3], 0)
             self.assertAlmostEqual(v[4], 0)
-            self.assertAlmostEqual(v[5], 0) 
-           
+            self.assertAlmostEqual(v[5], 0)
+
     def testLB_neg_ts(self): self.checkLB("ts", -12.34)
     def testLB_neg_Ns(self): self.checkLB("Ns", -12.34)
     def testLB_neg_ls(self): self.checkLB("ls", -12.34)
@@ -119,11 +119,11 @@ class TestBounds(unittest.TestCase):
             self.assert_(len(v) == 6)
             self.assertAlmostEqual(v[0], ub)
             self.assertAlmostEqual(v[1], ub)
-            self.assertAlmostEqual(v[2], ub) 
+            self.assertAlmostEqual(v[2], ub)
 
             self.assertAlmostEqual(v[3], 10)
             self.assertAlmostEqual(v[4], 10)
-            self.assertAlmostEqual(v[5], 10) 
+            self.assertAlmostEqual(v[5], 10)
 
     def testUB_neg_ts(self): self.checkUB("ts", -12.34)
     def testUB_neg_Ns(self): self.checkUB("Ns", -12.34)
@@ -207,7 +207,7 @@ class TestBounds(unittest.TestCase):
             self.assert_(len(v) == 6)
             self.assertAlmostEqual(v[0], lb)
             self.assertAlmostEqual(v[1], lb)
-            self.assertAlmostEqual(v[2], lb) 
+            self.assertAlmostEqual(v[2], lb)
 
             self.assertAlmostEqual(v[3], ub)
             self.assertAlmostEqual(v[4], ub)

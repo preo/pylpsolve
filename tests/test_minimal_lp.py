@@ -11,7 +11,7 @@ from numpy import array as ar, ones, eye, float64, uint
 class TestBasic(unittest.TestCase):
     def test01_basic_full(self):
         # test singleton
-        
+
         lp = LP()
 
         lp.addConstraint( [1], ">", 1)
@@ -28,9 +28,9 @@ class TestBasic(unittest.TestCase):
 
     def test01_basic_partial(self):
         # test singleton
-        
+
         lp = LP()
-        
+
         lp.addConstraint( (ar([0]), ar([1])) , ">", 1)
         lp.setObjective( [1], mode = "minimize")
         lp.solve()
@@ -44,9 +44,9 @@ class TestBasic(unittest.TestCase):
 
     def test01_basic_int(self):
         # test singleton
-        
+
         lp = LP()
-        
+
         lp.addConstraint( ([0], [1]) , "<", 1.5)
         lp.setInteger( [0] )
         lp.setObjective( ([0], [1]), mode = "maximize")
@@ -62,9 +62,9 @@ class TestBasic(unittest.TestCase):
 
     def test01_basic_binary(self):
         # test singleton
-        
+
         lp = LP()
-        
+
         lp.addConstraint( ([0], [1]) , ">", 0.5)
         lp.setInteger( [0] )
         lp.setObjective( ([0], [1]), mode = "minimize")
@@ -80,7 +80,7 @@ class TestBasic(unittest.TestCase):
 
     def test01_basic_secondcol(self):
         # test singleton
-        
+
         lp = LP()
 
         lp.addConstraint( ([1], [1]), ">", 1)
@@ -142,7 +142,7 @@ class TestBasic(unittest.TestCase):
 class TestMinimal(unittest.TestCase):
 
     def checkMinLP1(self, opts):
-        
+
         lp = LP()
 
         indices = {}
@@ -171,7 +171,7 @@ class TestMinimal(unittest.TestCase):
 
 
         # Some ones used in the dict's case
-        il = indices["l"] 
+        il = indices["l"]
         assert len(il) == 3
 
         wl = weights["l"]
@@ -189,7 +189,7 @@ class TestMinimal(unittest.TestCase):
             elif opts[1] == "2":
                 cd = [ ("a", wl[:2]), ("b", wl[2])]
                 od = [ ("a", ol[:2]), ("b", ol[2])]
-            
+
             elif opts[1] == "3":
                 cd = [((0,2), wl[:2]), (2, wl[2])]
                 od = [((0,2), ol[:2]), (2, ol[2])]
@@ -201,7 +201,7 @@ class TestMinimal(unittest.TestCase):
             elif opts[1] == "5":  # bad for out of order
                 cd = [("a", wl[:2]), ( (2,3), wl[2])]
                 od = [("a", ol[:2]), ( (2,3), ol[2])]
-            
+
             elif opts[1] in indices.keys() and opts[2] in weights.keys():
                 cd = [(indices[opts[1]], weights[opts[2]])]
                 od = [(indices[opts[1]], obj_func[opts[2]])]
@@ -220,7 +220,7 @@ class TestMinimal(unittest.TestCase):
                 lp.setObjective(od)
         else:
             assert len(opts) == 2
-            
+
             if opts[0] == "N":
                 lp.getIndexBlock(indices["N"], 3)
 
@@ -236,7 +236,7 @@ class TestMinimal(unittest.TestCase):
         lp.solve()
 
         self.assertAlmostEqual(lp.getObjectiveValue(), 1)
-        
+
         if opts[0] not in ["d", "T"]:
             v = lp.getSolution(indices[opts[0]])
         else:
@@ -387,7 +387,7 @@ class TestMinimal(unittest.TestCase):
 class TestTwoLevel(unittest.TestCase):
 
     def checkMinLP1(self, opts):
-        
+
         lp = LP()
 
         idxlist = [{}, {}]
@@ -466,7 +466,7 @@ class TestTwoLevel(unittest.TestCase):
                 elif opts[1] == "2":
                     cd = [ (n1, wl[:2]), (n2, wl[2])]
                     od = [ (n1, ol[:2]), (n2, ol[2])]
-                    
+
                     register_check[n1] = [1,0]
                     register_check[n2] = [0]
                     disable_regular_check = True
@@ -681,7 +681,7 @@ class TestTwoLevel(unittest.TestCase):
     def testConstraints_Trf(self): self.checkMinLP1("Trf")
     def testConstraints_Trs(self): self.checkMinLP1("Trs")
     def testConstraints_Trr(self): self.checkMinLP1("Trr")
-            
+
 
 
     ############################################################
@@ -736,7 +736,7 @@ class Test2dMatrix(unittest.TestCase):
 
         io = indices[opts[0]]
         vl = values [opts[1]]
-        
+
         if len(opts) == 3:
             tr = targets[opts[2]]
             cstr = ">="
@@ -745,7 +745,7 @@ class Test2dMatrix(unittest.TestCase):
             cstr = "in"
 
         ob = [1,2,3]
-        
+
         c_ret_idx = [0,1,2]
 
         if io is None:
@@ -788,7 +788,7 @@ class Test2dMatrix(unittest.TestCase):
     def test2DMatrix_taf(self): self.check2dMatrix("taf")
     def test2DMatrix_tar(self): self.check2dMatrix("tar")
 
-    
+
     def test2DMatrix_nLs(self): self.check2dMatrix("nLs")
     def test2DMatrix_nLl(self): self.check2dMatrix("nLl")
     def test2DMatrix_nLa(self): self.check2dMatrix("nLa")
@@ -1166,7 +1166,7 @@ class Test2dMatrixNonSquare(unittest.TestCase):
 
         io = indices[opts[0]]
         vl = values [opts[1]]
-        
+
         if len(opts) == 3:
             tr = targets[opts[2]]
             cstr = ">="
@@ -1175,7 +1175,7 @@ class Test2dMatrixNonSquare(unittest.TestCase):
             cstr = "in"
 
         ob = [1,2,3]
-        
+
         c_ret_idx = [0,1,2,3]
 
         if io is None:
@@ -1218,7 +1218,7 @@ class Test2dMatrixNonSquare(unittest.TestCase):
     def test2DMatrixNonSquare_taf(self): self.check2dMatrixNonSquare("taf")
     def test2DMatrixNonSquare_tar(self): self.check2dMatrixNonSquare("tar")
 
-    
+
     def test2DMatrixNonSquare_nLs(self): self.check2dMatrixNonSquare("nLs")
     def test2DMatrixNonSquare_nLl(self): self.check2dMatrixNonSquare("nLl")
     def test2DMatrixNonSquare_nLa(self): self.check2dMatrixNonSquare("nLa")
@@ -1587,7 +1587,7 @@ class Test2dMatrixBlocks(unittest.TestCase):
 	constraint_rhs["L"] = (["<=", [10,10,10,10]], [">=", 0])
 	constraint_rhs["B"] = ["in", [0, 10]]
 	constraint_rhs["A"] = ["in", ([0,0,0,0] , 10)]
-	
+
 
 	solution = ar([0,0,0, 10, 10, 5])
 
