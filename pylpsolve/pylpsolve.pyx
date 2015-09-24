@@ -2510,6 +2510,7 @@ cdef class LP(object):
         # Check the error codes
 
         if ret == 0:
+            # OPTIMAL
             return
         elif ret == -2:
             # NOMEMORY (-2)     Out of memory
@@ -2566,6 +2567,7 @@ cdef class LP(object):
         elif ret == 13:
              # NOFEASFOUND (13)         No feasible B&B solution found
             raise LPException("Error 13: No feasible B&B solution found")
+        raise LPException("Error {}: Unknown error!".format(ret))
 
         # And we're done
 

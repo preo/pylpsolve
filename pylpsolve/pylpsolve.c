@@ -1638,6 +1638,7 @@ static char __pyx_k_shape[] = "shape";
 static char __pyx_k_types[] = "types";
 static char __pyx_k_zeros[] = "zeros";
 static char __pyx_k_arange[] = "arange";
+static char __pyx_k_format[] = "format";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_module[] = "__module__";
 static char __pyx_k_npuint[] = "npuint";
@@ -1713,6 +1714,7 @@ static char __pyx_k_Argument_d_not_str[] = "Argument %d not str.";
 static char __pyx_k_Option_s_not_valid[] = "Option '%s' not valid.";
 static char __pyx_k_error_on_bad_guess[] = "error_on_bad_guess";
 static char __pyx_k_include_dual_basis[] = "include_dual_basis";
+static char __pyx_k_Error_Unknown_error[] = "Error {}: Unknown error!";
 static char __pyx_k_constrained_indices[] = "constrained_indices";
 static char __pyx_k_pylpsolve_pylpsolve[] = "pylpsolve.pylpsolve";
 static char __pyx_k_Error_11_B_B_Stopped[] = "Error 11: B&B Stopped.";
@@ -1823,6 +1825,7 @@ static PyObject *__pyx_kp_s_Error_4_Model_degenerate;
 static PyObject *__pyx_kp_s_Error_5_Numerical_failure_encoun;
 static PyObject *__pyx_kp_s_Error_6_Solver_aborted;
 static PyObject *__pyx_kp_s_Error_7_Timeout_Occurred;
+static PyObject *__pyx_kp_s_Error_Unknown_error;
 static PyObject *__pyx_kp_s_Error_converting_index_array_to;
 static PyObject *__pyx_kp_s_Error_converting_index_array_to_2;
 static PyObject *__pyx_kp_s_Error_converting_index_list_to_1;
@@ -1927,6 +1930,7 @@ static PyObject *__pyx_n_s_equal;
 static PyObject *__pyx_n_s_error_on_bad_guess;
 static PyObject *__pyx_n_s_float32;
 static PyObject *__pyx_n_s_float64;
+static PyObject *__pyx_n_s_format;
 static PyObject *__pyx_n_s_geq;
 static PyObject *__pyx_kp_s_getIndexBlock_arguments_must_be;
 static PyObject *__pyx_n_s_getObjectiveValue;
@@ -22139,6 +22143,9 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
   PyObject *__pyx_t_8 = NULL;
   int __pyx_t_9;
   int __pyx_t_10;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -22315,7 +22322,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
   __pyx_v_ret = solve(__pyx_v_self->lp);
 
-  /* "pylpsolve/pylpsolve.pyx":2566
+  /* "pylpsolve/pylpsolve.pyx":2567
  *             # FEASFOUND (12)    A feasible B&B solution was found
  *             return
  *         elif ret == 13:             # <<<<<<<<<<<<<<
@@ -22328,14 +22335,14 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  *         # Check the error codes
  * 
  *         if ret == 0:             # <<<<<<<<<<<<<<
+ *             # OPTIMAL
  *             return
- *         elif ret == -2:
  */
     case 0:
 
-    /* "pylpsolve/pylpsolve.pyx":2513
- * 
+    /* "pylpsolve/pylpsolve.pyx":2514
  *         if ret == 0:
+ *             # OPTIMAL
  *             return             # <<<<<<<<<<<<<<
  *         elif ret == -2:
  *             # NOMEMORY (-2)     Out of memory
@@ -22345,8 +22352,8 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
     goto __pyx_L0;
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2514
- *         if ret == 0:
+    /* "pylpsolve/pylpsolve.pyx":2515
+ *             # OPTIMAL
  *             return
  *         elif ret == -2:             # <<<<<<<<<<<<<<
  *             # NOMEMORY (-2)     Out of memory
@@ -22354,21 +22361,21 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case -2:
 
-    /* "pylpsolve/pylpsolve.pyx":2516
+    /* "pylpsolve/pylpsolve.pyx":2517
  *         elif ret == -2:
  *             # NOMEMORY (-2)     Out of memory
  *             raise MemoryError("LP Solver out of memory.")             # <<<<<<<<<<<<<<
  *         elif ret == 1:
  *             # SUBOPTIMAL (1) The model is sub-optimal. Only happens if
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__68, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__68, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2517
+    /* "pylpsolve/pylpsolve.pyx":2518
  *             # NOMEMORY (-2)     Out of memory
  *             raise MemoryError("LP Solver out of memory.")
  *         elif ret == 1:             # <<<<<<<<<<<<<<
@@ -22377,25 +22384,25 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 1:
 
-    /* "pylpsolve/pylpsolve.pyx":2531
+    /* "pylpsolve/pylpsolve.pyx":2532
  *             # At some point not enough memory could not be allocated
  * 
  *             warnings.warn("Solver solution suboptimal")             # <<<<<<<<<<<<<<
  *         elif ret == 2:
  *             # INFEASIBLE (2)    The model is infeasible
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_warnings); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2531; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_warnings); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2532; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_warn); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2531; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_warn); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2532; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__69, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2531; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__69, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2532; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2532
+    /* "pylpsolve/pylpsolve.pyx":2533
  * 
  *             warnings.warn("Solver solution suboptimal")
  *         elif ret == 2:             # <<<<<<<<<<<<<<
@@ -22404,24 +22411,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 2:
 
-    /* "pylpsolve/pylpsolve.pyx":2534
+    /* "pylpsolve/pylpsolve.pyx":2535
  *         elif ret == 2:
  *             # INFEASIBLE (2)    The model is infeasible
  *             raise LPException("Error 2: Model infeasible")             # <<<<<<<<<<<<<<
  *         elif ret == 3:
  *             # UNBOUNDED (3)     The model is unbounded
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2534; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2535; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__70, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2534; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__70, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2535; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2534; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2535; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2535
+    /* "pylpsolve/pylpsolve.pyx":2536
  *             # INFEASIBLE (2)    The model is infeasible
  *             raise LPException("Error 2: Model infeasible")
  *         elif ret == 3:             # <<<<<<<<<<<<<<
@@ -22430,24 +22437,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 3:
 
-    /* "pylpsolve/pylpsolve.pyx":2537
+    /* "pylpsolve/pylpsolve.pyx":2538
  *         elif ret == 3:
  *             # UNBOUNDED (3)     The model is unbounded
  *             raise LPException("Error 3: Model unbounded")             # <<<<<<<<<<<<<<
  *         elif ret == 4:
  *             # DEGENERATE (4)    The model is degenerative
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2538; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__71, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__71, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2538; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2538; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2538
+    /* "pylpsolve/pylpsolve.pyx":2539
  *             # UNBOUNDED (3)     The model is unbounded
  *             raise LPException("Error 3: Model unbounded")
  *         elif ret == 4:             # <<<<<<<<<<<<<<
@@ -22456,24 +22463,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 4:
 
-    /* "pylpsolve/pylpsolve.pyx":2540
+    /* "pylpsolve/pylpsolve.pyx":2541
  *         elif ret == 4:
  *             # DEGENERATE (4)    The model is degenerative
  *             raise LPException("Error 4: Model degenerate")             # <<<<<<<<<<<<<<
  *         elif ret == 5:
  *             # NUMFAILURE (5)    Numerical failure encountered
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2540; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__72, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2540; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__72, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2540; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2541
+    /* "pylpsolve/pylpsolve.pyx":2542
  *             # DEGENERATE (4)    The model is degenerative
  *             raise LPException("Error 4: Model degenerate")
  *         elif ret == 5:             # <<<<<<<<<<<<<<
@@ -22482,24 +22489,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 5:
 
-    /* "pylpsolve/pylpsolve.pyx":2543
+    /* "pylpsolve/pylpsolve.pyx":2544
  *         elif ret == 5:
  *             # NUMFAILURE (5)    Numerical failure encountered
  *             raise LPException("Error 5: Numerical failure encountered")             # <<<<<<<<<<<<<<
  *         elif ret == 6:
  *             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__73, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__73, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2544
+    /* "pylpsolve/pylpsolve.pyx":2545
  *             # NUMFAILURE (5)    Numerical failure encountered
  *             raise LPException("Error 5: Numerical failure encountered")
  *         elif ret == 6:             # <<<<<<<<<<<<<<
@@ -22508,24 +22515,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 6:
 
-    /* "pylpsolve/pylpsolve.pyx":2546
+    /* "pylpsolve/pylpsolve.pyx":2547
  *         elif ret == 6:
  *             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
  *             raise LPException("Error 6: Solver aborted")             # <<<<<<<<<<<<<<
  *         elif ret == 7:
  *             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__74, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__74, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2547
+    /* "pylpsolve/pylpsolve.pyx":2548
  *             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
  *             raise LPException("Error 6: Solver aborted")
  *         elif ret == 7:             # <<<<<<<<<<<<<<
@@ -22534,24 +22541,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 7:
 
-    /* "pylpsolve/pylpsolve.pyx":2549
+    /* "pylpsolve/pylpsolve.pyx":2550
  *         elif ret == 7:
  *             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
  *             raise LPException("Error 7: Timeout Occurred.")             # <<<<<<<<<<<<<<
  *         elif ret == 9:
  *             # PRESOLVED (9) The model could be solved by
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__75, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__75, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2550
+    /* "pylpsolve/pylpsolve.pyx":2551
  *             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
  *             raise LPException("Error 7: Timeout Occurred.")
  *         elif ret == 9:             # <<<<<<<<<<<<<<
@@ -22560,7 +22567,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 9:
 
-    /* "pylpsolve/pylpsolve.pyx":2554
+    /* "pylpsolve/pylpsolve.pyx":2555
  *             # presolve. This can only happen if presolve is active via
  *             # set_presolve
  *             return             # <<<<<<<<<<<<<<
@@ -22572,7 +22579,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
     goto __pyx_L0;
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2555
+    /* "pylpsolve/pylpsolve.pyx":2556
  *             # set_presolve
  *             return
  *         elif ret == 10:             # <<<<<<<<<<<<<<
@@ -22581,24 +22588,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 10:
 
-    /* "pylpsolve/pylpsolve.pyx":2557
+    /* "pylpsolve/pylpsolve.pyx":2558
  *         elif ret == 10:
  *             # PROCFAIL (10)     The B&B routine failed
  *             raise LPException("Error 10: The B&B routine failed")             # <<<<<<<<<<<<<<
  *         elif ret == 11:
  *             # PROCBREAK (11) The B&B was stopped because of a
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__76, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__76, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2558
+    /* "pylpsolve/pylpsolve.pyx":2559
  *             # PROCFAIL (10)     The B&B routine failed
  *             raise LPException("Error 10: The B&B routine failed")
  *         elif ret == 11:             # <<<<<<<<<<<<<<
@@ -22607,24 +22614,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 11:
 
-    /* "pylpsolve/pylpsolve.pyx":2562
+    /* "pylpsolve/pylpsolve.pyx":2563
  *             # break-at-first (see set_break_at_first) or a
  *             # break-at-value (see set_break_at_value)
  *             raise LPException("Error 11: B&B Stopped.")             # <<<<<<<<<<<<<<
  *         elif ret == 12:
  *             # FEASFOUND (12)    A feasible B&B solution was found
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__77, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__77, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2563
+    /* "pylpsolve/pylpsolve.pyx":2564
  *             # break-at-value (see set_break_at_value)
  *             raise LPException("Error 11: B&B Stopped.")
  *         elif ret == 12:             # <<<<<<<<<<<<<<
@@ -22633,7 +22640,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 12:
 
-    /* "pylpsolve/pylpsolve.pyx":2565
+    /* "pylpsolve/pylpsolve.pyx":2566
  *         elif ret == 12:
  *             # FEASFOUND (12)    A feasible B&B solution was found
  *             return             # <<<<<<<<<<<<<<
@@ -22645,7 +22652,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
     goto __pyx_L0;
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2566
+    /* "pylpsolve/pylpsolve.pyx":2567
  *             # FEASFOUND (12)    A feasible B&B solution was found
  *             return
  *         elif ret == 13:             # <<<<<<<<<<<<<<
@@ -22654,24 +22661,93 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
     case 13:
 
-    /* "pylpsolve/pylpsolve.pyx":2568
+    /* "pylpsolve/pylpsolve.pyx":2569
  *         elif ret == 13:
  *              # NOFEASFOUND (13)         No feasible B&B solution found
  *             raise LPException("Error 13: No feasible B&B solution found")             # <<<<<<<<<<<<<<
+ *         raise LPException("Error {}: Unknown error!".format(ret))
  * 
- *         # And we're done
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__78, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__78, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
     default: break;
   }
+
+  /* "pylpsolve/pylpsolve.pyx":2570
+ *              # NOFEASFOUND (13)         No feasible B&B solution found
+ *             raise LPException("Error 13: No feasible B&B solution found")
+ *         raise LPException("Error {}: Unknown error!".format(ret))             # <<<<<<<<<<<<<<
+ * 
+ *         # And we're done
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Error_Unknown_error, __pyx_n_s_format); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_ret); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_11);
+  __pyx_t_12 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_8))) {
+    __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_12)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+      __Pyx_INCREF(__pyx_t_12);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_8, function);
+    }
+  }
+  if (!__pyx_t_12) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_11); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else {
+    __pyx_t_13 = PyTuple_New(1+1); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_13);
+    __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_12); __pyx_t_12 = NULL;
+    __Pyx_GIVEREF(__pyx_t_11);
+    PyTuple_SET_ITEM(__pyx_t_13, 0+1, __pyx_t_11);
+    __pyx_t_11 = 0;
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_13, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __pyx_t_8 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_8)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_8);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (!__pyx_t_8) {
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_6);
+  } else {
+    __pyx_t_13 = PyTuple_New(1+1); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_13);
+    __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_8); __pyx_t_8 = NULL;
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_13, 0+1, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_13, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_Raise(__pyx_t_6, 0, 0, 0);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "pylpsolve/pylpsolve.pyx":2442
  *             # modify the model as needed.  But that's for later.
@@ -22682,13 +22758,14 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_11);
+  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_13);
   __Pyx_AddTraceback("pylpsolve.pylpsolve.LP.solve", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -22702,7 +22779,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_42solve(struct __pyx_obj_9py
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2572
+/* "pylpsolve/pylpsolve.pyx":2574
  *         # And we're done
  * 
  *     def getSolution(self, indices = None):             # <<<<<<<<<<<<<<
@@ -22742,7 +22819,7 @@ static PyObject *__pyx_pw_9pylpsolve_9pylpsolve_2LP_45getSolution(PyObject *__py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getSolution") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2572; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getSolution") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2574; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -22755,7 +22832,7 @@ static PyObject *__pyx_pw_9pylpsolve_9pylpsolve_2LP_45getSolution(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getSolution", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2572; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("getSolution", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2574; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("pylpsolve.pylpsolve.LP.getSolution", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22836,7 +22913,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_pybuffernd_idx_request.data = NULL;
   __pyx_pybuffernd_idx_request.rcbuffer = &__pyx_pybuffer_idx_request;
 
-  /* "pylpsolve/pylpsolve.pyx":2595
+  /* "pylpsolve/pylpsolve.pyx":2597
  *         """
  * 
  *         if self.lp == NULL:             # <<<<<<<<<<<<<<
@@ -22846,24 +22923,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_t_1 = ((__pyx_v_self->lp == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2596
+    /* "pylpsolve/pylpsolve.pyx":2598
  * 
  *         if self.lp == NULL:
  *             raise LPException("Final variables available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         # Okay, now we've got it
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__79, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__79, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2602
+  /* "pylpsolve/pylpsolve.pyx":2604
  *         cdef double *vars
  * 
  *         get_ptr_variables(self.lp, &vars)             # <<<<<<<<<<<<<<
@@ -22872,7 +22949,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  */
   get_ptr_variables(__pyx_v_self->lp, (&__pyx_v_vars));
 
-  /* "pylpsolve/pylpsolve.pyx":2612
+  /* "pylpsolve/pylpsolve.pyx":2614
  *         cdef size_t i
  * 
  *         if indices is None:             # <<<<<<<<<<<<<<
@@ -22883,18 +22960,18 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_t_4 = (__pyx_t_1 != 0);
   if (__pyx_t_4) {
 
-    /* "pylpsolve/pylpsolve.pyx":2613
+    /* "pylpsolve/pylpsolve.pyx":2615
  * 
  *         if indices is None:
  *             res = empty(self.n_columns, npfloat)             # <<<<<<<<<<<<<<
  *             for 0 <= i < res.shape[0]:
  *                 res[i] = vars[i]
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_self->n_columns); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_self->n_columns); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     __pyx_t_8 = 0;
@@ -22908,7 +22985,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -22919,11 +22996,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_t_6);
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_3);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -22939,13 +23016,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_10 = 0;
     __pyx_v_res = ((PyArrayObject *)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2614
+    /* "pylpsolve/pylpsolve.pyx":2616
  *         if indices is None:
  *             res = empty(self.n_columns, npfloat)
  *             for 0 <= i < res.shape[0]:             # <<<<<<<<<<<<<<
@@ -22955,7 +23032,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_15 = (__pyx_v_res->dimensions[0]);
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_15; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2615
+      /* "pylpsolve/pylpsolve.pyx":2617
  *             res = empty(self.n_columns, npfloat)
  *             for 0 <= i < res.shape[0]:
  *                 res[i] = vars[i]             # <<<<<<<<<<<<<<
@@ -22967,12 +23044,12 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       if (unlikely(__pyx_t_16 >= (size_t)__pyx_pybuffernd_res.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       *__Pyx_BufPtrCContig1d(double *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_16, __pyx_pybuffernd_res.diminfo[0].strides) = (__pyx_v_vars[__pyx_v_i]);
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2616
+    /* "pylpsolve/pylpsolve.pyx":2618
  *             for 0 <= i < res.shape[0]:
  *                 res[i] = vars[i]
  *             return res             # <<<<<<<<<<<<<<
@@ -22985,7 +23062,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2618
+  /* "pylpsolve/pylpsolve.pyx":2620
  *             return res
  * 
  *         elif type(indices) is str:             # <<<<<<<<<<<<<<
@@ -22996,7 +23073,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2620
+    /* "pylpsolve/pylpsolve.pyx":2622
  *         elif type(indices) is str:
  * 
  *             try:             # <<<<<<<<<<<<<<
@@ -23010,7 +23087,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __Pyx_XGOTREF(__pyx_t_12);
       /*try:*/ {
 
-        /* "pylpsolve/pylpsolve.pyx":2621
+        /* "pylpsolve/pylpsolve.pyx":2623
  * 
  *             try:
  *                 idx_bounds = self._named_index_blocks[indices]             # <<<<<<<<<<<<<<
@@ -23019,11 +23096,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  */
         if (unlikely(__pyx_v_self->_named_index_blocks == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2621; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
         }
-        __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_self->_named_index_blocks, __pyx_v_indices); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2621; __pyx_clineno = __LINE__; goto __pyx_L7_error;};
+        __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_self->_named_index_blocks, __pyx_v_indices); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L7_error;};
         __Pyx_GOTREF(__pyx_t_3);
-        if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2621; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
+        if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
         __pyx_t_17 = ((PyArrayObject *)__pyx_t_3);
         {
           __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23039,7 +23116,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
             }
           }
           __pyx_pybuffernd_idx_bounds.diminfo[0].strides = __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_idx_bounds.diminfo[0].shape = __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_idx_bounds.diminfo[1].strides = __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_idx_bounds.diminfo[1].shape = __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.shape[1];
-          if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2621; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
+          if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L7_error;}
         }
         __pyx_t_17 = 0;
         __pyx_v_idx_bounds = ((PyArrayObject *)__pyx_t_3);
@@ -23057,7 +23134,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":2622
+      /* "pylpsolve/pylpsolve.pyx":2624
  *             try:
  *                 idx_bounds = self._named_index_blocks[indices]
  *             except KeyError:             # <<<<<<<<<<<<<<
@@ -23067,31 +23144,31 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __pyx_t_11 = PyErr_ExceptionMatches(__pyx_builtin_KeyError);
       if (__pyx_t_11) {
         __Pyx_AddTraceback("pylpsolve.pylpsolve.LP.getSolution", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2622; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
+        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2624; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GOTREF(__pyx_t_9);
 
-        /* "pylpsolve/pylpsolve.pyx":2623
+        /* "pylpsolve/pylpsolve.pyx":2625
  *                 idx_bounds = self._named_index_blocks[indices]
  *             except KeyError:
  *                 raise ValueError("Variable block '%s' not defined." % indices)             # <<<<<<<<<<<<<<
  * 
  *             res = empty(idx_bounds[0,1] - idx_bounds[0,0], npfloat)
  */
-        __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Variable_block_s_not_defined, __pyx_v_indices); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
+        __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Variable_block_s_not_defined, __pyx_v_indices); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
+        __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_6);
         PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
         __pyx_t_6 = 0;
-        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
+        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_Raise(__pyx_t_6, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2623; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L9_except_error;}
       }
       goto __pyx_L9_except_error;
       __pyx_L9_except_error:;
@@ -23103,14 +23180,14 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __pyx_L14_try_end:;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2625
+    /* "pylpsolve/pylpsolve.pyx":2627
  *                 raise ValueError("Variable block '%s' not defined." % indices)
  * 
  *             res = empty(idx_bounds[0,1] - idx_bounds[0,0], npfloat)             # <<<<<<<<<<<<<<
  * 
  *             for 0 <= i < res.shape[0]:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_21 = 0;
     __pyx_t_22 = 1;
@@ -23125,7 +23202,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     } else if (unlikely(__pyx_t_22 >= __pyx_pybuffernd_idx_bounds.diminfo[1].shape)) __pyx_t_11 = 1;
     if (unlikely(__pyx_t_11 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_11);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_23 = 0;
     __pyx_t_24 = 0;
@@ -23140,11 +23217,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     } else if (unlikely(__pyx_t_24 >= __pyx_pybuffernd_idx_bounds.diminfo[1].shape)) __pyx_t_11 = 1;
     if (unlikely(__pyx_t_11 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_11);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_3 = __Pyx_PyInt_FromSize_t(((*__Pyx_BufPtrCContig2d(size_t *, __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.buf, __pyx_t_21, __pyx_pybuffernd_idx_bounds.diminfo[0].strides, __pyx_t_22, __pyx_pybuffernd_idx_bounds.diminfo[1].strides)) - (*__Pyx_BufPtrCContig2d(size_t *, __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.buf, __pyx_t_23, __pyx_pybuffernd_idx_bounds.diminfo[0].strides, __pyx_t_24, __pyx_pybuffernd_idx_bounds.diminfo[1].strides)))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_FromSize_t(((*__Pyx_BufPtrCContig2d(size_t *, __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.buf, __pyx_t_21, __pyx_pybuffernd_idx_bounds.diminfo[0].strides, __pyx_t_22, __pyx_pybuffernd_idx_bounds.diminfo[1].strides)) - (*__Pyx_BufPtrCContig2d(size_t *, __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.buf, __pyx_t_23, __pyx_pybuffernd_idx_bounds.diminfo[0].strides, __pyx_t_24, __pyx_pybuffernd_idx_bounds.diminfo[1].strides)))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_5 = NULL;
     __pyx_t_8 = 0;
@@ -23158,7 +23235,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -23169,11 +23246,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_8, __pyx_t_6);
     __pyx_t_3 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_9);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23189,13 +23266,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_10 = 0;
     __pyx_v_res = ((PyArrayObject *)__pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2627
+    /* "pylpsolve/pylpsolve.pyx":2629
  *             res = empty(idx_bounds[0,1] - idx_bounds[0,0], npfloat)
  * 
  *             for 0 <= i < res.shape[0]:             # <<<<<<<<<<<<<<
@@ -23205,7 +23282,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_15 = (__pyx_v_res->dimensions[0]);
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_15; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2628
+      /* "pylpsolve/pylpsolve.pyx":2630
  * 
  *             for 0 <= i < res.shape[0]:
  *                 res[i] = vars[idx_bounds[0,0] + i]             # <<<<<<<<<<<<<<
@@ -23225,19 +23302,19 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       } else if (unlikely(__pyx_t_26 >= __pyx_pybuffernd_idx_bounds.diminfo[1].shape)) __pyx_t_11 = 1;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2628; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2630; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_27 = __pyx_v_i;
       __pyx_t_11 = -1;
       if (unlikely(__pyx_t_27 >= (size_t)__pyx_pybuffernd_res.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2628; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2630; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       *__Pyx_BufPtrCContig1d(double *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_27, __pyx_pybuffernd_res.diminfo[0].strides) = (__pyx_v_vars[((*__Pyx_BufPtrCContig2d(size_t *, __pyx_pybuffernd_idx_bounds.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_idx_bounds.diminfo[0].strides, __pyx_t_26, __pyx_pybuffernd_idx_bounds.diminfo[1].strides)) + __pyx_v_i)]);
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2630
+    /* "pylpsolve/pylpsolve.pyx":2632
  *                 res[i] = vars[idx_bounds[0,0] + i]
  * 
  *             return res             # <<<<<<<<<<<<<<
@@ -23250,7 +23327,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2632
+  /* "pylpsolve/pylpsolve.pyx":2634
  *             return res
  * 
  *         elif type(indices) is list:             # <<<<<<<<<<<<<<
@@ -23261,7 +23338,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_t_4 = (__pyx_t_1 != 0);
   if (__pyx_t_4) {
 
-    /* "pylpsolve/pylpsolve.pyx":2633
+    /* "pylpsolve/pylpsolve.pyx":2635
  * 
  *         elif type(indices) is list:
  *             l = <list>indices             # <<<<<<<<<<<<<<
@@ -23273,7 +23350,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_v_l = ((PyObject*)__pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2634
+    /* "pylpsolve/pylpsolve.pyx":2636
  *         elif type(indices) is list:
  *             l = <list>indices
  *             if not isposintlist(l):             # <<<<<<<<<<<<<<
@@ -23283,37 +23360,37 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_4 = ((!(__pyx_f_9pylpsolve_9pylpsolve_isposintlist(__pyx_v_l) != 0)) != 0);
     if (__pyx_t_4) {
 
-      /* "pylpsolve/pylpsolve.pyx":2635
+      /* "pylpsolve/pylpsolve.pyx":2637
  *             l = <list>indices
  *             if not isposintlist(l):
  *                 raise ValueError("Requested index list must contain only valid indices.")             # <<<<<<<<<<<<<<
  * 
  *             res = empty(len(l), npfloat)
  */
-      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__80, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__80, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_Raise(__pyx_t_9, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2637
+    /* "pylpsolve/pylpsolve.pyx":2639
  *                 raise ValueError("Requested index list must contain only valid indices.")
  * 
  *             res = empty(len(l), npfloat)             # <<<<<<<<<<<<<<
  * 
  *             for 0 <= i < res.shape[0]:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_v_l == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_8 = PyList_GET_SIZE(__pyx_v_l); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyList_GET_SIZE(__pyx_v_l); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_3 = NULL;
     __pyx_t_8 = 0;
@@ -23327,7 +23404,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -23338,11 +23415,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_8, __pyx_t_6);
     __pyx_t_7 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_9);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23358,13 +23435,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_10 = 0;
     __pyx_v_res = ((PyArrayObject *)__pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2639
+    /* "pylpsolve/pylpsolve.pyx":2641
  *             res = empty(len(l), npfloat)
  * 
  *             for 0 <= i < res.shape[0]:             # <<<<<<<<<<<<<<
@@ -23374,7 +23451,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_15 = (__pyx_v_res->dimensions[0]);
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_15; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2640
+      /* "pylpsolve/pylpsolve.pyx":2642
  * 
  *             for 0 <= i < res.shape[0]:
  *                 idx = l[i]             # <<<<<<<<<<<<<<
@@ -23383,15 +23460,15 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  */
       if (unlikely(__pyx_v_l == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_l, __pyx_v_i, size_t, 0, __Pyx_PyInt_FromSize_t, 1, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2640; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_l, __pyx_v_i, size_t, 0, __Pyx_PyInt_FromSize_t, 1, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2642; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __pyx_v_idx = __pyx_t_11;
 
-      /* "pylpsolve/pylpsolve.pyx":2642
+      /* "pylpsolve/pylpsolve.pyx":2644
  *                 idx = l[i]
  * 
  *                 if idx < 0 or idx >= self.n_columns:             # <<<<<<<<<<<<<<
@@ -23409,32 +23486,32 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __pyx_L23_bool_binop_done:;
       if (__pyx_t_4) {
 
-        /* "pylpsolve/pylpsolve.pyx":2643
+        /* "pylpsolve/pylpsolve.pyx":2645
  * 
  *                 if idx < 0 or idx >= self.n_columns:
  *                     raise ValueError("Variable index not valid: %d" % idx)             # <<<<<<<<<<<<<<
  * 
  *                 res[i] = vars[idx]
  */
-        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_9); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_9); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_GIVEREF(__pyx_t_2);
         PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_2);
         __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_Raise(__pyx_t_2, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "pylpsolve/pylpsolve.pyx":2645
+      /* "pylpsolve/pylpsolve.pyx":2647
  *                     raise ValueError("Variable index not valid: %d" % idx)
  * 
  *                 res[i] = vars[idx]             # <<<<<<<<<<<<<<
@@ -23446,12 +23523,12 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       if (unlikely(__pyx_t_28 >= (size_t)__pyx_pybuffernd_res.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       *__Pyx_BufPtrCContig1d(double *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_28, __pyx_pybuffernd_res.diminfo[0].strides) = (__pyx_v_vars[__pyx_v_idx]);
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2647
+    /* "pylpsolve/pylpsolve.pyx":2649
  *                 res[i] = vars[idx]
  * 
  *             return res             # <<<<<<<<<<<<<<
@@ -23464,30 +23541,30 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2649
+  /* "pylpsolve/pylpsolve.pyx":2651
  *             return res
  * 
  *         elif type(indices) is ndarray:             # <<<<<<<<<<<<<<
  *             idx_request = asarray(indices, npint)
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ndarray); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ndarray); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2651; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = (((PyObject *)Py_TYPE(__pyx_v_indices)) == __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2650
+    /* "pylpsolve/pylpsolve.pyx":2652
  * 
  *         elif type(indices) is ndarray:
  *             idx_request = asarray(indices, npint)             # <<<<<<<<<<<<<<
  * 
  *             res = empty(idx_request.shape[0], npfloat)
  */
-    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_asarray); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_asarray); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npint); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npint); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_8 = 0;
@@ -23501,7 +23578,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -23512,11 +23589,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_8, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_29 = ((PyArrayObject *)__pyx_t_2);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23532,24 +23609,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_idx_request.diminfo[0].strides = __pyx_pybuffernd_idx_request.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_idx_request.diminfo[0].shape = __pyx_pybuffernd_idx_request.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_29 = 0;
     __pyx_v_idx_request = ((PyArrayObject *)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2652
+    /* "pylpsolve/pylpsolve.pyx":2654
  *             idx_request = asarray(indices, npint)
  * 
  *             res = empty(idx_request.shape[0], npfloat)             # <<<<<<<<<<<<<<
  * 
  *             for 0 <= i < res.shape[0]:
  */
-    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_7 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_idx_request->dimensions[0])); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_idx_request->dimensions[0])); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_8 = 0;
@@ -23563,7 +23640,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_3 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -23574,11 +23651,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_8, __pyx_t_5);
     __pyx_t_7 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_2);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23594,13 +23671,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_10 = 0;
     __pyx_v_res = ((PyArrayObject *)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2654
+    /* "pylpsolve/pylpsolve.pyx":2656
  *             res = empty(idx_request.shape[0], npfloat)
  * 
  *             for 0 <= i < res.shape[0]:             # <<<<<<<<<<<<<<
@@ -23610,7 +23687,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_15 = (__pyx_v_res->dimensions[0]);
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_15; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2655
+      /* "pylpsolve/pylpsolve.pyx":2657
  * 
  *             for 0 <= i < res.shape[0]:
  *                 idx = idx_request[i]             # <<<<<<<<<<<<<<
@@ -23622,11 +23699,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       if (unlikely(__pyx_t_30 >= (size_t)__pyx_pybuffernd_idx_request.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2655; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2657; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_v_idx = (*__Pyx_BufPtrStrided1d(int *, __pyx_pybuffernd_idx_request.rcbuffer->pybuffer.buf, __pyx_t_30, __pyx_pybuffernd_idx_request.diminfo[0].strides));
 
-      /* "pylpsolve/pylpsolve.pyx":2657
+      /* "pylpsolve/pylpsolve.pyx":2659
  *                 idx = idx_request[i]
  * 
  *                 if idx < 0 or idx >= self.n_columns:             # <<<<<<<<<<<<<<
@@ -23644,32 +23721,32 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       __pyx_L28_bool_binop_done:;
       if (__pyx_t_1) {
 
-        /* "pylpsolve/pylpsolve.pyx":2658
+        /* "pylpsolve/pylpsolve.pyx":2660
  * 
  *                 if idx < 0 or idx >= self.n_columns:
  *                     raise ValueError("Variable index not valid: %d" % idx)             # <<<<<<<<<<<<<<
  * 
  *                 res[i] = vars[idx]
  */
-        __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GIVEREF(__pyx_t_9);
         PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_9);
         __pyx_t_9 = 0;
-        __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_2, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_2, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_Raise(__pyx_t_9, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "pylpsolve/pylpsolve.pyx":2660
+      /* "pylpsolve/pylpsolve.pyx":2662
  *                     raise ValueError("Variable index not valid: %d" % idx)
  * 
  *                 res[i] = vars[idx]             # <<<<<<<<<<<<<<
@@ -23681,12 +23758,12 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       if (unlikely(__pyx_t_31 >= (size_t)__pyx_pybuffernd_res.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       *__Pyx_BufPtrCContig1d(double *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_31, __pyx_pybuffernd_res.diminfo[0].strides) = (__pyx_v_vars[__pyx_v_idx]);
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2662
+    /* "pylpsolve/pylpsolve.pyx":2664
  *                 res[i] = vars[idx]
  * 
  *             return res             # <<<<<<<<<<<<<<
@@ -23699,7 +23776,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2664
+  /* "pylpsolve/pylpsolve.pyx":2666
  *             return res
  * 
  *         elif type(indices) is tuple:             # <<<<<<<<<<<<<<
@@ -23710,31 +23787,31 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   __pyx_t_4 = (__pyx_t_1 != 0);
   if (__pyx_t_4) {
 
-    /* "pylpsolve/pylpsolve.pyx":2665
+    /* "pylpsolve/pylpsolve.pyx":2667
  * 
  *         elif type(indices) is tuple:
  *             t = indices             # <<<<<<<<<<<<<<
  *             self._validateIndexTuple(t)
  * 
  */
-    if (!(likely(PyTuple_CheckExact(__pyx_v_indices))||((__pyx_v_indices) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_indices)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(PyTuple_CheckExact(__pyx_v_indices))||((__pyx_v_indices) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_indices)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2667; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_9 = __pyx_v_indices;
     __Pyx_INCREF(__pyx_t_9);
     __pyx_v_t = ((PyObject*)__pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2666
+    /* "pylpsolve/pylpsolve.pyx":2668
  *         elif type(indices) is tuple:
  *             t = indices
  *             self._validateIndexTuple(t)             # <<<<<<<<<<<<<<
  * 
  *             idx_lb = t[0]
  */
-    __pyx_t_9 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->_validateIndexTuple(__pyx_v_self, __pyx_v_t); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2666; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->_validateIndexTuple(__pyx_v_self, __pyx_v_t); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2668
+    /* "pylpsolve/pylpsolve.pyx":2670
  *             self._validateIndexTuple(t)
  * 
  *             idx_lb = t[0]             # <<<<<<<<<<<<<<
@@ -23743,15 +23820,15 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  */
     if (unlikely(__pyx_v_t == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_t, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2668; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_t, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2670; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_v_idx_lb = __pyx_t_11;
 
-    /* "pylpsolve/pylpsolve.pyx":2669
+    /* "pylpsolve/pylpsolve.pyx":2671
  * 
  *             idx_lb = t[0]
  *             idx_ub = t[1]             # <<<<<<<<<<<<<<
@@ -23760,26 +23837,26 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  */
     if (unlikely(__pyx_v_t == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_t, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2669; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_t, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_v_idx_ub = __pyx_t_11;
 
-    /* "pylpsolve/pylpsolve.pyx":2671
+    /* "pylpsolve/pylpsolve.pyx":2673
  *             idx_ub = t[1]
  * 
  *             res = empty(idx_ub - idx_lb, npfloat)             # <<<<<<<<<<<<<<
  * 
  *             for 0 <= i < res.shape[0]:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_idx_ub - __pyx_v_idx_lb)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_idx_ub - __pyx_v_idx_lb)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_npfloat); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_7 = NULL;
     __pyx_t_8 = 0;
@@ -23793,7 +23870,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         __pyx_t_8 = 1;
       }
     }
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -23804,11 +23881,11 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_8, __pyx_t_5);
     __pyx_t_3 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_9);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -23824,13 +23901,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
         }
       }
       __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_11 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_t_10 = 0;
     __pyx_v_res = ((PyArrayObject *)__pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2673
+    /* "pylpsolve/pylpsolve.pyx":2675
  *             res = empty(idx_ub - idx_lb, npfloat)
  * 
  *             for 0 <= i < res.shape[0]:             # <<<<<<<<<<<<<<
@@ -23840,7 +23917,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_t_15 = (__pyx_v_res->dimensions[0]);
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_15; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2674
+      /* "pylpsolve/pylpsolve.pyx":2676
  * 
  *             for 0 <= i < res.shape[0]:
  *                 res[i] = vars[idx_lb + i]             # <<<<<<<<<<<<<<
@@ -23852,12 +23929,12 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
       if (unlikely(__pyx_t_32 >= (size_t)__pyx_pybuffernd_res.diminfo[0].shape)) __pyx_t_11 = 0;
       if (unlikely(__pyx_t_11 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_11);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2676; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       *__Pyx_BufPtrCContig1d(double *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_32, __pyx_pybuffernd_res.diminfo[0].strides) = (__pyx_v_vars[(__pyx_v_idx_lb + __pyx_v_i)]);
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2676
+    /* "pylpsolve/pylpsolve.pyx":2678
  *                 res[i] = vars[idx_lb + i]
  * 
  *             return res             # <<<<<<<<<<<<<<
@@ -23870,30 +23947,30 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2678
+  /* "pylpsolve/pylpsolve.pyx":2680
  *             return res
  * 
  *         elif isposint(indices):             # <<<<<<<<<<<<<<
  *             idx = indices
  * 
  */
-  __pyx_t_9 = __pyx_f_9pylpsolve_9pylpsolve_isposint(__pyx_v_indices); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __pyx_f_9pylpsolve_9pylpsolve_isposint(__pyx_v_indices); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2680; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2680; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   if (__pyx_t_4) {
 
-    /* "pylpsolve/pylpsolve.pyx":2679
+    /* "pylpsolve/pylpsolve.pyx":2681
  * 
  *         elif isposint(indices):
  *             idx = indices             # <<<<<<<<<<<<<<
  * 
  *             if idx < 0 or idx >= self.n_columns:
  */
-    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_v_indices); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2679; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_v_indices); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_idx = __pyx_t_11;
 
-    /* "pylpsolve/pylpsolve.pyx":2681
+    /* "pylpsolve/pylpsolve.pyx":2683
  *             idx = indices
  * 
  *             if idx < 0 or idx >= self.n_columns:             # <<<<<<<<<<<<<<
@@ -23911,32 +23988,32 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
     __pyx_L33_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "pylpsolve/pylpsolve.pyx":2682
+      /* "pylpsolve/pylpsolve.pyx":2684
  * 
  *             if idx < 0 or idx >= self.n_columns:
  *                 raise ValueError("Variable index not valid: %d" % idx)             # <<<<<<<<<<<<<<
  * 
  *             return vars[idx]
  */
-      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2682; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_9); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2682; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Variable_index_not_valid_d, __pyx_t_9); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2682; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2682; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2682; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2684
+    /* "pylpsolve/pylpsolve.pyx":2686
  *                 raise ValueError("Variable index not valid: %d" % idx)
  * 
  *             return vars[idx]             # <<<<<<<<<<<<<<
@@ -23944,7 +24021,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
  *         else:
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_vars[__pyx_v_idx])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_vars[__pyx_v_idx])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
@@ -23952,21 +24029,21 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":2687
+    /* "pylpsolve/pylpsolve.pyx":2689
  * 
  *         else:
  *             raise ValueError("Type of `indices` argument not recognized.")             # <<<<<<<<<<<<<<
  * 
  *     def getSolutionDict(self):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__81, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2687; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__81, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2689; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2687; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2689; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2572
+  /* "pylpsolve/pylpsolve.pyx":2574
  *         # And we're done
  * 
  *     def getSolution(self, indices = None):             # <<<<<<<<<<<<<<
@@ -24006,7 +24083,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_44getSolution(struct __pyx_o
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2689
+/* "pylpsolve/pylpsolve.pyx":2691
  *             raise ValueError("Type of `indices` argument not recognized.")
  * 
  *     def getSolutionDict(self):             # <<<<<<<<<<<<<<
@@ -24047,19 +24124,19 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getSolutionDict", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2697
+  /* "pylpsolve/pylpsolve.pyx":2699
  *         """
  * 
  *         cdef dict ret = {}             # <<<<<<<<<<<<<<
  * 
  *         for k in self._named_index_blocks.iterkeys():
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ret = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2699
+  /* "pylpsolve/pylpsolve.pyx":2701
  *         cdef dict ret = {}
  * 
  *         for k in self._named_index_blocks.iterkeys():             # <<<<<<<<<<<<<<
@@ -24069,9 +24146,9 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
   __pyx_t_2 = 0;
   if (unlikely(__pyx_v_self->_named_index_blocks == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%s'", "iterkeys");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
-  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_self->_named_index_blocks, 1, __pyx_n_s_iterkeys, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_self->_named_index_blocks, 1, __pyx_n_s_iterkeys, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -24079,19 +24156,19 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
   while (1) {
     __pyx_t_6 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, NULL, NULL, __pyx_t_4);
     if (unlikely(__pyx_t_6 == 0)) break;
-    if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2700
+    /* "pylpsolve/pylpsolve.pyx":2702
  * 
  *         for k in self._named_index_blocks.iterkeys():
  *             ret[k] = self.getSolution(k)             # <<<<<<<<<<<<<<
  * 
  *         return ret
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getSolution); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getSolution); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_7))) {
@@ -24104,26 +24181,26 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_k); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_k); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
     } else {
-      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
       __Pyx_INCREF(__pyx_v_k);
       __Pyx_GIVEREF(__pyx_v_k);
       PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_v_k);
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_ret, __pyx_v_k, __pyx_t_5) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_ret, __pyx_v_k, __pyx_t_5) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2702
+  /* "pylpsolve/pylpsolve.pyx":2704
  *             ret[k] = self.getSolution(k)
  * 
  *         return ret             # <<<<<<<<<<<<<<
@@ -24135,7 +24212,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":2689
+  /* "pylpsolve/pylpsolve.pyx":2691
  *             raise ValueError("Type of `indices` argument not recognized.")
  * 
  *     def getSolutionDict(self):             # <<<<<<<<<<<<<<
@@ -24160,7 +24237,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_46getSolutionDict(struct __p
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2705
+/* "pylpsolve/pylpsolve.pyx":2707
  * 
  * 
  *     cpdef real getObjectiveValue(self):             # <<<<<<<<<<<<<<
@@ -24186,7 +24263,7 @@ static __pyx_t_9pylpsolve_9pylpsolve_real __pyx_f_9pylpsolve_9pylpsolve_2LP_getO
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getObjectiveValue); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getObjectiveValue); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_9pylpsolve_9pylpsolve_2LP_49getObjectiveValue)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -24201,14 +24278,14 @@ static __pyx_t_9pylpsolve_9pylpsolve_real __pyx_f_9pylpsolve_9pylpsolve_2LP_getO
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_5;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -24217,7 +24294,7 @@ static __pyx_t_9pylpsolve_9pylpsolve_real __pyx_f_9pylpsolve_9pylpsolve_2LP_getO
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2711
+  /* "pylpsolve/pylpsolve.pyx":2713
  *         """
  * 
  *         if self.lp == NULL:             # <<<<<<<<<<<<<<
@@ -24227,24 +24304,24 @@ static __pyx_t_9pylpsolve_9pylpsolve_real __pyx_f_9pylpsolve_9pylpsolve_2LP_getO
   __pyx_t_6 = ((__pyx_v_self->lp == NULL) != 0);
   if (__pyx_t_6) {
 
-    /* "pylpsolve/pylpsolve.pyx":2712
+    /* "pylpsolve/pylpsolve.pyx":2714
  * 
  *         if self.lp == NULL:
  *             raise LPException("Final variables available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         return get_objective(self.lp)
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__82, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__82, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2714
+  /* "pylpsolve/pylpsolve.pyx":2716
  *             raise LPException("Final variables available only after solve() is called.")
  * 
  *         return get_objective(self.lp)             # <<<<<<<<<<<<<<
@@ -24254,7 +24331,7 @@ static __pyx_t_9pylpsolve_9pylpsolve_real __pyx_f_9pylpsolve_9pylpsolve_2LP_getO
   __pyx_r = get_objective(__pyx_v_self->lp);
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":2705
+  /* "pylpsolve/pylpsolve.pyx":2707
  * 
  * 
  *     cpdef real getObjectiveValue(self):             # <<<<<<<<<<<<<<
@@ -24298,7 +24375,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_48getObjectiveValue(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getObjectiveValue", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_9pylpsolve_9pylpsolve_2LP_getObjectiveValue(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_9pylpsolve_9pylpsolve_2LP_getObjectiveValue(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -24315,7 +24392,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_48getObjectiveValue(struct _
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2716
+/* "pylpsolve/pylpsolve.pyx":2718
  *         return get_objective(self.lp)
  * 
  *     def getBasis(self, bint include_dual_basis = True):             # <<<<<<<<<<<<<<
@@ -24354,7 +24431,7 @@ static PyObject *__pyx_pw_9pylpsolve_9pylpsolve_2LP_51getBasis(PyObject *__pyx_v
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getBasis") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2716; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getBasis") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2718; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -24364,14 +24441,14 @@ static PyObject *__pyx_pw_9pylpsolve_9pylpsolve_2LP_51getBasis(PyObject *__pyx_v
       }
     }
     if (values[0]) {
-      __pyx_v_include_dual_basis = __Pyx_PyObject_IsTrue(values[0]); if (unlikely((__pyx_v_include_dual_basis == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2716; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_include_dual_basis = __Pyx_PyObject_IsTrue(values[0]); if (unlikely((__pyx_v_include_dual_basis == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2718; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_include_dual_basis = ((int)1);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getBasis", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2716; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("getBasis", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2718; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("pylpsolve.pylpsolve.LP.getBasis", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -24409,7 +24486,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   __pyx_pybuffernd_basis.data = NULL;
   __pyx_pybuffernd_basis.rcbuffer = &__pyx_pybuffer_basis;
 
-  /* "pylpsolve/pylpsolve.pyx":2725
+  /* "pylpsolve/pylpsolve.pyx":2727
  *         """
  * 
  *         if self.lp == NULL:             # <<<<<<<<<<<<<<
@@ -24419,34 +24496,34 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   __pyx_t_1 = ((__pyx_v_self->lp == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2726
+    /* "pylpsolve/pylpsolve.pyx":2728
  * 
  *         if self.lp == NULL:
  *             raise LPException("Info available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         cdef ar[int, mode="c"] basis = empty(
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__83, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__83, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2728
+  /* "pylpsolve/pylpsolve.pyx":2730
  *             raise LPException("Info available only after solve() is called.")
  * 
  *         cdef ar[int, mode="c"] basis = empty(             # <<<<<<<<<<<<<<
  *             1 + self.n_columns + (self.n_rows if include_dual_basis else 0), npint)
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_empty); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "pylpsolve/pylpsolve.pyx":2729
+  /* "pylpsolve/pylpsolve.pyx":2731
  * 
  *         cdef ar[int, mode="c"] basis = empty(
  *             1 + self.n_columns + (self.n_rows if include_dual_basis else 0), npint)             # <<<<<<<<<<<<<<
@@ -24458,9 +24535,9 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   } else {
     __pyx_t_4 = 0;
   }
-  __pyx_t_5 = __Pyx_PyInt_FromSize_t(((1 + __pyx_v_self->n_columns) + __pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_FromSize_t(((1 + __pyx_v_self->n_columns) + __pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npint); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_npint); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -24474,7 +24551,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
       __pyx_t_8 = 1;
     }
   }
-  __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_9);
   if (__pyx_t_7) {
     __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -24485,25 +24562,25 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_t_6);
   __pyx_t_5 = 0;
   __pyx_t_6 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2728
+  /* "pylpsolve/pylpsolve.pyx":2730
  *             raise LPException("Info available only after solve() is called.")
  * 
  *         cdef ar[int, mode="c"] basis = empty(             # <<<<<<<<<<<<<<
  *             1 + self.n_columns + (self.n_rows if include_dual_basis else 0), npint)
  * 
  */
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_10 = ((PyArrayObject *)__pyx_t_3);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_basis.rcbuffer->pybuffer, (PyObject*)__pyx_t_10, &__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_basis = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_basis.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_basis.diminfo[0].strides = __pyx_pybuffernd_basis.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_basis.diminfo[0].shape = __pyx_pybuffernd_basis.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -24511,7 +24588,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   __pyx_v_basis = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2731
+  /* "pylpsolve/pylpsolve.pyx":2733
  *             1 + self.n_columns + (self.n_rows if include_dual_basis else 0), npint)
  * 
  *         if not get_basis(self.lp, <int*>basis.data, include_dual_basis):             # <<<<<<<<<<<<<<
@@ -24521,24 +24598,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   __pyx_t_1 = ((!(get_basis(__pyx_v_self->lp, ((int *)__pyx_v_basis->data), __pyx_v_include_dual_basis) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2732
+    /* "pylpsolve/pylpsolve.pyx":2734
  * 
  *         if not get_basis(self.lp, <int*>basis.data, include_dual_basis):
  *             raise LPException("Unknown error while retrieving basis.")             # <<<<<<<<<<<<<<
  * 
  *         return basis
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__84, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__84, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2734
+  /* "pylpsolve/pylpsolve.pyx":2736
  *             raise LPException("Unknown error while retrieving basis.")
  * 
  *         return basis             # <<<<<<<<<<<<<<
@@ -24550,7 +24627,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   __pyx_r = ((PyObject *)__pyx_v_basis);
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":2716
+  /* "pylpsolve/pylpsolve.pyx":2718
  *         return get_objective(self.lp)
  * 
  *     def getBasis(self, bint include_dual_basis = True):             # <<<<<<<<<<<<<<
@@ -24582,7 +24659,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_50getBasis(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2736
+/* "pylpsolve/pylpsolve.pyx":2738
  *         return basis
  * 
  *     cpdef printLP(self):             # <<<<<<<<<<<<<<
@@ -24606,7 +24683,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(struct __pyx_obj_9pyl
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_printLP); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_printLP); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2738; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_9pylpsolve_9pylpsolve_2LP_53printLP)) {
       __Pyx_XDECREF(__pyx_r);
@@ -24622,10 +24699,10 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(struct __pyx_obj_9pyl
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2738; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2738; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24637,21 +24714,21 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(struct __pyx_obj_9pyl
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2745
+  /* "pylpsolve/pylpsolve.pyx":2747
  *         """
  * 
  *         self.setupLP(self.getOptionDict())             # <<<<<<<<<<<<<<
  *         print_lp(self.lp)
  * 
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->getOptionDict(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->getOptionDict(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2747; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->setupLP(__pyx_v_self, ((PyObject*)__pyx_t_1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->setupLP(__pyx_v_self, ((PyObject*)__pyx_t_1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2747; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2746
+  /* "pylpsolve/pylpsolve.pyx":2748
  * 
  *         self.setupLP(self.getOptionDict())
  *         print_lp(self.lp)             # <<<<<<<<<<<<<<
@@ -24660,7 +24737,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(struct __pyx_obj_9pyl
  */
   print_lp(__pyx_v_self->lp);
 
-  /* "pylpsolve/pylpsolve.pyx":2736
+  /* "pylpsolve/pylpsolve.pyx":2738
  *         return basis
  * 
  *     cpdef printLP(self):             # <<<<<<<<<<<<<<
@@ -24707,7 +24784,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_52printLP(struct __pyx_obj_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("printLP", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_2LP_printLP(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2738; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -24724,7 +24801,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_52printLP(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2749
+/* "pylpsolve/pylpsolve.pyx":2751
  * 
  * 
  *     def getInfo(self, str info):             # <<<<<<<<<<<<<<
@@ -24742,7 +24819,7 @@ static PyObject *__pyx_pw_9pylpsolve_9pylpsolve_2LP_55getInfo(PyObject *__pyx_v_
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("getInfo (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_info), (&PyString_Type), 1, "info", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2749; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_info), (&PyString_Type), 1, "info", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2751; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(((struct __pyx_obj_9pylpsolve_9pylpsolve_LP *)__pyx_v_self), ((PyObject*)__pyx_v_info));
 
   /* function exit code */
@@ -24773,7 +24850,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getInfo", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2758
+  /* "pylpsolve/pylpsolve.pyx":2760
  *         """
  * 
  *         if self.lp == NULL:             # <<<<<<<<<<<<<<
@@ -24783,24 +24860,24 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
   __pyx_t_1 = ((__pyx_v_self->lp == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2759
+    /* "pylpsolve/pylpsolve.pyx":2761
  * 
  *         if self.lp == NULL:
  *             raise LPException("Info available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         cdef int ret_stat
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LPException); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2761; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__85, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__85, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2761; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2761; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2763
+  /* "pylpsolve/pylpsolve.pyx":2765
  *         cdef int ret_stat
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -24814,7 +24891,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":2764
+      /* "pylpsolve/pylpsolve.pyx":2766
  * 
  *         try:
  *             ret_stat = info_lookup[info.lower()]             # <<<<<<<<<<<<<<
@@ -24823,9 +24900,9 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
  */
       if (unlikely(__pyx_v_9pylpsolve_9pylpsolve_info_lookup == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
       }
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_info, __pyx_n_s_lower); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_info, __pyx_n_s_lower); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_7 = NULL;
       if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -24838,17 +24915,17 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
         }
       }
       if (__pyx_t_7) {
-        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       } else {
-        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
       }
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_9pylpsolve_9pylpsolve_info_lookup, __pyx_t_3); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;};
+      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_9pylpsolve_9pylpsolve_info_lookup, __pyx_t_3); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;};
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2764; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+      __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_ret_stat = __pyx_t_8;
     }
@@ -24861,7 +24938,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "pylpsolve/pylpsolve.pyx":2765
+    /* "pylpsolve/pylpsolve.pyx":2767
  *         try:
  *             ret_stat = info_lookup[info.lower()]
  *         except KeyError:             # <<<<<<<<<<<<<<
@@ -24871,12 +24948,12 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
     __pyx_t_8 = PyErr_ExceptionMatches(__pyx_builtin_KeyError);
     if (__pyx_t_8) {
       __Pyx_AddTraceback("pylpsolve.pylpsolve.LP.getInfo", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2765; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2767; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "pylpsolve/pylpsolve.pyx":2767
+      /* "pylpsolve/pylpsolve.pyx":2769
  *         except KeyError:
  *             raise ValueError("info must be one of: %s" %
  *                              ", ".join(info_lookup.iterkeys()))             # <<<<<<<<<<<<<<
@@ -24885,35 +24962,35 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
  */
       if (unlikely(__pyx_v_9pylpsolve_9pylpsolve_info_lookup == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%s'", "iterkeys");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2767; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2769; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       }
-      __pyx_t_9 = __Pyx_PyDict_IterKeys(__pyx_v_9pylpsolve_9pylpsolve_info_lookup); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2767; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      __pyx_t_9 = __Pyx_PyDict_IterKeys(__pyx_v_9pylpsolve_9pylpsolve_info_lookup); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2769; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__86, __pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2767; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__86, __pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2769; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":2766
+      /* "pylpsolve/pylpsolve.pyx":2768
  *             ret_stat = info_lookup[info.lower()]
  *         except KeyError:
  *             raise ValueError("info must be one of: %s" %             # <<<<<<<<<<<<<<
  *                              ", ".join(info_lookup.iterkeys()))
  * 
  */
-      __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_info_must_be_one_of_s, __pyx_t_10); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_info_must_be_one_of_s, __pyx_t_10); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2768; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2768; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_GIVEREF(__pyx_t_9);
       PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9);
       __pyx_t_9 = 0;
-      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_10, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_10, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2768; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_Raise(__pyx_t_9, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2766; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2768; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
     }
     goto __pyx_L6_except_error;
     __pyx_L6_except_error:;
@@ -24925,7 +25002,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
     __pyx_L11_try_end:;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2769
+  /* "pylpsolve/pylpsolve.pyx":2771
  *                              ", ".join(info_lookup.iterkeys()))
  * 
  *         if ret_stat == nIterations:             # <<<<<<<<<<<<<<
@@ -24935,7 +25012,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
   __pyx_t_1 = ((__pyx_v_ret_stat == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2770
+    /* "pylpsolve/pylpsolve.pyx":2772
  * 
  *         if ret_stat == nIterations:
  *             return get_total_iter(self.lp)             # <<<<<<<<<<<<<<
@@ -24943,7 +25020,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
  *             assert False
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_7 = __Pyx_PyInt_From_PY_LONG_LONG(get_total_iter(__pyx_v_self->lp)); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyInt_From_PY_LONG_LONG(get_total_iter(__pyx_v_self->lp)); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_r = __pyx_t_7;
     __pyx_t_7 = 0;
@@ -24951,7 +25028,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":2772
+    /* "pylpsolve/pylpsolve.pyx":2774
  *             return get_total_iter(self.lp)
  *         else:
  *             assert False             # <<<<<<<<<<<<<<
@@ -24962,13 +25039,13 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!0)) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2749
+  /* "pylpsolve/pylpsolve.pyx":2751
  * 
  * 
  *     def getInfo(self, str info):             # <<<<<<<<<<<<<<
@@ -24993,7 +25070,7 @@ static PyObject *__pyx_pf_9pylpsolve_9pylpsolve_2LP_54getInfo(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2778
+/* "pylpsolve/pylpsolve.pyx":2780
  *     # Methods for dealing with the constraint buffers
  * 
  *     cdef setConstraint(self, size_t row_idx, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -25012,7 +25089,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setConstraint(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("setConstraint", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2781
+  /* "pylpsolve/pylpsolve.pyx":2783
  * 
  *         # First get the right cstr
  *         cdef _Constraint* cstr = self.getConstraintStruct(row_idx)             # <<<<<<<<<<<<<<
@@ -25021,7 +25098,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setConstraint(struct __pyx_ob
  */
   __pyx_v_cstr = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->getConstraintStruct(__pyx_v_self, __pyx_v_row_idx);
 
-  /* "pylpsolve/pylpsolve.pyx":2783
+  /* "pylpsolve/pylpsolve.pyx":2785
  *         cdef _Constraint* cstr = self.getConstraintStruct(row_idx)
  * 
  *         if cstr == NULL:             # <<<<<<<<<<<<<<
@@ -25031,28 +25108,28 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setConstraint(struct __pyx_ob
   __pyx_t_1 = ((__pyx_v_cstr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2784
+    /* "pylpsolve/pylpsolve.pyx":2786
  * 
  *         if cstr == NULL:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *         setupConstraint(cstr, row_idx, idx, row, ctype, rhs)
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2786; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2786
+  /* "pylpsolve/pylpsolve.pyx":2788
  *             raise MemoryError
  * 
  *         setupConstraint(cstr, row_idx, idx, row, ctype, rhs)             # <<<<<<<<<<<<<<
  * 
  *     cdef _addConstraint(self, ar idx, ar row, int ctype, rhs):
  */
-  __pyx_t_2 = __pyx_f_9pylpsolve_9pylpsolve_setupConstraint(__pyx_v_cstr, __pyx_v_row_idx, __pyx_v_idx, __pyx_v_row, __pyx_v_ctype, __pyx_v_rhs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2786; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_f_9pylpsolve_9pylpsolve_setupConstraint(__pyx_v_cstr, __pyx_v_row_idx, __pyx_v_idx, __pyx_v_row, __pyx_v_ctype, __pyx_v_rhs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2788; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2778
+  /* "pylpsolve/pylpsolve.pyx":2780
  *     # Methods for dealing with the constraint buffers
  * 
  *     cdef setConstraint(self, size_t row_idx, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -25073,7 +25150,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setConstraint(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2788
+/* "pylpsolve/pylpsolve.pyx":2790
  *         setupConstraint(cstr, row_idx, idx, row, ctype, rhs)
  * 
  *     cdef _addConstraint(self, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -25092,7 +25169,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP__addConstraint(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_addConstraint", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2789
+  /* "pylpsolve/pylpsolve.pyx":2791
  * 
  *     cdef _addConstraint(self, ar idx, ar row, int ctype, rhs):
  *         cdef size_t row_idx = self.n_rows             # <<<<<<<<<<<<<<
@@ -25102,18 +25179,18 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP__addConstraint(struct __pyx_o
   __pyx_t_1 = __pyx_v_self->n_rows;
   __pyx_v_row_idx = __pyx_t_1;
 
-  /* "pylpsolve/pylpsolve.pyx":2790
+  /* "pylpsolve/pylpsolve.pyx":2792
  *     cdef _addConstraint(self, ar idx, ar row, int ctype, rhs):
  *         cdef size_t row_idx = self.n_rows
  *         self.setConstraint(row_idx, idx, row, ctype, rhs)             # <<<<<<<<<<<<<<
  *         return row_idx
  * 
  */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->setConstraint(__pyx_v_self, __pyx_v_row_idx, __pyx_v_idx, __pyx_v_row, __pyx_v_ctype, __pyx_v_rhs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((struct __pyx_vtabstruct_9pylpsolve_9pylpsolve_LP *)__pyx_v_self->__pyx_vtab)->setConstraint(__pyx_v_self, __pyx_v_row_idx, __pyx_v_idx, __pyx_v_row, __pyx_v_ctype, __pyx_v_rhs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2791
+  /* "pylpsolve/pylpsolve.pyx":2793
  *         cdef size_t row_idx = self.n_rows
  *         self.setConstraint(row_idx, idx, row, ctype, rhs)
  *         return row_idx             # <<<<<<<<<<<<<<
@@ -25121,13 +25198,13 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP__addConstraint(struct __pyx_o
  *     cdef _Constraint* getConstraintStruct(self, size_t row_idx):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_row_idx); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_row_idx); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2793; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":2788
+  /* "pylpsolve/pylpsolve.pyx":2790
  *         setupConstraint(cstr, row_idx, idx, row, ctype, rhs)
  * 
  *     cdef _addConstraint(self, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -25146,7 +25223,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP__addConstraint(struct __pyx_o
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2793
+/* "pylpsolve/pylpsolve.pyx":2795
  *         return row_idx
  * 
  *     cdef _Constraint* getConstraintStruct(self, size_t row_idx):             # <<<<<<<<<<<<<<
@@ -25170,7 +25247,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getConstraintStruct", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2796
+  /* "pylpsolve/pylpsolve.pyx":2798
  * 
  *         # First see if our double-buffer thing is ready to go
  *         cdef size_t buf_idx = <size_t>(row_idx // cStructBufferSize)             # <<<<<<<<<<<<<<
@@ -25179,7 +25256,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
   __pyx_v_buf_idx = ((size_t)(__pyx_v_row_idx / 128));
 
-  /* "pylpsolve/pylpsolve.pyx":2797
+  /* "pylpsolve/pylpsolve.pyx":2799
  *         # First see if our double-buffer thing is ready to go
  *         cdef size_t buf_idx = <size_t>(row_idx // cStructBufferSize)
  *         cdef size_t idx     = <size_t>(row_idx % cStructBufferSize)             # <<<<<<<<<<<<<<
@@ -25188,7 +25265,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
   __pyx_v_idx = ((size_t)(__pyx_v_row_idx % 128));
 
-  /* "pylpsolve/pylpsolve.pyx":2804
+  /* "pylpsolve/pylpsolve.pyx":2806
  * 
  *         # Ensure proper sizing of constraint buffer
  *         if buf_idx >= self.current_c_buffer_size:             # <<<<<<<<<<<<<<
@@ -25198,7 +25275,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   __pyx_t_1 = ((__pyx_v_buf_idx >= __pyx_v_self->current_c_buffer_size) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2809
+    /* "pylpsolve/pylpsolve.pyx":2811
  *             # and each one is a lot of constraints
  * 
  *             new_size = 128 + 2*buf_idx             # <<<<<<<<<<<<<<
@@ -25207,7 +25284,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
     __pyx_v_new_size = (128 + (2 * __pyx_v_buf_idx));
 
-    /* "pylpsolve/pylpsolve.pyx":2810
+    /* "pylpsolve/pylpsolve.pyx":2812
  * 
  *             new_size = 128 + 2*buf_idx
  *             new_size -= (new_size % 128)             # <<<<<<<<<<<<<<
@@ -25216,7 +25293,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
     __pyx_v_new_size = (__pyx_v_new_size - (__pyx_v_new_size % 128));
 
-    /* "pylpsolve/pylpsolve.pyx":2812
+    /* "pylpsolve/pylpsolve.pyx":2814
  *             new_size -= (new_size % 128)
  * 
  *             assert new_size > 0             # <<<<<<<<<<<<<<
@@ -25227,12 +25304,12 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!((__pyx_v_new_size > 0) != 0))) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2812; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2814; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
 
-    /* "pylpsolve/pylpsolve.pyx":2813
+    /* "pylpsolve/pylpsolve.pyx":2815
  * 
  *             assert new_size > 0
  *             assert new_size > buf_idx             # <<<<<<<<<<<<<<
@@ -25243,12 +25320,12 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!((__pyx_v_new_size > __pyx_v_buf_idx) != 0))) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2813; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2815; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
 
-    /* "pylpsolve/pylpsolve.pyx":2815
+    /* "pylpsolve/pylpsolve.pyx":2817
  *             assert new_size > buf_idx
  * 
  *             if self._c_buffer == NULL:             # <<<<<<<<<<<<<<
@@ -25258,7 +25335,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     __pyx_t_1 = ((__pyx_v_self->_c_buffer == NULL) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":2816
+      /* "pylpsolve/pylpsolve.pyx":2818
  * 
  *             if self._c_buffer == NULL:
  *                 self._c_buffer = <_Constraint**>malloc(new_size*sizeof(_Constraint*))             # <<<<<<<<<<<<<<
@@ -25270,7 +25347,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     }
     /*else*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":2818
+      /* "pylpsolve/pylpsolve.pyx":2820
  *                 self._c_buffer = <_Constraint**>malloc(new_size*sizeof(_Constraint*))
  *             else:
  *                 self._c_buffer = <_Constraint**>realloc(self._c_buffer, new_size*sizeof(_Constraint*))             # <<<<<<<<<<<<<<
@@ -25281,7 +25358,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     }
     __pyx_L4:;
 
-    /* "pylpsolve/pylpsolve.pyx":2820
+    /* "pylpsolve/pylpsolve.pyx":2822
  *                 self._c_buffer = <_Constraint**>realloc(self._c_buffer, new_size*sizeof(_Constraint*))
  * 
  *             if self._c_buffer == NULL:             # <<<<<<<<<<<<<<
@@ -25291,7 +25368,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     __pyx_t_1 = ((__pyx_v_self->_c_buffer == NULL) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":2821
+      /* "pylpsolve/pylpsolve.pyx":2823
  * 
  *             if self._c_buffer == NULL:
  *                 return NULL             # <<<<<<<<<<<<<<
@@ -25302,7 +25379,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
       goto __pyx_L0;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2823
+    /* "pylpsolve/pylpsolve.pyx":2825
  *                 return NULL
  * 
  *             for self.current_c_buffer_size <= i < new_size:             # <<<<<<<<<<<<<<
@@ -25312,7 +25389,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     __pyx_t_2 = __pyx_v_new_size;
     for (__pyx_v_i = __pyx_v_self->current_c_buffer_size; __pyx_v_i < __pyx_t_2; __pyx_v_i++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2824
+      /* "pylpsolve/pylpsolve.pyx":2826
  * 
  *             for self.current_c_buffer_size <= i < new_size:
  *                 self._c_buffer[i] = NULL             # <<<<<<<<<<<<<<
@@ -25322,7 +25399,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
       (__pyx_v_self->_c_buffer[__pyx_v_i]) = NULL;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2829
+    /* "pylpsolve/pylpsolve.pyx":2831
  *             #        (new_size - self.current_c_buffer_size)*sizeof(_Constraint*))
  * 
  *             self.current_c_buffer_size = new_size             # <<<<<<<<<<<<<<
@@ -25334,7 +25411,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   }
   __pyx_L3:;
 
-  /* "pylpsolve/pylpsolve.pyx":2832
+  /* "pylpsolve/pylpsolve.pyx":2834
  * 
  *         # Now make sure that the buffer is ready
  *         buf = self._c_buffer[buf_idx]             # <<<<<<<<<<<<<<
@@ -25343,7 +25420,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
   __pyx_v_buf = (__pyx_v_self->_c_buffer[__pyx_v_buf_idx]);
 
-  /* "pylpsolve/pylpsolve.pyx":2834
+  /* "pylpsolve/pylpsolve.pyx":2836
  *         buf = self._c_buffer[buf_idx]
  * 
  *         if buf == NULL:             # <<<<<<<<<<<<<<
@@ -25353,7 +25430,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   __pyx_t_1 = ((__pyx_v_buf == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2836
+    /* "pylpsolve/pylpsolve.pyx":2838
  *         if buf == NULL:
  *             buf = self._c_buffer[buf_idx] = \
  *                 <_Constraint*>malloc(cStructBufferSize*sizeof(_Constraint))             # <<<<<<<<<<<<<<
@@ -25363,7 +25440,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     __pyx_t_3 = ((struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *)PyMem_Malloc((128 * (sizeof(struct __pyx_t_9pylpsolve_9pylpsolve__Constraint)))));
     __pyx_v_buf = __pyx_t_3;
 
-    /* "pylpsolve/pylpsolve.pyx":2835
+    /* "pylpsolve/pylpsolve.pyx":2837
  * 
  *         if buf == NULL:
  *             buf = self._c_buffer[buf_idx] = \             # <<<<<<<<<<<<<<
@@ -25372,7 +25449,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
  */
     (__pyx_v_self->_c_buffer[__pyx_v_buf_idx]) = __pyx_t_3;
 
-    /* "pylpsolve/pylpsolve.pyx":2838
+    /* "pylpsolve/pylpsolve.pyx":2840
  *                 <_Constraint*>malloc(cStructBufferSize*sizeof(_Constraint))
  * 
  *             if buf == NULL:             # <<<<<<<<<<<<<<
@@ -25382,17 +25459,17 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
     __pyx_t_1 = ((__pyx_v_buf == NULL) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":2839
+      /* "pylpsolve/pylpsolve.pyx":2841
  * 
  *             if buf == NULL:
  *                 raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *             memset(buf, 0, cStructBufferSize*sizeof(_Constraint))
  */
-      PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2841
+    /* "pylpsolve/pylpsolve.pyx":2843
  *                 raise MemoryError
  * 
  *             memset(buf, 0, cStructBufferSize*sizeof(_Constraint))             # <<<<<<<<<<<<<<
@@ -25404,7 +25481,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   }
   __pyx_L8:;
 
-  /* "pylpsolve/pylpsolve.pyx":2844
+  /* "pylpsolve/pylpsolve.pyx":2846
  * 
  *         # Now finally this determines the new model size
  *         if row_idx >= self.n_rows:             # <<<<<<<<<<<<<<
@@ -25414,7 +25491,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   __pyx_t_1 = ((__pyx_v_row_idx >= __pyx_v_self->n_rows) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2845
+    /* "pylpsolve/pylpsolve.pyx":2847
  *         # Now finally this determines the new model size
  *         if row_idx >= self.n_rows:
  *             self.n_rows = row_idx + 1             # <<<<<<<<<<<<<<
@@ -25426,7 +25503,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   }
   __pyx_L10:;
 
-  /* "pylpsolve/pylpsolve.pyx":2847
+  /* "pylpsolve/pylpsolve.pyx":2849
  *             self.n_rows = row_idx + 1
  * 
  *         return &buf[idx]             # <<<<<<<<<<<<<<
@@ -25436,7 +25513,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   __pyx_r = (&(__pyx_v_buf[__pyx_v_idx]));
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":2793
+  /* "pylpsolve/pylpsolve.pyx":2795
  *         return row_idx
  * 
  *     cdef _Constraint* getConstraintStruct(self, size_t row_idx):             # <<<<<<<<<<<<<<
@@ -25453,7 +25530,7 @@ static struct __pyx_t_9pylpsolve_9pylpsolve__Constraint *__pyx_f_9pylpsolve_9pyl
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2849
+/* "pylpsolve/pylpsolve.pyx":2851
  *         return &buf[idx]
  * 
  *     cdef applyAllConstraints(self):             # <<<<<<<<<<<<<<
@@ -25476,7 +25553,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("applyAllConstraints", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2850
+  /* "pylpsolve/pylpsolve.pyx":2852
  * 
  *     cdef applyAllConstraints(self):
  *         assert self.lp != NULL             # <<<<<<<<<<<<<<
@@ -25487,12 +25564,12 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_self->lp != NULL) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2850; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":2856
+  /* "pylpsolve/pylpsolve.pyx":2858
  * 
  *         # turn on row adding mode
  *         set_add_rowmode(self.lp, True)             # <<<<<<<<<<<<<<
@@ -25501,7 +25578,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
   set_add_rowmode(__pyx_v_self->lp, 1);
 
-  /* "pylpsolve/pylpsolve.pyx":2859
+  /* "pylpsolve/pylpsolve.pyx":2861
  * 
  *         # This enables the slicing to work properly
  *         cdef int* countrange = <int*>malloc((self.n_columns+1)*sizeof(int))             # <<<<<<<<<<<<<<
@@ -25510,7 +25587,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
   __pyx_v_countrange = ((int *)PyMem_Malloc(((__pyx_v_self->n_columns + 1) * (sizeof(int)))));
 
-  /* "pylpsolve/pylpsolve.pyx":2861
+  /* "pylpsolve/pylpsolve.pyx":2863
  *         cdef int* countrange = <int*>malloc((self.n_columns+1)*sizeof(int))
  * 
  *         for 0 <= i <= self.n_columns:             # <<<<<<<<<<<<<<
@@ -25520,7 +25597,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
   __pyx_t_1 = __pyx_v_self->n_columns;
   for (__pyx_v_i = 0; __pyx_v_i <= __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":2862
+    /* "pylpsolve/pylpsolve.pyx":2864
  * 
  *         for 0 <= i <= self.n_columns:
  *             countrange[i] = i             # <<<<<<<<<<<<<<
@@ -25530,7 +25607,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
     (__pyx_v_countrange[__pyx_v_i]) = __pyx_v_i;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2864
+  /* "pylpsolve/pylpsolve.pyx":2866
  *             countrange[i] = i
  * 
  *         for 0 <= i < self.current_c_buffer_size:             # <<<<<<<<<<<<<<
@@ -25540,7 +25617,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
   __pyx_t_1 = __pyx_v_self->current_c_buffer_size;
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":2865
+    /* "pylpsolve/pylpsolve.pyx":2867
  * 
  *         for 0 <= i < self.current_c_buffer_size:
  *             buf = self._c_buffer[i]             # <<<<<<<<<<<<<<
@@ -25549,7 +25626,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
     __pyx_v_buf = (__pyx_v_self->_c_buffer[__pyx_v_i]);
 
-    /* "pylpsolve/pylpsolve.pyx":2867
+    /* "pylpsolve/pylpsolve.pyx":2869
  *             buf = self._c_buffer[i]
  * 
  *             if buf == NULL:             # <<<<<<<<<<<<<<
@@ -25559,7 +25636,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
     __pyx_t_2 = ((__pyx_v_buf == NULL) != 0);
     if (__pyx_t_2) {
 
-      /* "pylpsolve/pylpsolve.pyx":2868
+      /* "pylpsolve/pylpsolve.pyx":2870
  * 
  *             if buf == NULL:
  *                 continue             # <<<<<<<<<<<<<<
@@ -25569,7 +25646,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
       goto __pyx_L5_continue;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2870
+    /* "pylpsolve/pylpsolve.pyx":2872
  *                 continue
  * 
  *             for 0 <= j < cStructBufferSize:             # <<<<<<<<<<<<<<
@@ -25578,7 +25655,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
     for (__pyx_v_j = 0; __pyx_v_j < 128; __pyx_v_j++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2871
+      /* "pylpsolve/pylpsolve.pyx":2873
  * 
  *             for 0 <= j < cStructBufferSize:
  *                 if inUse(&buf[j]):             # <<<<<<<<<<<<<<
@@ -25588,14 +25665,14 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
       __pyx_t_2 = (__pyx_f_9pylpsolve_9pylpsolve_inUse((&(__pyx_v_buf[__pyx_v_j]))) != 0);
       if (__pyx_t_2) {
 
-        /* "pylpsolve/pylpsolve.pyx":2873
+        /* "pylpsolve/pylpsolve.pyx":2875
  *                 if inUse(&buf[j]):
  *                     # debug note; not in here
  *                     setInLP(&buf[j], self.lp, self.n_columns, countrange)             # <<<<<<<<<<<<<<
  * 
  *         free(countrange)
  */
-        __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve_setInLP((&(__pyx_v_buf[__pyx_v_j])), __pyx_v_self->lp, __pyx_v_self->n_columns, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2873; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve_setInLP((&(__pyx_v_buf[__pyx_v_j])), __pyx_v_self->lp, __pyx_v_self->n_columns, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2875; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L10;
@@ -25605,7 +25682,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
     __pyx_L5_continue:;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2875
+  /* "pylpsolve/pylpsolve.pyx":2877
  *                     setInLP(&buf[j], self.lp, self.n_columns, countrange)
  * 
  *         free(countrange)             # <<<<<<<<<<<<<<
@@ -25614,7 +25691,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
   PyMem_Free(__pyx_v_countrange);
 
-  /* "pylpsolve/pylpsolve.pyx":2878
+  /* "pylpsolve/pylpsolve.pyx":2880
  * 
  *         # Turn off row adding mode
  *         set_add_rowmode(self.lp, False)             # <<<<<<<<<<<<<<
@@ -25623,7 +25700,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
  */
   set_add_rowmode(__pyx_v_self->lp, 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2849
+  /* "pylpsolve/pylpsolve.pyx":2851
  *         return &buf[idx]
  * 
  *     cdef applyAllConstraints(self):             # <<<<<<<<<<<<<<
@@ -25644,7 +25721,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_applyAllConstraints(struct __
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":2880
+/* "pylpsolve/pylpsolve.pyx":2882
  *         set_add_rowmode(self.lp, False)
  * 
  *     cdef void clearConstraintBuffers(self):             # <<<<<<<<<<<<<<
@@ -25661,7 +25738,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
   size_t __pyx_t_2;
   __Pyx_RefNannySetupContext("clearConstraintBuffers", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2885
+  /* "pylpsolve/pylpsolve.pyx":2887
  *         cdef _Constraint* buf
  * 
  *         if self._c_buffer == NULL:             # <<<<<<<<<<<<<<
@@ -25671,7 +25748,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
   __pyx_t_1 = ((__pyx_v_self->_c_buffer == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":2886
+    /* "pylpsolve/pylpsolve.pyx":2888
  * 
  *         if self._c_buffer == NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -25681,7 +25758,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2888
+  /* "pylpsolve/pylpsolve.pyx":2890
  *             return
  * 
  *         for 0 <= i < self.current_c_buffer_size:             # <<<<<<<<<<<<<<
@@ -25691,7 +25768,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
   __pyx_t_2 = __pyx_v_self->current_c_buffer_size;
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_2; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":2890
+    /* "pylpsolve/pylpsolve.pyx":2892
  *         for 0 <= i < self.current_c_buffer_size:
  * 
  *             buf = self._c_buffer[i]             # <<<<<<<<<<<<<<
@@ -25700,7 +25777,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
  */
     __pyx_v_buf = (__pyx_v_self->_c_buffer[__pyx_v_i]);
 
-    /* "pylpsolve/pylpsolve.pyx":2892
+    /* "pylpsolve/pylpsolve.pyx":2894
  *             buf = self._c_buffer[i]
  * 
  *             if buf == NULL:             # <<<<<<<<<<<<<<
@@ -25710,7 +25787,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
     __pyx_t_1 = ((__pyx_v_buf == NULL) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":2893
+      /* "pylpsolve/pylpsolve.pyx":2895
  * 
  *             if buf == NULL:
  *                 continue             # <<<<<<<<<<<<<<
@@ -25720,7 +25797,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
       goto __pyx_L4_continue;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2895
+    /* "pylpsolve/pylpsolve.pyx":2897
  *                 continue
  * 
  *             for 0 <= j < cStructBufferSize:             # <<<<<<<<<<<<<<
@@ -25729,7 +25806,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
  */
     for (__pyx_v_j = 0; __pyx_v_j < 128; __pyx_v_j++) {
 
-      /* "pylpsolve/pylpsolve.pyx":2896
+      /* "pylpsolve/pylpsolve.pyx":2898
  * 
  *             for 0 <= j < cStructBufferSize:
  *                 if inUse(&buf[j]):             # <<<<<<<<<<<<<<
@@ -25739,7 +25816,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
       __pyx_t_1 = (__pyx_f_9pylpsolve_9pylpsolve_inUse((&(__pyx_v_buf[__pyx_v_j]))) != 0);
       if (__pyx_t_1) {
 
-        /* "pylpsolve/pylpsolve.pyx":2897
+        /* "pylpsolve/pylpsolve.pyx":2899
  *             for 0 <= j < cStructBufferSize:
  *                 if inUse(&buf[j]):
  *                     clearConstraint(&buf[j])             # <<<<<<<<<<<<<<
@@ -25752,7 +25829,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
       __pyx_L9:;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2899
+    /* "pylpsolve/pylpsolve.pyx":2901
  *                     clearConstraint(&buf[j])
  * 
  *             free(buf)             # <<<<<<<<<<<<<<
@@ -25763,7 +25840,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
     __pyx_L4_continue:;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2901
+  /* "pylpsolve/pylpsolve.pyx":2903
  *             free(buf)
  * 
  *         free(self._c_buffer)             # <<<<<<<<<<<<<<
@@ -25772,7 +25849,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
  */
   PyMem_Free(__pyx_v_self->_c_buffer);
 
-  /* "pylpsolve/pylpsolve.pyx":2903
+  /* "pylpsolve/pylpsolve.pyx":2905
  *         free(self._c_buffer)
  * 
  *         self.current_c_buffer_size = 0             # <<<<<<<<<<<<<<
@@ -25781,7 +25858,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
  */
   __pyx_v_self->current_c_buffer_size = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2904
+  /* "pylpsolve/pylpsolve.pyx":2906
  * 
  *         self.current_c_buffer_size = 0
  *         self._c_buffer = NULL             # <<<<<<<<<<<<<<
@@ -25790,7 +25867,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
  */
   __pyx_v_self->_c_buffer = NULL;
 
-  /* "pylpsolve/pylpsolve.pyx":2880
+  /* "pylpsolve/pylpsolve.pyx":2882
  *         set_add_rowmode(self.lp, False)
  * 
  *     cdef void clearConstraintBuffers(self):             # <<<<<<<<<<<<<<
@@ -25803,7 +25880,7 @@ static void __pyx_f_9pylpsolve_9pylpsolve_2LP_clearConstraintBuffers(struct __py
   __Pyx_RefNannyFinishContext();
 }
 
-/* "pylpsolve/pylpsolve.pyx":2939
+/* "pylpsolve/pylpsolve.pyx":2941
  * # Methods to deal with this constraint
  * 
  * cdef inline setupConstraint(_Constraint* cstr, size_t row_idx, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -25834,7 +25911,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("setupConstraint", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":2942
+  /* "pylpsolve/pylpsolve.pyx":2944
  * 
  *     # see if we need to clear things
  *     assert cstr.n == 0             # <<<<<<<<<<<<<<
@@ -25845,12 +25922,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_cstr->n == 0) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2944; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":2943
+  /* "pylpsolve/pylpsolve.pyx":2945
  *     # see if we need to clear things
  *     assert cstr.n == 0
  *     assert cstr.indices == NULL             # <<<<<<<<<<<<<<
@@ -25861,12 +25938,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_cstr->indices == NULL) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2945; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":2944
+  /* "pylpsolve/pylpsolve.pyx":2946
  *     assert cstr.n == 0
  *     assert cstr.indices == NULL
  *     assert cstr.values == NULL             # <<<<<<<<<<<<<<
@@ -25877,12 +25954,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_cstr->values == NULL) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2944; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2946; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":2948
+  /* "pylpsolve/pylpsolve.pyx":2950
  *     ########################################
  *     # Check possible bad configurations of ctype, rhs
  *     cstr.ctype = ctype             # <<<<<<<<<<<<<<
@@ -25891,7 +25968,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_cstr->ctype = __pyx_v_ctype;
 
-  /* "pylpsolve/pylpsolve.pyx":2955
+  /* "pylpsolve/pylpsolve.pyx":2957
  * 
  *         cstr.rhs1 = <double>rhs
  *     elif cstr.ctype == constraint_in:             # <<<<<<<<<<<<<<
@@ -25900,7 +25977,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   switch (__pyx_v_cstr->ctype) {
 
-    /* "pylpsolve/pylpsolve.pyx":2950
+    /* "pylpsolve/pylpsolve.pyx":2952
  *     cstr.ctype = ctype
  * 
  *     if cstr.ctype in [constraint_leq, constraint_geq, constraint_equal]:             # <<<<<<<<<<<<<<
@@ -25911,57 +25988,57 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     case 2:
     case 3:
 
-    /* "pylpsolve/pylpsolve.pyx":2951
+    /* "pylpsolve/pylpsolve.pyx":2953
  * 
  *     if cstr.ctype in [constraint_leq, constraint_geq, constraint_equal]:
  *         if not isnumeric(rhs):             # <<<<<<<<<<<<<<
  *             raise TypeError("Constraint type '%s' requires right hand side to be scalar." % getReverseCType(ctype))
  * 
  */
-    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_isnumeric(__pyx_v_rhs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_isnumeric(__pyx_v_rhs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = ((!__pyx_t_2) != 0);
     if (__pyx_t_3) {
 
-      /* "pylpsolve/pylpsolve.pyx":2952
+      /* "pylpsolve/pylpsolve.pyx":2954
  *     if cstr.ctype in [constraint_leq, constraint_geq, constraint_equal]:
  *         if not isnumeric(rhs):
  *             raise TypeError("Constraint type '%s' requires right hand side to be scalar." % getReverseCType(ctype))             # <<<<<<<<<<<<<<
  * 
  *         cstr.rhs1 = <double>rhs
  */
-      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_getReverseCType(__pyx_v_ctype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2952; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_getReverseCType(__pyx_v_ctype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Constraint_type_s_requires_right, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2952; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Constraint_type_s_requires_right, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2952; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2952; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2952; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2954
+    /* "pylpsolve/pylpsolve.pyx":2956
  *             raise TypeError("Constraint type '%s' requires right hand side to be scalar." % getReverseCType(ctype))
  * 
  *         cstr.rhs1 = <double>rhs             # <<<<<<<<<<<<<<
  *     elif cstr.ctype == constraint_in:
  *         if type(rhs) is tuple and len(<tuple>rhs) == 2:
  */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_rhs); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_rhs); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2956; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_cstr->rhs1 = ((double)__pyx_t_5);
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":2955
+    /* "pylpsolve/pylpsolve.pyx":2957
  * 
  *         cstr.rhs1 = <double>rhs
  *     elif cstr.ctype == constraint_in:             # <<<<<<<<<<<<<<
@@ -25970,7 +26047,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
     case 4:
 
-    /* "pylpsolve/pylpsolve.pyx":2956
+    /* "pylpsolve/pylpsolve.pyx":2958
  *         cstr.rhs1 = <double>rhs
  *     elif cstr.ctype == constraint_in:
  *         if type(rhs) is tuple and len(<tuple>rhs) == 2:             # <<<<<<<<<<<<<<
@@ -25986,15 +26063,15 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     }
     if (unlikely(__pyx_v_rhs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2956; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2958; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_7 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_rhs)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2956; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_rhs)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2958; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_6 = ((__pyx_t_7 == 2) != 0);
     __pyx_t_3 = __pyx_t_6;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "pylpsolve/pylpsolve.pyx":2957
+      /* "pylpsolve/pylpsolve.pyx":2959
  *     elif cstr.ctype == constraint_in:
  *         if type(rhs) is tuple and len(<tuple>rhs) == 2:
  *             cstr.rhs1, cstr.rhs2 = (<tuple>rhs)             # <<<<<<<<<<<<<<
@@ -26013,7 +26090,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
@@ -26021,25 +26098,25 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_t_8);
         #else
-        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __Pyx_RaiseNoneNotIterableError(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_RaiseNoneNotIterableError(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2957; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_v_cstr->rhs1 = __pyx_t_5;
       __pyx_v_cstr->rhs2 = __pyx_t_9;
       goto __pyx_L4;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":2958
+    /* "pylpsolve/pylpsolve.pyx":2960
  *         if type(rhs) is tuple and len(<tuple>rhs) == 2:
  *             cstr.rhs1, cstr.rhs2 = (<tuple>rhs)
  *         elif type(rhs) is list and len(<list>rhs) == 2:             # <<<<<<<<<<<<<<
@@ -26055,15 +26132,15 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     }
     if (unlikely(__pyx_v_rhs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2958; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2960; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_7 = PyList_GET_SIZE(((PyObject*)__pyx_v_rhs)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2958; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyList_GET_SIZE(((PyObject*)__pyx_v_rhs)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2960; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_2 = ((__pyx_t_7 == 2) != 0);
     __pyx_t_3 = __pyx_t_2;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "pylpsolve/pylpsolve.pyx":2959
+      /* "pylpsolve/pylpsolve.pyx":2961
  *             cstr.rhs1, cstr.rhs2 = (<tuple>rhs)
  *         elif type(rhs) is list and len(<list>rhs) == 2:
  *             cstr.rhs1, cstr.rhs2 = (<list>rhs)             # <<<<<<<<<<<<<<
@@ -26082,7 +26159,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         __pyx_t_8 = PyList_GET_ITEM(sequence, 0); 
@@ -26090,18 +26167,18 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         __Pyx_INCREF(__pyx_t_8);
         __Pyx_INCREF(__pyx_t_1);
         #else
-        __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __Pyx_RaiseNoneNotIterableError(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_RaiseNoneNotIterableError(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_cstr->rhs1 = __pyx_t_9;
       __pyx_v_cstr->rhs2 = __pyx_t_5;
@@ -26109,35 +26186,35 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     }
     /*else*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":2961
+      /* "pylpsolve/pylpsolve.pyx":2963
  *             cstr.rhs1, cstr.rhs2 = (<list>rhs)
  *         else:
  *             raise TypeError("Constraint type '%s' requires right hand side to be either 2-tuple or 2-list."  % getReverseCType(ctype))             # <<<<<<<<<<<<<<
  *     else:
  *         assert False
  */
-      __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_getReverseCType(__pyx_v_ctype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_getReverseCType(__pyx_v_ctype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Constraint_type_s_requires_right_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Constraint_type_s_requires_right_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2961; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_L4:;
     break;
     default:
 
-    /* "pylpsolve/pylpsolve.pyx":2963
+    /* "pylpsolve/pylpsolve.pyx":2965
  *             raise TypeError("Constraint type '%s' requires right hand side to be either 2-tuple or 2-list."  % getReverseCType(ctype))
  *     else:
  *         assert False             # <<<<<<<<<<<<<<
@@ -26148,14 +26225,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!0)) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2963; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2965; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
     break;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":2967
+  /* "pylpsolve/pylpsolve.pyx":2969
  *     ############################################################
  *     # Set the row indices
  *     cstr.row_idx = row_idx             # <<<<<<<<<<<<<<
@@ -26164,7 +26241,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_cstr->row_idx = __pyx_v_row_idx;
 
-  /* "pylpsolve/pylpsolve.pyx":2972
+  /* "pylpsolve/pylpsolve.pyx":2974
  *     # Now that these tests pass, copy all the values in.
  * 
  *     cdef bint fill_mode = False             # <<<<<<<<<<<<<<
@@ -26173,7 +26250,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_fill_mode = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2973
+  /* "pylpsolve/pylpsolve.pyx":2975
  * 
  *     cdef bint fill_mode = False
  *     cdef double fill_value = 0             # <<<<<<<<<<<<<<
@@ -26182,7 +26259,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_fill_value = 0.0;
 
-  /* "pylpsolve/pylpsolve.pyx":2976
+  /* "pylpsolve/pylpsolve.pyx":2978
  * 
  *     # Initializing stuff having to deal with the range indexing
  *     cdef bint idx_range_mode = False             # <<<<<<<<<<<<<<
@@ -26191,7 +26268,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_idx_range_mode = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":2978
+  /* "pylpsolve/pylpsolve.pyx":2980
  *     cdef bint idx_range_mode = False
  *     cdef int il, iu
  *     cstr.index_range_start = -1  # indicating not used             # <<<<<<<<<<<<<<
@@ -26200,7 +26277,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_cstr->index_range_start = -1;
 
-  /* "pylpsolve/pylpsolve.pyx":2981
+  /* "pylpsolve/pylpsolve.pyx":2983
  * 
  *     # Determine the size
  *     if idx is not None:             # <<<<<<<<<<<<<<
@@ -26211,7 +26288,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "pylpsolve/pylpsolve.pyx":2994
+    /* "pylpsolve/pylpsolve.pyx":2996
  *                 assert False
  * 
  *         elif idx.ndim == 2:             # <<<<<<<<<<<<<<
@@ -26220,7 +26297,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
     switch (__pyx_v_idx->nd) {
 
-      /* "pylpsolve/pylpsolve.pyx":2983
+      /* "pylpsolve/pylpsolve.pyx":2985
  *     if idx is not None:
  * 
  *         if idx.ndim == 1:             # <<<<<<<<<<<<<<
@@ -26229,7 +26306,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
       case 1:
 
-      /* "pylpsolve/pylpsolve.pyx":2985
+      /* "pylpsolve/pylpsolve.pyx":2987
  *         if idx.ndim == 1:
  * 
  *             if idx.shape[0] != 1 and row.shape[0] == 1:             # <<<<<<<<<<<<<<
@@ -26247,7 +26324,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       __pyx_L11_bool_binop_done:;
       if (__pyx_t_2) {
 
-        /* "pylpsolve/pylpsolve.pyx":2986
+        /* "pylpsolve/pylpsolve.pyx":2988
  * 
  *             if idx.shape[0] != 1 and row.shape[0] == 1:
  *                 cstr.n = idx.shape[0]             # <<<<<<<<<<<<<<
@@ -26256,7 +26333,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
         __pyx_v_cstr->n = (__pyx_v_idx->dimensions[0]);
 
-        /* "pylpsolve/pylpsolve.pyx":2987
+        /* "pylpsolve/pylpsolve.pyx":2989
  *             if idx.shape[0] != 1 and row.shape[0] == 1:
  *                 cstr.n = idx.shape[0]
  *                 fill_mode = True             # <<<<<<<<<<<<<<
@@ -26265,22 +26342,22 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
         __pyx_v_fill_mode = 1;
 
-        /* "pylpsolve/pylpsolve.pyx":2988
+        /* "pylpsolve/pylpsolve.pyx":2990
  *                 cstr.n = idx.shape[0]
  *                 fill_mode = True
  *                 fill_value = row[0]             # <<<<<<<<<<<<<<
  *             elif idx.shape[0] == row.shape[0]:
  *                 cstr.n = idx.shape[0]
  */
-        __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_row), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2988; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_row), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2990; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2988; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2990; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_v_fill_value = __pyx_t_5;
         goto __pyx_L10;
       }
 
-      /* "pylpsolve/pylpsolve.pyx":2989
+      /* "pylpsolve/pylpsolve.pyx":2991
  *                 fill_mode = True
  *                 fill_value = row[0]
  *             elif idx.shape[0] == row.shape[0]:             # <<<<<<<<<<<<<<
@@ -26290,7 +26367,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       __pyx_t_2 = (((__pyx_v_idx->dimensions[0]) == (__pyx_v_row->dimensions[0])) != 0);
       if (__pyx_t_2) {
 
-        /* "pylpsolve/pylpsolve.pyx":2990
+        /* "pylpsolve/pylpsolve.pyx":2992
  *                 fill_value = row[0]
  *             elif idx.shape[0] == row.shape[0]:
  *                 cstr.n = idx.shape[0]             # <<<<<<<<<<<<<<
@@ -26302,7 +26379,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       }
       /*else*/ {
 
-        /* "pylpsolve/pylpsolve.pyx":2992
+        /* "pylpsolve/pylpsolve.pyx":2994
  *                 cstr.n = idx.shape[0]
  *             else:
  *                 assert False             # <<<<<<<<<<<<<<
@@ -26313,7 +26390,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         if (unlikely(!Py_OptimizeFlag)) {
           if (unlikely(!0)) {
             PyErr_SetNone(PyExc_AssertionError);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2992; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
         }
         #endif
@@ -26321,7 +26398,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       __pyx_L10:;
       break;
 
-      /* "pylpsolve/pylpsolve.pyx":2994
+      /* "pylpsolve/pylpsolve.pyx":2996
  *                 assert False
  * 
  *         elif idx.ndim == 2:             # <<<<<<<<<<<<<<
@@ -26330,7 +26407,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
       case 2:
 
-      /* "pylpsolve/pylpsolve.pyx":2997
+      /* "pylpsolve/pylpsolve.pyx":2999
  * 
  *             # this means it defines a range instead of individual values
  *             assert idx.shape[0] == 1             # <<<<<<<<<<<<<<
@@ -26341,12 +26418,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       if (unlikely(!Py_OptimizeFlag)) {
         if (unlikely(!(((__pyx_v_idx->dimensions[0]) == 1) != 0))) {
           PyErr_SetNone(PyExc_AssertionError);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2997; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2999; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
       }
       #endif
 
-      /* "pylpsolve/pylpsolve.pyx":2998
+      /* "pylpsolve/pylpsolve.pyx":3000
  *             # this means it defines a range instead of individual values
  *             assert idx.shape[0] == 1
  *             assert idx.shape[1] == 2             # <<<<<<<<<<<<<<
@@ -26357,38 +26434,38 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       if (unlikely(!Py_OptimizeFlag)) {
         if (unlikely(!(((__pyx_v_idx->dimensions[1]) == 2) != 0))) {
           PyErr_SetNone(PyExc_AssertionError);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
       }
       #endif
 
-      /* "pylpsolve/pylpsolve.pyx":3000
+      /* "pylpsolve/pylpsolve.pyx":3002
  *             assert idx.shape[1] == 2
  * 
  *             il = idx[0,0]             # <<<<<<<<<<<<<<
  *             iu = idx[0,1]
  *             assert iu > il
  */
-      __pyx_t_1 = PyObject_GetItem(((PyObject *)__pyx_v_idx), __pyx_tuple__87); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3000; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_1 = PyObject_GetItem(((PyObject *)__pyx_v_idx), __pyx_tuple__87); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3002; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_il = __pyx_t_10;
 
-      /* "pylpsolve/pylpsolve.pyx":3001
+      /* "pylpsolve/pylpsolve.pyx":3003
  * 
  *             il = idx[0,0]
  *             iu = idx[0,1]             # <<<<<<<<<<<<<<
  *             assert iu > il
  * 
  */
-      __pyx_t_1 = PyObject_GetItem(((PyObject *)__pyx_v_idx), __pyx_tuple__88); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3001; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_1 = PyObject_GetItem(((PyObject *)__pyx_v_idx), __pyx_tuple__88); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3003; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3001; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_iu = __pyx_t_10;
 
-      /* "pylpsolve/pylpsolve.pyx":3002
+      /* "pylpsolve/pylpsolve.pyx":3004
  *             il = idx[0,0]
  *             iu = idx[0,1]
  *             assert iu > il             # <<<<<<<<<<<<<<
@@ -26399,12 +26476,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       if (unlikely(!Py_OptimizeFlag)) {
         if (unlikely(!((__pyx_v_iu > __pyx_v_il) != 0))) {
           PyErr_SetNone(PyExc_AssertionError);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
       }
       #endif
 
-      /* "pylpsolve/pylpsolve.pyx":3004
+      /* "pylpsolve/pylpsolve.pyx":3006
  *             assert iu > il
  * 
  *             cstr.n = iu - il             # <<<<<<<<<<<<<<
@@ -26413,7 +26490,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
       __pyx_v_cstr->n = (__pyx_v_iu - __pyx_v_il);
 
-      /* "pylpsolve/pylpsolve.pyx":3005
+      /* "pylpsolve/pylpsolve.pyx":3007
  * 
  *             cstr.n = iu - il
  *             cstr.index_range_start = il + 1  # for 1-based counting of indices             # <<<<<<<<<<<<<<
@@ -26422,7 +26499,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
       __pyx_v_cstr->index_range_start = (__pyx_v_il + 1);
 
-      /* "pylpsolve/pylpsolve.pyx":3006
+      /* "pylpsolve/pylpsolve.pyx":3008
  *             cstr.n = iu - il
  *             cstr.index_range_start = il + 1  # for 1-based counting of indices
  *             idx_range_mode = True             # <<<<<<<<<<<<<<
@@ -26431,7 +26508,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
       __pyx_v_idx_range_mode = 1;
 
-      /* "pylpsolve/pylpsolve.pyx":3008
+      /* "pylpsolve/pylpsolve.pyx":3010
  *             idx_range_mode = True
  * 
  *             if row.shape[0] == 1:             # <<<<<<<<<<<<<<
@@ -26441,7 +26518,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       __pyx_t_2 = (((__pyx_v_row->dimensions[0]) == 1) != 0);
       if (__pyx_t_2) {
 
-        /* "pylpsolve/pylpsolve.pyx":3009
+        /* "pylpsolve/pylpsolve.pyx":3011
  * 
  *             if row.shape[0] == 1:
  *                 fill_mode = True             # <<<<<<<<<<<<<<
@@ -26450,23 +26527,23 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
         __pyx_v_fill_mode = 1;
 
-        /* "pylpsolve/pylpsolve.pyx":3010
+        /* "pylpsolve/pylpsolve.pyx":3012
  *             if row.shape[0] == 1:
  *                 fill_mode = True
  *                 fill_value = row[0]             # <<<<<<<<<<<<<<
  *             else:
  *                 assert row.shape[0] == cstr.n, "r: %d != %d n" % (row.shape[0], cstr.n)
  */
-        __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_row), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3010; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_row), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3010; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_v_fill_value = __pyx_t_5;
         goto __pyx_L13;
       }
       /*else*/ {
 
-        /* "pylpsolve/pylpsolve.pyx":3012
+        /* "pylpsolve/pylpsolve.pyx":3014
  *                 fill_value = row[0]
  *             else:
  *                 assert row.shape[0] == cstr.n, "r: %d != %d n" % (row.shape[0], cstr.n)             # <<<<<<<<<<<<<<
@@ -26476,11 +26553,11 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
         #ifndef CYTHON_WITHOUT_ASSERTIONS
         if (unlikely(!Py_OptimizeFlag)) {
           if (unlikely(!(((__pyx_v_row->dimensions[0]) == __pyx_v_cstr->n) != 0))) {
-            __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_row->dimensions[0])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_row->dimensions[0])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_4 = __Pyx_PyInt_FromSize_t(__pyx_v_cstr->n); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_4 = __Pyx_PyInt_FromSize_t(__pyx_v_cstr->n); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_4);
-            __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_GIVEREF(__pyx_t_1);
             PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
@@ -26488,12 +26565,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
             PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_4);
             __pyx_t_1 = 0;
             __pyx_t_4 = 0;
-            __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_r_d_d_n, __pyx_t_8); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_r_d_d_n, __pyx_t_8); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
             PyErr_SetObject(PyExc_AssertionError, __pyx_t_4);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3012; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
         }
         #endif
@@ -26502,7 +26579,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       break;
       default:
 
-      /* "pylpsolve/pylpsolve.pyx":3014
+      /* "pylpsolve/pylpsolve.pyx":3016
  *                 assert row.shape[0] == cstr.n, "r: %d != %d n" % (row.shape[0], cstr.n)
  *         else:
  *             assert False             # <<<<<<<<<<<<<<
@@ -26513,7 +26590,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
       if (unlikely(!Py_OptimizeFlag)) {
         if (unlikely(!0)) {
           PyErr_SetNone(PyExc_AssertionError);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3016; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
       }
       #endif
@@ -26523,7 +26600,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":3017
+    /* "pylpsolve/pylpsolve.pyx":3019
  * 
  *     else:
  *         cstr.n = row.shape[0]             # <<<<<<<<<<<<<<
@@ -26534,7 +26611,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   }
   __pyx_L9:;
 
-  /* "pylpsolve/pylpsolve.pyx":3020
+  /* "pylpsolve/pylpsolve.pyx":3022
  * 
  *     # Set the indices
  *     if idx is None or idx_range_mode:             # <<<<<<<<<<<<<<
@@ -26553,7 +26630,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   __pyx_L15_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "pylpsolve/pylpsolve.pyx":3021
+    /* "pylpsolve/pylpsolve.pyx":3023
  *     # Set the indices
  *     if idx is None or idx_range_mode:
  *         cstr.indices = NULL             # <<<<<<<<<<<<<<
@@ -26565,7 +26642,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":3023
+    /* "pylpsolve/pylpsolve.pyx":3025
  *         cstr.indices = NULL
  *     else:
  *         cstr.indices = <int*> malloc((cstr.n+1)*sizeof(int))             # <<<<<<<<<<<<<<
@@ -26574,7 +26651,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
     __pyx_v_cstr->indices = ((int *)PyMem_Malloc(((__pyx_v_cstr->n + 1) * (sizeof(int)))));
 
-    /* "pylpsolve/pylpsolve.pyx":3025
+    /* "pylpsolve/pylpsolve.pyx":3027
  *         cstr.indices = <int*> malloc((cstr.n+1)*sizeof(int))
  * 
  *         if cstr.indices == NULL:             # <<<<<<<<<<<<<<
@@ -26584,30 +26661,30 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
     __pyx_t_2 = ((__pyx_v_cstr->indices == NULL) != 0);
     if (__pyx_t_2) {
 
-      /* "pylpsolve/pylpsolve.pyx":3026
+      /* "pylpsolve/pylpsolve.pyx":3028
  * 
  *         if cstr.indices == NULL:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *         copyIntoIndices(cstr, idx)
  */
-      PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3026; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3028; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "pylpsolve/pylpsolve.pyx":3028
+    /* "pylpsolve/pylpsolve.pyx":3030
  *             raise MemoryError
  * 
  *         copyIntoIndices(cstr, idx)             # <<<<<<<<<<<<<<
  * 
  *     # Set the values
  */
-    __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(__pyx_v_cstr, __pyx_v_idx); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3028; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(__pyx_v_cstr, __pyx_v_idx); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __pyx_L14:;
 
-  /* "pylpsolve/pylpsolve.pyx":3031
+  /* "pylpsolve/pylpsolve.pyx":3033
  * 
  *     # Set the values
  *     cstr.values = <double*> malloc((cstr.n+1)*sizeof(double))             # <<<<<<<<<<<<<<
@@ -26616,7 +26693,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
  */
   __pyx_v_cstr->values = ((double *)PyMem_Malloc(((__pyx_v_cstr->n + 1) * (sizeof(double)))));
 
-  /* "pylpsolve/pylpsolve.pyx":3033
+  /* "pylpsolve/pylpsolve.pyx":3035
  *     cstr.values = <double*> malloc((cstr.n+1)*sizeof(double))
  * 
  *     if cstr.values == NULL:             # <<<<<<<<<<<<<<
@@ -26626,17 +26703,17 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   __pyx_t_2 = ((__pyx_v_cstr->values == NULL) != 0);
   if (__pyx_t_2) {
 
-    /* "pylpsolve/pylpsolve.pyx":3034
+    /* "pylpsolve/pylpsolve.pyx":3036
  * 
  *     if cstr.values == NULL:
  *         raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *     if fill_mode:
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3034; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3036
+  /* "pylpsolve/pylpsolve.pyx":3038
  *         raise MemoryError
  * 
  *     if fill_mode:             # <<<<<<<<<<<<<<
@@ -26646,7 +26723,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   __pyx_t_2 = (__pyx_v_fill_mode != 0);
   if (__pyx_t_2) {
 
-    /* "pylpsolve/pylpsolve.pyx":3037
+    /* "pylpsolve/pylpsolve.pyx":3039
  * 
  *     if fill_mode:
  *         fillValues(cstr, fill_value)             # <<<<<<<<<<<<<<
@@ -26658,20 +26735,20 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":3039
+    /* "pylpsolve/pylpsolve.pyx":3041
  *         fillValues(cstr, fill_value)
  *     else:
  *         copyIntoValues(cstr, row)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(__pyx_v_cstr, __pyx_v_row); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3039; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(__pyx_v_cstr, __pyx_v_row); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3041; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __pyx_L19:;
 
-  /* "pylpsolve/pylpsolve.pyx":2939
+  /* "pylpsolve/pylpsolve.pyx":2941
  * # Methods to deal with this constraint
  * 
  * cdef inline setupConstraint(_Constraint* cstr, size_t row_idx, ar idx, ar row, int ctype, rhs):             # <<<<<<<<<<<<<<
@@ -26694,7 +26771,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setupConstraint(str
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3051
+/* "pylpsolve/pylpsolve.pyx":3053
  * # Values
  * 
  * cdef inline copyIntoValues(_Constraint* cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -26721,7 +26798,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
   __pyx_pybuffernd_a.data = NULL;
   __pyx_pybuffernd_a.rcbuffer = &__pyx_pybuffer_a;
 
-  /* "pylpsolve/pylpsolve.pyx":3054
+  /* "pylpsolve/pylpsolve.pyx":3056
  * 
  *     cdef size_t i
  *     cdef ar[double] a = a_o             # <<<<<<<<<<<<<<
@@ -26732,14 +26809,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_a.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_v_a_o), &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_a = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_a.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3054; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3056; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_a.diminfo[0].strides = __pyx_pybuffernd_a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_a.diminfo[0].shape = __pyx_pybuffernd_a.rcbuffer->pybuffer.shape[0];
     }
   }
   __Pyx_INCREF(((PyObject *)__pyx_v_a_o));
   __pyx_v_a = ((PyArrayObject *)__pyx_v_a_o);
 
-  /* "pylpsolve/pylpsolve.pyx":3056
+  /* "pylpsolve/pylpsolve.pyx":3058
  *     cdef ar[double] a = a_o
  * 
  *     assert cstr.values != NULL             # <<<<<<<<<<<<<<
@@ -26750,12 +26827,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_cstr->values != NULL) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3056; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3058; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":3057
+  /* "pylpsolve/pylpsolve.pyx":3059
  * 
  *     assert cstr.values != NULL
  *     assert cstr.n >= a.shape[0]             # <<<<<<<<<<<<<<
@@ -26766,12 +26843,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_cstr->n >= (__pyx_v_a->dimensions[0])) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3057; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3059; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "pylpsolve/pylpsolve.pyx":3059
+  /* "pylpsolve/pylpsolve.pyx":3061
  *     assert cstr.n >= a.shape[0]
  * 
  *     for 0 <= i < a.shape[0]:             # <<<<<<<<<<<<<<
@@ -26781,7 +26858,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
   __pyx_t_1 = (__pyx_v_a->dimensions[0]);
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3060
+    /* "pylpsolve/pylpsolve.pyx":3062
  * 
  *     for 0 <= i < a.shape[0]:
  *         cstr.values[i+1] = a[i]             # <<<<<<<<<<<<<<
@@ -26793,12 +26870,12 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
     if (unlikely(__pyx_t_2 >= (size_t)__pyx_pybuffernd_a.diminfo[0].shape)) __pyx_t_3 = 0;
     if (unlikely(__pyx_t_3 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_3);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3062; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     (__pyx_v_cstr->values[(__pyx_v_i + 1)]) = (*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_a.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_a.diminfo[0].strides));
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3051
+  /* "pylpsolve/pylpsolve.pyx":3053
  * # Values
  * 
  * cdef inline copyIntoValues(_Constraint* cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -26826,7 +26903,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoValues(stru
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3063
+/* "pylpsolve/pylpsolve.pyx":3065
  * 
  * 
  * cdef inline void fillValues(_Constraint* cstr, double v):             # <<<<<<<<<<<<<<
@@ -26840,7 +26917,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_fillValues(struct __pyx_
   size_t __pyx_t_1;
   __Pyx_RefNannySetupContext("fillValues", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3067
+  /* "pylpsolve/pylpsolve.pyx":3069
  *     cdef size_t i
  * 
  *     for 1 <= i <= cstr.n:             # <<<<<<<<<<<<<<
@@ -26850,7 +26927,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_fillValues(struct __pyx_
   __pyx_t_1 = __pyx_v_cstr->n;
   for (__pyx_v_i = 1; __pyx_v_i <= __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3068
+    /* "pylpsolve/pylpsolve.pyx":3070
  * 
  *     for 1 <= i <= cstr.n:
  *         cstr.values[i] = v             # <<<<<<<<<<<<<<
@@ -26860,7 +26937,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_fillValues(struct __pyx_
     (__pyx_v_cstr->values[__pyx_v_i]) = __pyx_v_v;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3063
+  /* "pylpsolve/pylpsolve.pyx":3065
  * 
  * 
  * cdef inline void fillValues(_Constraint* cstr, double v):             # <<<<<<<<<<<<<<
@@ -26872,7 +26949,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_fillValues(struct __pyx_
   __Pyx_RefNannyFinishContext();
 }
 
-/* "pylpsolve/pylpsolve.pyx":3073
+/* "pylpsolve/pylpsolve.pyx":3075
  * # Now handling the index buffer
  * 
  * cdef inline copyIntoIndices(_Constraint* cstr, ar a):             # <<<<<<<<<<<<<<
@@ -26896,96 +26973,96 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copyIntoIndices", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3075
+  /* "pylpsolve/pylpsolve.pyx":3077
  * cdef inline copyIntoIndices(_Constraint* cstr, ar a):
  * 
  *     dt = a.dtype             # <<<<<<<<<<<<<<
  *     if dt is int32:      copyIntoIndices_int32(cstr, a)
  *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_a), __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3075; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_a), __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_dt = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":3076
+  /* "pylpsolve/pylpsolve.pyx":3078
  * 
  *     dt = a.dtype
  *     if dt is int32:      copyIntoIndices_int32(cstr, a)             # <<<<<<<<<<<<<<
  *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
  *     elif dt is int64:    copyIntoIndices_int64(cstr, a)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_int32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3076; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_int32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3078; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = (__pyx_v_dt == __pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
-    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int32(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3076; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    goto __pyx_L3;
-  }
-
-  /* "pylpsolve/pylpsolve.pyx":3077
- *     dt = a.dtype
- *     if dt is int32:      copyIntoIndices_int32(cstr, a)
- *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)             # <<<<<<<<<<<<<<
- *     elif dt is int64:    copyIntoIndices_int64(cstr, a)
- *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = (__pyx_v_dt == __pyx_t_1);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = (__pyx_t_3 != 0);
-  if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint32(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    goto __pyx_L3;
-  }
-
-  /* "pylpsolve/pylpsolve.pyx":3078
- *     if dt is int32:      copyIntoIndices_int32(cstr, a)
- *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
- *     elif dt is int64:    copyIntoIndices_int64(cstr, a)             # <<<<<<<<<<<<<<
- *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
- *     else:
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_int64); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3078; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__pyx_v_dt == __pyx_t_1);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = (__pyx_t_2 != 0);
-  if (__pyx_t_3) {
-    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int64(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3078; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int32(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3078; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L3;
   }
 
   /* "pylpsolve/pylpsolve.pyx":3079
+ *     dt = a.dtype
+ *     if dt is int32:      copyIntoIndices_int32(cstr, a)
+ *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)             # <<<<<<<<<<<<<<
+ *     elif dt is int64:    copyIntoIndices_int64(cstr, a)
+ *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3079; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = (__pyx_v_dt == __pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = (__pyx_t_3 != 0);
+  if (__pyx_t_2) {
+    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint32(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3079; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    goto __pyx_L3;
+  }
+
+  /* "pylpsolve/pylpsolve.pyx":3080
+ *     if dt is int32:      copyIntoIndices_int32(cstr, a)
+ *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
+ *     elif dt is int64:    copyIntoIndices_int64(cstr, a)             # <<<<<<<<<<<<<<
+ *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
+ *     else:
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_int64); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3080; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = (__pyx_v_dt == __pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = (__pyx_t_2 != 0);
+  if (__pyx_t_3) {
+    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int64(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3080; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    goto __pyx_L3;
+  }
+
+  /* "pylpsolve/pylpsolve.pyx":3081
  *     elif dt is uint32:   copyIntoIndices_uint32(cstr, a)
  *     elif dt is int64:    copyIntoIndices_int64(cstr, a)
  *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)             # <<<<<<<<<<<<<<
  *     else:
  *         if sizeof(int) == 4:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint64); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3079; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint64); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3081; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = (__pyx_v_dt == __pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint64(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3079; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint64(__pyx_v_cstr, __pyx_v_a); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3081; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L3;
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":3081
+    /* "pylpsolve/pylpsolve.pyx":3083
  *     elif dt is uint64:   copyIntoIndices_uint64(cstr, a)
  *     else:
  *         if sizeof(int) == 4:             # <<<<<<<<<<<<<<
@@ -26995,14 +27072,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
     __pyx_t_2 = (((sizeof(int)) == 4) != 0);
     if (__pyx_t_2) {
 
-      /* "pylpsolve/pylpsolve.pyx":3082
+      /* "pylpsolve/pylpsolve.pyx":3084
  *     else:
  *         if sizeof(int) == 4:
  *             ua = uint32(a)             # <<<<<<<<<<<<<<
  *             if (ua != a).any():
  *                 raise ValueError("Error converting index array to 32bit integers.")
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint32); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3082; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint32); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_5 = NULL;
       if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -27015,16 +27092,16 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
         }
       }
       if (!__pyx_t_5) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3082; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
       } else {
-        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3082; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __pyx_t_5 = NULL;
         __Pyx_INCREF(((PyObject *)__pyx_v_a));
         __Pyx_GIVEREF(((PyObject *)__pyx_v_a));
         PyTuple_SET_ITEM(__pyx_t_6, 0+1, ((PyObject *)__pyx_v_a));
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3082; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
@@ -27032,15 +27109,15 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
       __pyx_v_ua = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":3083
+      /* "pylpsolve/pylpsolve.pyx":3085
  *         if sizeof(int) == 4:
  *             ua = uint32(a)
  *             if (ua != a).any():             # <<<<<<<<<<<<<<
  *                 raise ValueError("Error converting index array to 32bit integers.")
  * 
  */
-      __pyx_t_4 = PyObject_RichCompare(__pyx_v_ua, ((PyObject *)__pyx_v_a), Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3083; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_any); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3083; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyObject_RichCompare(__pyx_v_ua, ((PyObject *)__pyx_v_a), Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3085; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_any); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3085; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_4 = NULL;
@@ -27054,54 +27131,54 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3083; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3085; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3083; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3085; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3083; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3085; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_2) {
 
-        /* "pylpsolve/pylpsolve.pyx":3084
+        /* "pylpsolve/pylpsolve.pyx":3086
  *             ua = uint32(a)
  *             if (ua != a).any():
  *                 raise ValueError("Error converting index array to 32bit integers.")             # <<<<<<<<<<<<<<
  * 
  *             copyIntoIndices_uint32(cstr, ua)
  */
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__89, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__89, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_Raise(__pyx_t_1, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "pylpsolve/pylpsolve.pyx":3086
+      /* "pylpsolve/pylpsolve.pyx":3088
  *                 raise ValueError("Error converting index array to 32bit integers.")
  * 
  *             copyIntoIndices_uint32(cstr, ua)             # <<<<<<<<<<<<<<
  *         else:
  *             ua = uint64(a)
  */
-      if (!(likely(((__pyx_v_ua) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_ua, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint32(__pyx_v_cstr, ((PyArrayObject *)__pyx_v_ua)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(((__pyx_v_ua) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_ua, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint32(__pyx_v_cstr, ((PyArrayObject *)__pyx_v_ua)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L4;
     }
     /*else*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":3088
+      /* "pylpsolve/pylpsolve.pyx":3090
  *             copyIntoIndices_uint32(cstr, ua)
  *         else:
  *             ua = uint64(a)             # <<<<<<<<<<<<<<
  *             if not (ua != a).any():
  *                 raise ValueError("Error converting index array to 64bit integers.")
  */
-      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint64); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_uint64); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_4 = NULL;
       if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -27114,16 +27191,16 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
       } else {
-        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(((PyObject *)__pyx_v_a));
         __Pyx_GIVEREF(((PyObject *)__pyx_v_a));
         PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_a));
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3088; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
@@ -27131,15 +27208,15 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
       __pyx_v_ua = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":3089
+      /* "pylpsolve/pylpsolve.pyx":3091
  *         else:
  *             ua = uint64(a)
  *             if not (ua != a).any():             # <<<<<<<<<<<<<<
  *                 raise ValueError("Error converting index array to 64bit integers.")
  * 
  */
-      __pyx_t_6 = PyObject_RichCompare(__pyx_v_ua, ((PyObject *)__pyx_v_a), Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3089; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3089; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyObject_RichCompare(__pyx_v_ua, ((PyObject *)__pyx_v_a), Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3091; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3091; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_6 = NULL;
@@ -27153,41 +27230,41 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
         }
       }
       if (__pyx_t_6) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3089; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3091; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else {
-        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3089; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3091; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3089; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3091; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_3 = ((!__pyx_t_2) != 0);
       if (__pyx_t_3) {
 
-        /* "pylpsolve/pylpsolve.pyx":3090
+        /* "pylpsolve/pylpsolve.pyx":3092
  *             ua = uint64(a)
  *             if not (ua != a).any():
  *                 raise ValueError("Error converting index array to 64bit integers.")             # <<<<<<<<<<<<<<
  * 
  *             copyIntoIndices_uint64(cstr, ua)
  */
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__90, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__90, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_Raise(__pyx_t_1, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "pylpsolve/pylpsolve.pyx":3092
+      /* "pylpsolve/pylpsolve.pyx":3094
  *                 raise ValueError("Error converting index array to 64bit integers.")
  * 
  *             copyIntoIndices_uint64(cstr, ua)             # <<<<<<<<<<<<<<
  * 
  * cdef inline copyIntoIndices_int32(_Constraint *cstr, ar a_o):
  */
-      if (!(likely(((__pyx_v_ua) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_ua, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint64(__pyx_v_cstr, ((PyArrayObject *)__pyx_v_ua)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(((__pyx_v_ua) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_ua, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3094; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uint64(__pyx_v_cstr, ((PyArrayObject *)__pyx_v_ua)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3094; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
@@ -27195,7 +27272,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
   }
   __pyx_L3:;
 
-  /* "pylpsolve/pylpsolve.pyx":3073
+  /* "pylpsolve/pylpsolve.pyx":3075
  * # Now handling the index buffer
  * 
  * cdef inline copyIntoIndices(_Constraint* cstr, ar a):             # <<<<<<<<<<<<<<
@@ -27221,7 +27298,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices(str
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3094
+/* "pylpsolve/pylpsolve.pyx":3096
  *             copyIntoIndices_uint64(cstr, ua)
  * 
  * cdef inline copyIntoIndices_int32(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27247,7 +27324,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   __pyx_pybuffernd_a.data = NULL;
   __pyx_pybuffernd_a.rcbuffer = &__pyx_pybuffer_a;
 
-  /* "pylpsolve/pylpsolve.pyx":3096
+  /* "pylpsolve/pylpsolve.pyx":3098
  * cdef inline copyIntoIndices_int32(_Constraint *cstr, ar a_o):
  * 
  *     cdef ar[int32_t] a = a_o             # <<<<<<<<<<<<<<
@@ -27258,14 +27335,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_a.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_v_a_o), &__Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_a = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_a.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3096; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3098; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_a.diminfo[0].strides = __pyx_pybuffernd_a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_a.diminfo[0].shape = __pyx_pybuffernd_a.rcbuffer->pybuffer.shape[0];
     }
   }
   __Pyx_INCREF(((PyObject *)__pyx_v_a_o));
   __pyx_v_a = ((PyArrayObject *)__pyx_v_a_o);
 
-  /* "pylpsolve/pylpsolve.pyx":3100
+  /* "pylpsolve/pylpsolve.pyx":3102
  * 
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:             # <<<<<<<<<<<<<<
@@ -27275,7 +27352,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   __pyx_t_1 = (__pyx_v_a->dimensions[0]);
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3101
+    /* "pylpsolve/pylpsolve.pyx":3103
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:
  *             cstr.indices[i+1] = a[i] + 1             # <<<<<<<<<<<<<<
@@ -27286,7 +27363,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
     (__pyx_v_cstr->indices[(__pyx_v_i + 1)]) = ((*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_a.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_a.diminfo[0].strides)) + 1);
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3094
+  /* "pylpsolve/pylpsolve.pyx":3096
  *             copyIntoIndices_uint64(cstr, ua)
  * 
  * cdef inline copyIntoIndices_int32(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27314,7 +27391,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3103
+/* "pylpsolve/pylpsolve.pyx":3105
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_uint32(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27340,7 +27417,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   __pyx_pybuffernd_a.data = NULL;
   __pyx_pybuffernd_a.rcbuffer = &__pyx_pybuffer_a;
 
-  /* "pylpsolve/pylpsolve.pyx":3105
+  /* "pylpsolve/pylpsolve.pyx":3107
  * cdef inline copyIntoIndices_uint32(_Constraint *cstr, ar a_o):
  * 
  *     cdef ar[uint32_t] a = a_o             # <<<<<<<<<<<<<<
@@ -27351,14 +27428,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_a.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_v_a_o), &__Pyx_TypeInfo_nn___pyx_t_5numpy_uint32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_a = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_a.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_a.diminfo[0].strides = __pyx_pybuffernd_a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_a.diminfo[0].shape = __pyx_pybuffernd_a.rcbuffer->pybuffer.shape[0];
     }
   }
   __Pyx_INCREF(((PyObject *)__pyx_v_a_o));
   __pyx_v_a = ((PyArrayObject *)__pyx_v_a_o);
 
-  /* "pylpsolve/pylpsolve.pyx":3109
+  /* "pylpsolve/pylpsolve.pyx":3111
  * 
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:             # <<<<<<<<<<<<<<
@@ -27368,7 +27445,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   __pyx_t_1 = (__pyx_v_a->dimensions[0]);
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3110
+    /* "pylpsolve/pylpsolve.pyx":3112
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:
  *             cstr.indices[i+1] = a[i] + 1             # <<<<<<<<<<<<<<
@@ -27379,7 +27456,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
     (__pyx_v_cstr->indices[(__pyx_v_i + 1)]) = ((*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_uint32_t *, __pyx_pybuffernd_a.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_a.diminfo[0].strides)) + 1);
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3103
+  /* "pylpsolve/pylpsolve.pyx":3105
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_uint32(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27407,7 +27484,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3112
+/* "pylpsolve/pylpsolve.pyx":3114
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_int64(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27433,7 +27510,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   __pyx_pybuffernd_a.data = NULL;
   __pyx_pybuffernd_a.rcbuffer = &__pyx_pybuffer_a;
 
-  /* "pylpsolve/pylpsolve.pyx":3114
+  /* "pylpsolve/pylpsolve.pyx":3116
  * cdef inline copyIntoIndices_int64(_Constraint *cstr, ar a_o):
  * 
  *     cdef ar[int64_t] a = a_o             # <<<<<<<<<<<<<<
@@ -27444,14 +27521,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_a.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_v_a_o), &__Pyx_TypeInfo_nn___pyx_t_5numpy_int64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_a = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_a.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_a.diminfo[0].strides = __pyx_pybuffernd_a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_a.diminfo[0].shape = __pyx_pybuffernd_a.rcbuffer->pybuffer.shape[0];
     }
   }
   __Pyx_INCREF(((PyObject *)__pyx_v_a_o));
   __pyx_v_a = ((PyArrayObject *)__pyx_v_a_o);
 
-  /* "pylpsolve/pylpsolve.pyx":3118
+  /* "pylpsolve/pylpsolve.pyx":3120
  * 
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:             # <<<<<<<<<<<<<<
@@ -27461,7 +27538,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   __pyx_t_1 = (__pyx_v_a->dimensions[0]);
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3119
+    /* "pylpsolve/pylpsolve.pyx":3121
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:
  *             cstr.indices[i+1] = a[i] + 1             # <<<<<<<<<<<<<<
@@ -27472,7 +27549,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
     (__pyx_v_cstr->indices[(__pyx_v_i + 1)]) = ((*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int64_t *, __pyx_pybuffernd_a.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_a.diminfo[0].strides)) + 1);
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3112
+  /* "pylpsolve/pylpsolve.pyx":3114
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_int64(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27500,7 +27577,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_int
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3121
+/* "pylpsolve/pylpsolve.pyx":3123
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_uint64(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27526,7 +27603,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   __pyx_pybuffernd_a.data = NULL;
   __pyx_pybuffernd_a.rcbuffer = &__pyx_pybuffer_a;
 
-  /* "pylpsolve/pylpsolve.pyx":3123
+  /* "pylpsolve/pylpsolve.pyx":3125
  * cdef inline copyIntoIndices_uint64(_Constraint *cstr, ar a_o):
  * 
  *     cdef ar[uint64_t] a = a_o             # <<<<<<<<<<<<<<
@@ -27537,14 +27614,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_a.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_v_a_o), &__Pyx_TypeInfo_nn___pyx_t_5numpy_uint64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_a = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_a.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_a.diminfo[0].strides = __pyx_pybuffernd_a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_a.diminfo[0].shape = __pyx_pybuffernd_a.rcbuffer->pybuffer.shape[0];
     }
   }
   __Pyx_INCREF(((PyObject *)__pyx_v_a_o));
   __pyx_v_a = ((PyArrayObject *)__pyx_v_a_o);
 
-  /* "pylpsolve/pylpsolve.pyx":3127
+  /* "pylpsolve/pylpsolve.pyx":3129
  * 
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:             # <<<<<<<<<<<<<<
@@ -27554,7 +27631,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   __pyx_t_1 = (__pyx_v_a->dimensions[0]);
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "pylpsolve/pylpsolve.pyx":3128
+    /* "pylpsolve/pylpsolve.pyx":3130
  *     with cython.boundscheck(False):
  *         for 0 <= i < a.shape[0]:
  *             cstr.indices[i+1] = a[i] + 1             # <<<<<<<<<<<<<<
@@ -27565,7 +27642,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
     (__pyx_v_cstr->indices[(__pyx_v_i + 1)]) = ((*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_uint64_t *, __pyx_pybuffernd_a.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_a.diminfo[0].strides)) + 1);
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3121
+  /* "pylpsolve/pylpsolve.pyx":3123
  *             cstr.indices[i+1] = a[i] + 1
  * 
  * cdef inline copyIntoIndices_uint64(_Constraint *cstr, ar a_o):             # <<<<<<<<<<<<<<
@@ -27593,7 +27670,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_copyIntoIndices_uin
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3133
+/* "pylpsolve/pylpsolve.pyx":3135
  * # Now the routines to add this to the model
  * 
  * cdef inline setInLP(_Constraint *cstr, lprec* lp, size_t n_cols, int *countrange):             # <<<<<<<<<<<<<<
@@ -27612,7 +27689,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("setInLP", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3135
+  /* "pylpsolve/pylpsolve.pyx":3137
  * cdef inline setInLP(_Constraint *cstr, lprec* lp, size_t n_cols, int *countrange):
  * 
  *     if cstr.n == 0:             # <<<<<<<<<<<<<<
@@ -27622,7 +27699,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
   __pyx_t_1 = ((__pyx_v_cstr->n == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":3136
+    /* "pylpsolve/pylpsolve.pyx":3138
  * 
  *     if cstr.n == 0:
  *         return             # <<<<<<<<<<<<<<
@@ -27634,7 +27711,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     goto __pyx_L0;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3141
+  /* "pylpsolve/pylpsolve.pyx":3143
  * 
  *     # Ensure that the columns and all are sized up correctly
  *     if cstr.indices == NULL and cstr.index_range_start == -1:             # <<<<<<<<<<<<<<
@@ -27652,7 +27729,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":3142
+    /* "pylpsolve/pylpsolve.pyx":3144
  *     # Ensure that the columns and all are sized up correctly
  *     if cstr.indices == NULL and cstr.index_range_start == -1:
  *         cstr.index_range_start = 1             # <<<<<<<<<<<<<<
@@ -27664,7 +27741,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
   }
   __pyx_L4:;
 
-  /* "pylpsolve/pylpsolve.pyx":3149
+  /* "pylpsolve/pylpsolve.pyx":3151
  * 
  *     # range constraint
  *     elif cstr.ctype == constraint_in:             # <<<<<<<<<<<<<<
@@ -27673,7 +27750,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
  */
   switch (__pyx_v_cstr->ctype) {
 
-    /* "pylpsolve/pylpsolve.pyx":3145
+    /* "pylpsolve/pylpsolve.pyx":3147
  * 
  *     # Vanila constraint
  *     if cstr.ctype in [constraint_leq, constraint_geq, constraint_equal]:             # <<<<<<<<<<<<<<
@@ -27684,19 +27761,19 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     case 2:
     case 3:
 
-    /* "pylpsolve/pylpsolve.pyx":3146
+    /* "pylpsolve/pylpsolve.pyx":3148
  *     # Vanila constraint
  *     if cstr.ctype in [constraint_leq, constraint_geq, constraint_equal]:
  *         _setRow(cstr, lp, cstr.ctype, cstr.rhs1, countrange)             # <<<<<<<<<<<<<<
  * 
  *     # range constraint
  */
-    __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, __pyx_v_cstr->ctype, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, __pyx_v_cstr->ctype, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     break;
 
-    /* "pylpsolve/pylpsolve.pyx":3149
+    /* "pylpsolve/pylpsolve.pyx":3151
  * 
  *     # range constraint
  *     elif cstr.ctype == constraint_in:             # <<<<<<<<<<<<<<
@@ -27705,7 +27782,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
  */
     case 4:
 
-    /* "pylpsolve/pylpsolve.pyx":3151
+    /* "pylpsolve/pylpsolve.pyx":3153
  *     elif cstr.ctype == constraint_in:
  * 
  *         if cstr.rhs1 < cstr.rhs2:             # <<<<<<<<<<<<<<
@@ -27715,18 +27792,18 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     __pyx_t_1 = ((__pyx_v_cstr->rhs1 < __pyx_v_cstr->rhs2) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":3152
+      /* "pylpsolve/pylpsolve.pyx":3154
  * 
  *         if cstr.rhs1 < cstr.rhs2:
  *             _setRow(cstr, lp, constraint_leq, cstr.rhs2, countrange)             # <<<<<<<<<<<<<<
  *             set_rh_range(lp,  cstr.row_idx+1, cstr.rhs2 - cstr.rhs1)
  * 
  */
-      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 1, __pyx_v_cstr->rhs2, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 1, __pyx_v_cstr->rhs2, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":3153
+      /* "pylpsolve/pylpsolve.pyx":3155
  *         if cstr.rhs1 < cstr.rhs2:
  *             _setRow(cstr, lp, constraint_leq, cstr.rhs2, countrange)
  *             set_rh_range(lp,  cstr.row_idx+1, cstr.rhs2 - cstr.rhs1)             # <<<<<<<<<<<<<<
@@ -27737,7 +27814,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
       goto __pyx_L7;
     }
 
-    /* "pylpsolve/pylpsolve.pyx":3155
+    /* "pylpsolve/pylpsolve.pyx":3157
  *             set_rh_range(lp,  cstr.row_idx+1, cstr.rhs2 - cstr.rhs1)
  * 
  *         elif cstr.rhs1 > cstr.rhs2:             # <<<<<<<<<<<<<<
@@ -27747,18 +27824,18 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     __pyx_t_1 = ((__pyx_v_cstr->rhs1 > __pyx_v_cstr->rhs2) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":3156
+      /* "pylpsolve/pylpsolve.pyx":3158
  * 
  *         elif cstr.rhs1 > cstr.rhs2:
  *             _setRow(cstr, lp, constraint_leq, cstr.rhs1, countrange)             # <<<<<<<<<<<<<<
  *             set_rh_range(lp,  cstr.row_idx+1, cstr.rhs1 - cstr.rhs2)
  * 
  */
-      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 1, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 1, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "pylpsolve/pylpsolve.pyx":3157
+      /* "pylpsolve/pylpsolve.pyx":3159
  *         elif cstr.rhs1 > cstr.rhs2:
  *             _setRow(cstr, lp, constraint_leq, cstr.rhs1, countrange)
  *             set_rh_range(lp,  cstr.row_idx+1, cstr.rhs1 - cstr.rhs2)             # <<<<<<<<<<<<<<
@@ -27770,14 +27847,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     }
     /*else*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":3160
+      /* "pylpsolve/pylpsolve.pyx":3162
  * 
  *         else:
  *             _setRow(cstr, lp, constraint_equal, cstr.rhs1, countrange)             # <<<<<<<<<<<<<<
  *     else:
  *         assert False  # no silent fail
  */
-      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 3, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __pyx_f_9pylpsolve_9pylpsolve__setRow(__pyx_v_cstr, __pyx_v_lp, 3, __pyx_v_cstr->rhs1, __pyx_v_countrange); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -27785,7 +27862,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     break;
     default:
 
-    /* "pylpsolve/pylpsolve.pyx":3162
+    /* "pylpsolve/pylpsolve.pyx":3164
  *             _setRow(cstr, lp, constraint_equal, cstr.rhs1, countrange)
  *     else:
  *         assert False  # no silent fail             # <<<<<<<<<<<<<<
@@ -27796,14 +27873,14 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!0)) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
     break;
   }
 
-  /* "pylpsolve/pylpsolve.pyx":3133
+  /* "pylpsolve/pylpsolve.pyx":3135
  * # Now the routines to add this to the model
  * 
  * cdef inline setInLP(_Constraint *cstr, lprec* lp, size_t n_cols, int *countrange):             # <<<<<<<<<<<<<<
@@ -27824,7 +27901,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve_setInLP(struct __py
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3165
+/* "pylpsolve/pylpsolve.pyx":3167
  * 
  * 
  * cdef inline _setRow(_Constraint *cstr, lprec *lp, int ctype, double rhs, int *countrange):             # <<<<<<<<<<<<<<
@@ -27838,7 +27915,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("_setRow", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3170
+  /* "pylpsolve/pylpsolve.pyx":3172
  * 
  *     # Need to accommidate the start-at-1 indexing
  *     if cstr.indices == NULL:             # <<<<<<<<<<<<<<
@@ -27848,7 +27925,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
   __pyx_t_1 = ((__pyx_v_cstr->indices == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "pylpsolve/pylpsolve.pyx":3171
+    /* "pylpsolve/pylpsolve.pyx":3173
  *     # Need to accommidate the start-at-1 indexing
  *     if cstr.indices == NULL:
  *         if cstr.index_range_start != -1:             # <<<<<<<<<<<<<<
@@ -27858,7 +27935,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
     __pyx_t_1 = ((__pyx_v_cstr->index_range_start != -1) != 0);
     if (__pyx_t_1) {
 
-      /* "pylpsolve/pylpsolve.pyx":3173
+      /* "pylpsolve/pylpsolve.pyx":3175
  *         if cstr.index_range_start != -1:
  * 
  *             set_rowex(lp, cstr.row_idx+1, cstr.n, cstr.values+1, countrange + cstr.index_range_start)             # <<<<<<<<<<<<<<
@@ -27870,7 +27947,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
     }
     /*else*/ {
 
-      /* "pylpsolve/pylpsolve.pyx":3175
+      /* "pylpsolve/pylpsolve.pyx":3177
  *             set_rowex(lp, cstr.row_idx+1, cstr.n, cstr.values+1, countrange + cstr.index_range_start)
  *         else:
  *             set_row(lp, cstr.row_idx+1, cstr.values)             # <<<<<<<<<<<<<<
@@ -27884,7 +27961,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
   }
   /*else*/ {
 
-    /* "pylpsolve/pylpsolve.pyx":3177
+    /* "pylpsolve/pylpsolve.pyx":3179
  *             set_row(lp, cstr.row_idx+1, cstr.values)
  *     else:
  *         set_rowex(lp, cstr.row_idx+1, cstr.n, cstr.values+1, cstr.indices+1)             # <<<<<<<<<<<<<<
@@ -27895,7 +27972,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
   }
   __pyx_L3:;
 
-  /* "pylpsolve/pylpsolve.pyx":3179
+  /* "pylpsolve/pylpsolve.pyx":3181
  *         set_rowex(lp, cstr.row_idx+1, cstr.n, cstr.values+1, cstr.indices+1)
  * 
  *     set_constr_type(lp, cstr.row_idx+1, ctype)             # <<<<<<<<<<<<<<
@@ -27904,7 +27981,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
  */
   set_constr_type(__pyx_v_lp, (__pyx_v_cstr->row_idx + 1), __pyx_v_ctype);
 
-  /* "pylpsolve/pylpsolve.pyx":3180
+  /* "pylpsolve/pylpsolve.pyx":3182
  * 
  *     set_constr_type(lp, cstr.row_idx+1, ctype)
  *     set_rh(lp, cstr.row_idx+1, rhs)             # <<<<<<<<<<<<<<
@@ -27913,7 +27990,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
  */
   set_rh(__pyx_v_lp, (__pyx_v_cstr->row_idx + 1), __pyx_v_rhs);
 
-  /* "pylpsolve/pylpsolve.pyx":3165
+  /* "pylpsolve/pylpsolve.pyx":3167
  * 
  * 
  * cdef inline _setRow(_Constraint *cstr, lprec *lp, int ctype, double rhs, int *countrange):             # <<<<<<<<<<<<<<
@@ -27928,7 +28005,7 @@ static CYTHON_INLINE PyObject *__pyx_f_9pylpsolve_9pylpsolve__setRow(struct __py
   return __pyx_r;
 }
 
-/* "pylpsolve/pylpsolve.pyx":3183
+/* "pylpsolve/pylpsolve.pyx":3185
  * 
  * 
  * cdef inline void clearConstraint(_Constraint *cstr):             # <<<<<<<<<<<<<<
@@ -27941,7 +28018,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("clearConstraint", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3184
+  /* "pylpsolve/pylpsolve.pyx":3186
  * 
  * cdef inline void clearConstraint(_Constraint *cstr):
  *     if cstr.indices != NULL: free(cstr.indices)             # <<<<<<<<<<<<<<
@@ -27955,7 +28032,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
   }
   __pyx_L3:;
 
-  /* "pylpsolve/pylpsolve.pyx":3185
+  /* "pylpsolve/pylpsolve.pyx":3187
  * cdef inline void clearConstraint(_Constraint *cstr):
  *     if cstr.indices != NULL: free(cstr.indices)
  *     if cstr.values  != NULL: free(cstr.values)             # <<<<<<<<<<<<<<
@@ -27969,7 +28046,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
   }
   __pyx_L4:;
 
-  /* "pylpsolve/pylpsolve.pyx":3187
+  /* "pylpsolve/pylpsolve.pyx":3189
  *     if cstr.values  != NULL: free(cstr.values)
  * 
  *     cstr.indices = NULL             # <<<<<<<<<<<<<<
@@ -27978,7 +28055,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
  */
   __pyx_v_cstr->indices = NULL;
 
-  /* "pylpsolve/pylpsolve.pyx":3188
+  /* "pylpsolve/pylpsolve.pyx":3190
  * 
  *     cstr.indices = NULL
  *     cstr.values = NULL             # <<<<<<<<<<<<<<
@@ -27987,7 +28064,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
  */
   __pyx_v_cstr->values = NULL;
 
-  /* "pylpsolve/pylpsolve.pyx":3189
+  /* "pylpsolve/pylpsolve.pyx":3191
  *     cstr.indices = NULL
  *     cstr.values = NULL
  *     cstr.n = 0             # <<<<<<<<<<<<<<
@@ -27996,7 +28073,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
  */
   __pyx_v_cstr->n = 0;
 
-  /* "pylpsolve/pylpsolve.pyx":3183
+  /* "pylpsolve/pylpsolve.pyx":3185
  * 
  * 
  * cdef inline void clearConstraint(_Constraint *cstr):             # <<<<<<<<<<<<<<
@@ -28008,7 +28085,7 @@ static CYTHON_INLINE void __pyx_f_9pylpsolve_9pylpsolve_clearConstraint(struct _
   __Pyx_RefNannyFinishContext();
 }
 
-/* "pylpsolve/pylpsolve.pyx":3191
+/* "pylpsolve/pylpsolve.pyx":3193
  *     cstr.n = 0
  * 
  * cdef inline bint inUse(_Constraint *cstr):             # <<<<<<<<<<<<<<
@@ -28020,7 +28097,7 @@ static CYTHON_INLINE int __pyx_f_9pylpsolve_9pylpsolve_inUse(struct __pyx_t_9pyl
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("inUse", 0);
 
-  /* "pylpsolve/pylpsolve.pyx":3192
+  /* "pylpsolve/pylpsolve.pyx":3194
  * 
  * cdef inline bint inUse(_Constraint *cstr):
  *     return (cstr.n != 0)             # <<<<<<<<<<<<<<
@@ -28028,7 +28105,7 @@ static CYTHON_INLINE int __pyx_f_9pylpsolve_9pylpsolve_inUse(struct __pyx_t_9pyl
   __pyx_r = (__pyx_v_cstr->n != 0);
   goto __pyx_L0;
 
-  /* "pylpsolve/pylpsolve.pyx":3191
+  /* "pylpsolve/pylpsolve.pyx":3193
  *     cstr.n = 0
  * 
  * cdef inline bint inUse(_Constraint *cstr):             # <<<<<<<<<<<<<<
@@ -30315,6 +30392,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Error_5_Numerical_failure_encoun, __pyx_k_Error_5_Numerical_failure_encoun, sizeof(__pyx_k_Error_5_Numerical_failure_encoun), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_6_Solver_aborted, __pyx_k_Error_6_Solver_aborted, sizeof(__pyx_k_Error_6_Solver_aborted), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_7_Timeout_Occurred, __pyx_k_Error_7_Timeout_Occurred, sizeof(__pyx_k_Error_7_Timeout_Occurred), 0, 0, 1, 0},
+  {&__pyx_kp_s_Error_Unknown_error, __pyx_k_Error_Unknown_error, sizeof(__pyx_k_Error_Unknown_error), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_converting_index_array_to, __pyx_k_Error_converting_index_array_to, sizeof(__pyx_k_Error_converting_index_array_to), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_converting_index_array_to_2, __pyx_k_Error_converting_index_array_to_2, sizeof(__pyx_k_Error_converting_index_array_to_2), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_converting_index_list_to_1, __pyx_k_Error_converting_index_list_to_1, sizeof(__pyx_k_Error_converting_index_list_to_1), 0, 0, 1, 0},
@@ -30419,6 +30497,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_error_on_bad_guess, __pyx_k_error_on_bad_guess, sizeof(__pyx_k_error_on_bad_guess), 0, 0, 1, 1},
   {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
+  {&__pyx_n_s_format, __pyx_k_format, sizeof(__pyx_k_format), 0, 0, 1, 1},
   {&__pyx_n_s_geq, __pyx_k_geq, sizeof(__pyx_k_geq), 0, 0, 1, 1},
   {&__pyx_kp_s_getIndexBlock_arguments_must_be, __pyx_k_getIndexBlock_arguments_must_be, sizeof(__pyx_k_getIndexBlock_arguments_must_be), 0, 0, 1, 0},
   {&__pyx_n_s_getObjectiveValue, __pyx_k_getObjectiveValue, sizeof(__pyx_k_getObjectiveValue), 0, 0, 1, 1},
@@ -31200,245 +31279,245 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__67);
   __Pyx_GIVEREF(__pyx_tuple__67);
 
-  /* "pylpsolve/pylpsolve.pyx":2516
+  /* "pylpsolve/pylpsolve.pyx":2517
  *         elif ret == -2:
  *             # NOMEMORY (-2)     Out of memory
  *             raise MemoryError("LP Solver out of memory.")             # <<<<<<<<<<<<<<
  *         elif ret == 1:
  *             # SUBOPTIMAL (1) The model is sub-optimal. Only happens if
  */
-  __pyx_tuple__68 = PyTuple_Pack(1, __pyx_kp_s_LP_Solver_out_of_memory); if (unlikely(!__pyx_tuple__68)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__68 = PyTuple_Pack(1, __pyx_kp_s_LP_Solver_out_of_memory); if (unlikely(!__pyx_tuple__68)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__68);
   __Pyx_GIVEREF(__pyx_tuple__68);
 
-  /* "pylpsolve/pylpsolve.pyx":2531
+  /* "pylpsolve/pylpsolve.pyx":2532
  *             # At some point not enough memory could not be allocated
  * 
  *             warnings.warn("Solver solution suboptimal")             # <<<<<<<<<<<<<<
  *         elif ret == 2:
  *             # INFEASIBLE (2)    The model is infeasible
  */
-  __pyx_tuple__69 = PyTuple_Pack(1, __pyx_kp_s_Solver_solution_suboptimal); if (unlikely(!__pyx_tuple__69)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2531; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__69 = PyTuple_Pack(1, __pyx_kp_s_Solver_solution_suboptimal); if (unlikely(!__pyx_tuple__69)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2532; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__69);
   __Pyx_GIVEREF(__pyx_tuple__69);
 
-  /* "pylpsolve/pylpsolve.pyx":2534
+  /* "pylpsolve/pylpsolve.pyx":2535
  *         elif ret == 2:
  *             # INFEASIBLE (2)    The model is infeasible
  *             raise LPException("Error 2: Model infeasible")             # <<<<<<<<<<<<<<
  *         elif ret == 3:
  *             # UNBOUNDED (3)     The model is unbounded
  */
-  __pyx_tuple__70 = PyTuple_Pack(1, __pyx_kp_s_Error_2_Model_infeasible); if (unlikely(!__pyx_tuple__70)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2534; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__70 = PyTuple_Pack(1, __pyx_kp_s_Error_2_Model_infeasible); if (unlikely(!__pyx_tuple__70)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2535; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__70);
   __Pyx_GIVEREF(__pyx_tuple__70);
 
-  /* "pylpsolve/pylpsolve.pyx":2537
+  /* "pylpsolve/pylpsolve.pyx":2538
  *         elif ret == 3:
  *             # UNBOUNDED (3)     The model is unbounded
  *             raise LPException("Error 3: Model unbounded")             # <<<<<<<<<<<<<<
  *         elif ret == 4:
  *             # DEGENERATE (4)    The model is degenerative
  */
-  __pyx_tuple__71 = PyTuple_Pack(1, __pyx_kp_s_Error_3_Model_unbounded); if (unlikely(!__pyx_tuple__71)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__71 = PyTuple_Pack(1, __pyx_kp_s_Error_3_Model_unbounded); if (unlikely(!__pyx_tuple__71)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2538; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__71);
   __Pyx_GIVEREF(__pyx_tuple__71);
 
-  /* "pylpsolve/pylpsolve.pyx":2540
+  /* "pylpsolve/pylpsolve.pyx":2541
  *         elif ret == 4:
  *             # DEGENERATE (4)    The model is degenerative
  *             raise LPException("Error 4: Model degenerate")             # <<<<<<<<<<<<<<
  *         elif ret == 5:
  *             # NUMFAILURE (5)    Numerical failure encountered
  */
-  __pyx_tuple__72 = PyTuple_Pack(1, __pyx_kp_s_Error_4_Model_degenerate); if (unlikely(!__pyx_tuple__72)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2540; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__72 = PyTuple_Pack(1, __pyx_kp_s_Error_4_Model_degenerate); if (unlikely(!__pyx_tuple__72)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__72);
   __Pyx_GIVEREF(__pyx_tuple__72);
 
-  /* "pylpsolve/pylpsolve.pyx":2543
+  /* "pylpsolve/pylpsolve.pyx":2544
  *         elif ret == 5:
  *             # NUMFAILURE (5)    Numerical failure encountered
  *             raise LPException("Error 5: Numerical failure encountered")             # <<<<<<<<<<<<<<
  *         elif ret == 6:
  *             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
  */
-  __pyx_tuple__73 = PyTuple_Pack(1, __pyx_kp_s_Error_5_Numerical_failure_encoun); if (unlikely(!__pyx_tuple__73)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__73 = PyTuple_Pack(1, __pyx_kp_s_Error_5_Numerical_failure_encoun); if (unlikely(!__pyx_tuple__73)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__73);
   __Pyx_GIVEREF(__pyx_tuple__73);
 
-  /* "pylpsolve/pylpsolve.pyx":2546
+  /* "pylpsolve/pylpsolve.pyx":2547
  *         elif ret == 6:
  *             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
  *             raise LPException("Error 6: Solver aborted")             # <<<<<<<<<<<<<<
  *         elif ret == 7:
  *             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
  */
-  __pyx_tuple__74 = PyTuple_Pack(1, __pyx_kp_s_Error_6_Solver_aborted); if (unlikely(!__pyx_tuple__74)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__74 = PyTuple_Pack(1, __pyx_kp_s_Error_6_Solver_aborted); if (unlikely(!__pyx_tuple__74)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__74);
   __Pyx_GIVEREF(__pyx_tuple__74);
 
-  /* "pylpsolve/pylpsolve.pyx":2549
+  /* "pylpsolve/pylpsolve.pyx":2550
  *         elif ret == 7:
  *             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
  *             raise LPException("Error 7: Timeout Occurred.")             # <<<<<<<<<<<<<<
  *         elif ret == 9:
  *             # PRESOLVED (9) The model could be solved by
  */
-  __pyx_tuple__75 = PyTuple_Pack(1, __pyx_kp_s_Error_7_Timeout_Occurred); if (unlikely(!__pyx_tuple__75)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__75 = PyTuple_Pack(1, __pyx_kp_s_Error_7_Timeout_Occurred); if (unlikely(!__pyx_tuple__75)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__75);
   __Pyx_GIVEREF(__pyx_tuple__75);
 
-  /* "pylpsolve/pylpsolve.pyx":2557
+  /* "pylpsolve/pylpsolve.pyx":2558
  *         elif ret == 10:
  *             # PROCFAIL (10)     The B&B routine failed
  *             raise LPException("Error 10: The B&B routine failed")             # <<<<<<<<<<<<<<
  *         elif ret == 11:
  *             # PROCBREAK (11) The B&B was stopped because of a
  */
-  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_kp_s_Error_10_The_B_B_routine_failed); if (unlikely(!__pyx_tuple__76)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_kp_s_Error_10_The_B_B_routine_failed); if (unlikely(!__pyx_tuple__76)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__76);
   __Pyx_GIVEREF(__pyx_tuple__76);
 
-  /* "pylpsolve/pylpsolve.pyx":2562
+  /* "pylpsolve/pylpsolve.pyx":2563
  *             # break-at-first (see set_break_at_first) or a
  *             # break-at-value (see set_break_at_value)
  *             raise LPException("Error 11: B&B Stopped.")             # <<<<<<<<<<<<<<
  *         elif ret == 12:
  *             # FEASFOUND (12)    A feasible B&B solution was found
  */
-  __pyx_tuple__77 = PyTuple_Pack(1, __pyx_kp_s_Error_11_B_B_Stopped); if (unlikely(!__pyx_tuple__77)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__77 = PyTuple_Pack(1, __pyx_kp_s_Error_11_B_B_Stopped); if (unlikely(!__pyx_tuple__77)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__77);
   __Pyx_GIVEREF(__pyx_tuple__77);
 
-  /* "pylpsolve/pylpsolve.pyx":2568
+  /* "pylpsolve/pylpsolve.pyx":2569
  *         elif ret == 13:
  *              # NOFEASFOUND (13)         No feasible B&B solution found
  *             raise LPException("Error 13: No feasible B&B solution found")             # <<<<<<<<<<<<<<
+ *         raise LPException("Error {}: Unknown error!".format(ret))
  * 
- *         # And we're done
  */
-  __pyx_tuple__78 = PyTuple_Pack(1, __pyx_kp_s_Error_13_No_feasible_B_B_solutio); if (unlikely(!__pyx_tuple__78)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__78 = PyTuple_Pack(1, __pyx_kp_s_Error_13_No_feasible_B_B_solutio); if (unlikely(!__pyx_tuple__78)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__78);
   __Pyx_GIVEREF(__pyx_tuple__78);
 
-  /* "pylpsolve/pylpsolve.pyx":2596
+  /* "pylpsolve/pylpsolve.pyx":2598
  * 
  *         if self.lp == NULL:
  *             raise LPException("Final variables available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         # Okay, now we've got it
  */
-  __pyx_tuple__79 = PyTuple_Pack(1, __pyx_kp_s_Final_variables_available_only_a); if (unlikely(!__pyx_tuple__79)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__79 = PyTuple_Pack(1, __pyx_kp_s_Final_variables_available_only_a); if (unlikely(!__pyx_tuple__79)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__79);
   __Pyx_GIVEREF(__pyx_tuple__79);
 
-  /* "pylpsolve/pylpsolve.pyx":2635
+  /* "pylpsolve/pylpsolve.pyx":2637
  *             l = <list>indices
  *             if not isposintlist(l):
  *                 raise ValueError("Requested index list must contain only valid indices.")             # <<<<<<<<<<<<<<
  * 
  *             res = empty(len(l), npfloat)
  */
-  __pyx_tuple__80 = PyTuple_Pack(1, __pyx_kp_s_Requested_index_list_must_contai); if (unlikely(!__pyx_tuple__80)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__80 = PyTuple_Pack(1, __pyx_kp_s_Requested_index_list_must_contai); if (unlikely(!__pyx_tuple__80)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__80);
   __Pyx_GIVEREF(__pyx_tuple__80);
 
-  /* "pylpsolve/pylpsolve.pyx":2687
+  /* "pylpsolve/pylpsolve.pyx":2689
  * 
  *         else:
  *             raise ValueError("Type of `indices` argument not recognized.")             # <<<<<<<<<<<<<<
  * 
  *     def getSolutionDict(self):
  */
-  __pyx_tuple__81 = PyTuple_Pack(1, __pyx_kp_s_Type_of_indices_argument_not_rec); if (unlikely(!__pyx_tuple__81)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2687; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__81 = PyTuple_Pack(1, __pyx_kp_s_Type_of_indices_argument_not_rec); if (unlikely(!__pyx_tuple__81)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2689; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__81);
   __Pyx_GIVEREF(__pyx_tuple__81);
 
-  /* "pylpsolve/pylpsolve.pyx":2712
+  /* "pylpsolve/pylpsolve.pyx":2714
  * 
  *         if self.lp == NULL:
  *             raise LPException("Final variables available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         return get_objective(self.lp)
  */
-  __pyx_tuple__82 = PyTuple_Pack(1, __pyx_kp_s_Final_variables_available_only_a); if (unlikely(!__pyx_tuple__82)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__82 = PyTuple_Pack(1, __pyx_kp_s_Final_variables_available_only_a); if (unlikely(!__pyx_tuple__82)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__82);
   __Pyx_GIVEREF(__pyx_tuple__82);
 
-  /* "pylpsolve/pylpsolve.pyx":2726
+  /* "pylpsolve/pylpsolve.pyx":2728
  * 
  *         if self.lp == NULL:
  *             raise LPException("Info available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         cdef ar[int, mode="c"] basis = empty(
  */
-  __pyx_tuple__83 = PyTuple_Pack(1, __pyx_kp_s_Info_available_only_after_solve); if (unlikely(!__pyx_tuple__83)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__83 = PyTuple_Pack(1, __pyx_kp_s_Info_available_only_after_solve); if (unlikely(!__pyx_tuple__83)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__83);
   __Pyx_GIVEREF(__pyx_tuple__83);
 
-  /* "pylpsolve/pylpsolve.pyx":2732
+  /* "pylpsolve/pylpsolve.pyx":2734
  * 
  *         if not get_basis(self.lp, <int*>basis.data, include_dual_basis):
  *             raise LPException("Unknown error while retrieving basis.")             # <<<<<<<<<<<<<<
  * 
  *         return basis
  */
-  __pyx_tuple__84 = PyTuple_Pack(1, __pyx_kp_s_Unknown_error_while_retrieving_b); if (unlikely(!__pyx_tuple__84)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__84 = PyTuple_Pack(1, __pyx_kp_s_Unknown_error_while_retrieving_b); if (unlikely(!__pyx_tuple__84)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__84);
   __Pyx_GIVEREF(__pyx_tuple__84);
 
-  /* "pylpsolve/pylpsolve.pyx":2759
+  /* "pylpsolve/pylpsolve.pyx":2761
  * 
  *         if self.lp == NULL:
  *             raise LPException("Info available only after solve() is called.")             # <<<<<<<<<<<<<<
  * 
  *         cdef int ret_stat
  */
-  __pyx_tuple__85 = PyTuple_Pack(1, __pyx_kp_s_Info_available_only_after_solve); if (unlikely(!__pyx_tuple__85)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__85 = PyTuple_Pack(1, __pyx_kp_s_Info_available_only_after_solve); if (unlikely(!__pyx_tuple__85)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2761; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__85);
   __Pyx_GIVEREF(__pyx_tuple__85);
 
-  /* "pylpsolve/pylpsolve.pyx":3000
+  /* "pylpsolve/pylpsolve.pyx":3002
  *             assert idx.shape[1] == 2
  * 
  *             il = idx[0,0]             # <<<<<<<<<<<<<<
  *             iu = idx[0,1]
  *             assert iu > il
  */
-  __pyx_tuple__87 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__87)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__87 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__87)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__87);
   __Pyx_GIVEREF(__pyx_tuple__87);
 
-  /* "pylpsolve/pylpsolve.pyx":3001
+  /* "pylpsolve/pylpsolve.pyx":3003
  * 
  *             il = idx[0,0]
  *             iu = idx[0,1]             # <<<<<<<<<<<<<<
  *             assert iu > il
  * 
  */
-  __pyx_tuple__88 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__88)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3001; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__88 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__88)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__88);
   __Pyx_GIVEREF(__pyx_tuple__88);
 
-  /* "pylpsolve/pylpsolve.pyx":3084
+  /* "pylpsolve/pylpsolve.pyx":3086
  *             ua = uint32(a)
  *             if (ua != a).any():
  *                 raise ValueError("Error converting index array to 32bit integers.")             # <<<<<<<<<<<<<<
  * 
  *             copyIntoIndices_uint32(cstr, ua)
  */
-  __pyx_tuple__89 = PyTuple_Pack(1, __pyx_kp_s_Error_converting_index_array_to); if (unlikely(!__pyx_tuple__89)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3084; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__89 = PyTuple_Pack(1, __pyx_kp_s_Error_converting_index_array_to); if (unlikely(!__pyx_tuple__89)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__89);
   __Pyx_GIVEREF(__pyx_tuple__89);
 
-  /* "pylpsolve/pylpsolve.pyx":3090
+  /* "pylpsolve/pylpsolve.pyx":3092
  *             ua = uint64(a)
  *             if not (ua != a).any():
  *                 raise ValueError("Error converting index array to 64bit integers.")             # <<<<<<<<<<<<<<
  * 
  *             copyIntoIndices_uint64(cstr, ua)
  */
-  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_Error_converting_index_array_to_2); if (unlikely(!__pyx_tuple__90)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3090; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_Error_converting_index_array_to_2); if (unlikely(!__pyx_tuple__90)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__90);
   __Pyx_GIVEREF(__pyx_tuple__90);
 
