@@ -257,6 +257,7 @@ cdef extern from "lp_solve_5.5/lp_lib.h":
 
     ecode set_col_name(lprec*, int colnr, char *new_name)
     ecode set_row_name(lprec*, int colnr, char *new_name)
+    char *get_col_name(lprec*, int colnr)
 
     # Variable bounds
     ecode set_lowbo(lprec*, int column, real value)
@@ -2478,7 +2479,6 @@ cdef class LP(object):
             generated.
 
         """
-
         ########################################
         # Get the current options dict
 
@@ -2597,11 +2597,11 @@ cdef class LP(object):
         if self.lp == NULL:
             raise LPException("Final variables available only after solve() is called.")
 
-        # Okay, now we've got it
-
-        cdef double *vars
-
-        get_ptr_variables(self.lp, &vars)
+        # Use get_var_primalresult instead of get_ptr_variables in order
+        # to use our original column indices: presolve may have deleted
+        # columns and this is the only way to get their solved values.
+        vars = [get_var_primalresult(self.lp, self.n_rows + 1 + col)
+                for col in range(self.n_columns)]
 
         cdef tuple t
         cdef ar[size_t, ndim=2, mode="c"] idx_bounds
