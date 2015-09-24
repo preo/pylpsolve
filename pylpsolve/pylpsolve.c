@@ -1747,7 +1747,7 @@ static char __pyx_k_Out_of_memory_creating_internal[] = "Out of memory creating 
 static char __pyx_k_Out_of_memory_resizing_internal[] = "Out of memory resizing internal LP structure.";
 static char __pyx_k_Requested_size_d_does_not_match[] = "Requested size (%d) does not match previous size (%d) of index block '%s'";
 static char __pyx_k_Type_of_values_s_not_recognized[] = "Type of values (%s) not recognized.";
-static char __pyx_k_Verbosity_level_must_be_1_2_3_4[] = "Verbosity level must be 1,2,3,4, or 5 (highest).";
+static char __pyx_k_Verbosity_level_must_be_0_1_2_3[] = "Verbosity level must be 0,1,2,3,4,5 or 6 (highest).";
 static char __pyx_k_coefficients_should_be_either_a[] = "coefficients should be either a single array, a dictionary, or a 2-tuple with (index block, values)";
 static char __pyx_k_getIndexBlock_arguments_must_be[] = "getIndexBlock() arguments must be a block name/size, size, or name of prexisting block.";
 static char __pyx_k_mode_must_be_either_minimize_or[] = "mode must be either 'minimize' or 'maximize'";
@@ -1887,7 +1887,7 @@ static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_kp_s_Variable_block_s_not_defined;
 static PyObject *__pyx_kp_s_Variable_guess_not_complete;
 static PyObject *__pyx_kp_s_Variable_index_not_valid_d;
-static PyObject *__pyx_kp_s_Verbosity_level_must_be_1_2_3_4;
+static PyObject *__pyx_kp_s_Verbosity_level_must_be_0_1_2_3;
 static PyObject *__pyx_kp_s__100;
 static PyObject *__pyx_kp_s__102;
 static PyObject *__pyx_kp_s__106;
@@ -2026,6 +2026,7 @@ static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_3;
 static PyObject *__pyx_int_4;
 static PyObject *__pyx_int_5;
+static PyObject *__pyx_int_6;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_slice__2;
 static PyObject *__pyx_slice__3;
@@ -20119,8 +20120,8 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   /* "pylpsolve/pylpsolve.pyx":2276
  *         # Verbosity
  * 
- *         if option_dict["verbosity"] not in [1,2,3,4,5]:             # <<<<<<<<<<<<<<
- *             raise ValueError("Verbosity level must be 1,2,3,4, or 5 (highest).")
+ *         if option_dict["verbosity"] not in [0,1,2,3,4,5,6]:             # <<<<<<<<<<<<<<
+ *             raise ValueError("Verbosity level must be 0,1,2,3,4,5 or 6 (highest).")
  * 
  */
   if (unlikely(__pyx_v_option_dict == Py_None)) {
@@ -20129,6 +20130,14 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   }
   __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_option_dict, __pyx_n_s_verbosity); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_10) {
+  } else {
+    __pyx_t_9 = __pyx_t_10;
+    goto __pyx_L23_bool_binop_done;
+  }
   __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -20164,6 +20173,14 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_int_5, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_10) {
+  } else {
+    __pyx_t_9 = __pyx_t_10;
+    goto __pyx_L23_bool_binop_done;
+  }
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_int_6, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_9 = __pyx_t_10;
   __pyx_L23_bool_binop_done:;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -20172,8 +20189,8 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
 
     /* "pylpsolve/pylpsolve.pyx":2277
  * 
- *         if option_dict["verbosity"] not in [1,2,3,4,5]:
- *             raise ValueError("Verbosity level must be 1,2,3,4, or 5 (highest).")             # <<<<<<<<<<<<<<
+ *         if option_dict["verbosity"] not in [0,1,2,3,4,5,6]:
+ *             raise ValueError("Verbosity level must be 0,1,2,3,4,5 or 6 (highest).")             # <<<<<<<<<<<<<<
  * 
  *         # Options are vetted now; basis and others might not be
  */
@@ -20226,7 +20243,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    goto __pyx_L28;
+    goto __pyx_L30;
   }
   /*else*/ {
 
@@ -20254,7 +20271,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2291; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
-  __pyx_L28:;
+  __pyx_L30:;
 
   /* "pylpsolve/pylpsolve.pyx":2296
  *         # Constraints
@@ -20392,7 +20409,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   if (__pyx_t_11) {
   } else {
     __pyx_t_10 = __pyx_t_11;
-    goto __pyx_L32_bool_binop_done;
+    goto __pyx_L34_bool_binop_done;
   }
   if (unlikely(__pyx_v_option_dict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -20404,7 +20421,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = (__pyx_t_11 != 0);
   __pyx_t_10 = __pyx_t_9;
-  __pyx_L32_bool_binop_done:;
+  __pyx_L34_bool_binop_done:;
   if (__pyx_t_10) {
 
     /* "pylpsolve/pylpsolve.pyx":2327
@@ -20442,9 +20459,9 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
  *             basis = option_dict["basis"]
  */
       __pyx_v_presolve = 0;
-      goto __pyx_L34;
+      goto __pyx_L36;
     }
-    __pyx_L34:;
+    __pyx_L36:;
 
     /* "pylpsolve/pylpsolve.pyx":2331
  *                 presolve = 0
@@ -20488,7 +20505,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       __Pyx_INCREF(__pyx_t_1);
       __pyx_v_b = ((PyArrayObject *)__pyx_t_1);
       __pyx_t_1 = 0;
-      goto __pyx_L35;
+      goto __pyx_L37;
     }
 
     /* "pylpsolve/pylpsolve.pyx":2335
@@ -20539,7 +20556,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_b = ((PyArrayObject *)__pyx_t_1);
       __pyx_t_1 = 0;
-      goto __pyx_L35;
+      goto __pyx_L37;
     }
     /*else*/ {
 
@@ -20556,7 +20573,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_L35:;
+    __pyx_L37:;
 
     /* "pylpsolve/pylpsolve.pyx":2340
  *                 raise TypeError("Basis must be either ndarray or list.")
@@ -20569,21 +20586,21 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
     if (!__pyx_t_9) {
     } else {
       __pyx_t_10 = __pyx_t_9;
-      goto __pyx_L37_bool_binop_done;
+      goto __pyx_L39_bool_binop_done;
     }
     __pyx_t_15 = (__pyx_v_b->dimensions[0]);
     __pyx_t_11 = ((__pyx_t_15 != __pyx_v_full_basis_size) != 0);
     if (__pyx_t_11) {
     } else {
       __pyx_t_9 = __pyx_t_11;
-      goto __pyx_L39_bool_binop_done;
+      goto __pyx_L41_bool_binop_done;
     }
     __pyx_t_11 = ((__pyx_t_15 != __pyx_v_basic_basis_size) != 0);
     __pyx_t_9 = __pyx_t_11;
-    __pyx_L39_bool_binop_done:;
+    __pyx_L41_bool_binop_done:;
     __pyx_t_11 = (__pyx_t_9 != 0);
     __pyx_t_10 = __pyx_t_11;
-    __pyx_L37_bool_binop_done:;
+    __pyx_L39_bool_binop_done:;
     if (__pyx_t_10) {
 
       /* "pylpsolve/pylpsolve.pyx":2341
@@ -20690,7 +20707,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       __pyx_t_12 = 0;
       __Pyx_DECREF_SET(__pyx_v_start_basis, ((PyArrayObject *)__pyx_t_14));
       __pyx_t_14 = 0;
-      goto __pyx_L41;
+      goto __pyx_L43;
     }
     /*else*/ {
 
@@ -20743,8 +20760,8 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       __Pyx_DECREF_SET(__pyx_v_start_basis, ((PyArrayObject *)__pyx_t_14));
       __pyx_t_14 = 0;
     }
-    __pyx_L41:;
-    goto __pyx_L31;
+    __pyx_L43:;
+    goto __pyx_L33;
   }
 
   /* "pylpsolve/pylpsolve.pyx":2349
@@ -20763,7 +20780,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   if (__pyx_t_9) {
   } else {
     __pyx_t_10 = __pyx_t_9;
-    goto __pyx_L42_bool_binop_done;
+    goto __pyx_L44_bool_binop_done;
   }
   if (unlikely(__pyx_v_option_dict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -20775,7 +20792,7 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   __pyx_t_11 = (__pyx_t_9 != 0);
   __pyx_t_10 = __pyx_t_11;
-  __pyx_L42_bool_binop_done:;
+  __pyx_L44_bool_binop_done:;
   if (__pyx_t_10) {
 
     /* "pylpsolve/pylpsolve.pyx":2350
@@ -20813,9 +20830,9 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
  *             start_basis = self._getBasisFromGuess(option_dict["guess"], option_dict["error_on_bad_guess"])
  */
       __pyx_v_presolve = 0;
-      goto __pyx_L44;
+      goto __pyx_L46;
     }
-    __pyx_L44:;
+    __pyx_L46:;
 
     /* "pylpsolve/pylpsolve.pyx":2354
  *                 presolve = 0
@@ -20859,9 +20876,9 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
     }
     __Pyx_DECREF_SET(__pyx_v_start_basis, ((PyArrayObject *)__pyx_t_6));
     __pyx_t_6 = 0;
-    goto __pyx_L31;
+    goto __pyx_L33;
   }
-  __pyx_L31:;
+  __pyx_L33:;
 
   /* "pylpsolve/pylpsolve.pyx":2359
  *         # Set all the options
@@ -20932,11 +20949,11 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
       if (!__pyx_t_10) {
       } else {
         __pyx_t_11 = __pyx_t_10;
-        goto __pyx_L46_bool_binop_done;
+        goto __pyx_L48_bool_binop_done;
       }
       __pyx_t_10 = ((__pyx_t_15 == __pyx_v_basic_basis_size) != 0);
       __pyx_t_11 = __pyx_t_10;
-      __pyx_L46_bool_binop_done:;
+      __pyx_L48_bool_binop_done:;
       if (unlikely(!(__pyx_t_11 != 0))) {
         PyErr_SetNone(PyExc_AssertionError);
         {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -20952,9 +20969,9 @@ static PyObject *__pyx_f_9pylpsolve_9pylpsolve_2LP_setupLP(struct __pyx_obj_9pyl
  *         ####################
  */
     set_basis(__pyx_v_self->lp, ((int *)__pyx_v_start_basis->data), ((__pyx_v_start_basis->dimensions[0]) == __pyx_v_full_basis_size));
-    goto __pyx_L45;
+    goto __pyx_L47;
   }
-  __pyx_L45:;
+  __pyx_L47:;
 
   /* "pylpsolve/pylpsolve.pyx":2370
  *         ####################
@@ -30454,7 +30471,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Variable_block_s_not_defined, __pyx_k_Variable_block_s_not_defined, sizeof(__pyx_k_Variable_block_s_not_defined), 0, 0, 1, 0},
   {&__pyx_kp_s_Variable_guess_not_complete, __pyx_k_Variable_guess_not_complete, sizeof(__pyx_k_Variable_guess_not_complete), 0, 0, 1, 0},
   {&__pyx_kp_s_Variable_index_not_valid_d, __pyx_k_Variable_index_not_valid_d, sizeof(__pyx_k_Variable_index_not_valid_d), 0, 0, 1, 0},
-  {&__pyx_kp_s_Verbosity_level_must_be_1_2_3_4, __pyx_k_Verbosity_level_must_be_1_2_3_4, sizeof(__pyx_k_Verbosity_level_must_be_1_2_3_4), 0, 0, 1, 0},
+  {&__pyx_kp_s_Verbosity_level_must_be_0_1_2_3, __pyx_k_Verbosity_level_must_be_0_1_2_3, sizeof(__pyx_k_Verbosity_level_must_be_0_1_2_3), 0, 0, 1, 0},
   {&__pyx_kp_s__100, __pyx_k__100, sizeof(__pyx_k__100), 0, 0, 1, 0},
   {&__pyx_kp_s__102, __pyx_k__102, sizeof(__pyx_k__102), 0, 0, 1, 0},
   {&__pyx_kp_s__106, __pyx_k__106, sizeof(__pyx_k__106), 0, 0, 1, 0},
@@ -31138,12 +31155,12 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "pylpsolve/pylpsolve.pyx":2277
  * 
- *         if option_dict["verbosity"] not in [1,2,3,4,5]:
- *             raise ValueError("Verbosity level must be 1,2,3,4, or 5 (highest).")             # <<<<<<<<<<<<<<
+ *         if option_dict["verbosity"] not in [0,1,2,3,4,5,6]:
+ *             raise ValueError("Verbosity level must be 0,1,2,3,4,5 or 6 (highest).")             # <<<<<<<<<<<<<<
  * 
  *         # Options are vetted now; basis and others might not be
  */
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_Verbosity_level_must_be_1_2_3_4); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_Verbosity_level_must_be_0_1_2_3); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__55);
   __Pyx_GIVEREF(__pyx_tuple__55);
 
@@ -31799,6 +31816,7 @@ static int __Pyx_InitGlobals(void) {
   __pyx_int_3 = PyInt_FromLong(3); if (unlikely(!__pyx_int_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_4 = PyInt_FromLong(4); if (unlikely(!__pyx_int_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_5 = PyInt_FromLong(5); if (unlikely(!__pyx_int_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_6 = PyInt_FromLong(6); if (unlikely(!__pyx_int_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
