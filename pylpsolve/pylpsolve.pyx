@@ -2580,11 +2580,11 @@ cdef class LP(object):
         if self.lp == NULL:
             raise LPException("Final variables available only after solve() is called.")
 
-        # Okay, now we've got it
-
-        cdef double *vars
-
-        get_ptr_variables(self.lp, &vars)
+        # Use get_var_primalresult instead of get_ptr_variables in order
+        # to use our original column indices: presolve may have deleted
+        # columns and this is the only way to get their solved values.
+        vars = [get_var_primalresult(self.lp, self.n_rows + 1 + col)
+                for col in range(self.n_columns)]
 
         cdef tuple t
         cdef ar[size_t, ndim=2, mode="c"] idx_bounds
