@@ -183,16 +183,12 @@ DEF constraint_equal   = 3
 DEF constraint_in      = 4
 
 cdef list _constraint_type_list = [
-    ("<"      , constraint_leq),
     ("<="     , constraint_leq),
     ("=<"     , constraint_leq),
     ("leq"    , constraint_leq),
-    ("lt"     , constraint_leq),
-    (">"      , constraint_geq),
     (">="     , constraint_geq),
     ("=>"     , constraint_geq),
     ("geq"    , constraint_geq),
-    ("gt"     , constraint_geq),
     ("="      , constraint_equal),
     ("=="     , constraint_equal),
     ("eq"     , constraint_equal),
@@ -1132,10 +1128,10 @@ cdef class LP(object):
             ``"=", "==", "equal", "eq"``
 
           Less than or equal:
-            ``"<", "<=", "=<", "leq", "lt"``
-            
+            ``"<=", "=<", "leq"``
+
           Greater than or equal:
-            ``">", ">=", "=>", "geq", "gt"``
+            ``">=", "=>", "geq"``
 
           Within an interval: 
             ``"in", "between", "range"``
