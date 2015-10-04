@@ -66,8 +66,6 @@ classifiers = [
     'Programming Language :: C',
     ]
 
-numpy_needed = True
-
 source_directory_list = ['pylpsolve']
 
 lpsolve_base = 'pylpsolve/lp_solve_5.5'
@@ -105,9 +103,6 @@ import sys
 from distutils.core import setup
 from distutils.extension import Extension
 
-if numpy_needed:
-    import numpy
-    extra_include_dirs.append(numpy.get_include())
 
 ######################################################
 # First have to see if we're authorized to use cython files, or if we
@@ -176,17 +171,19 @@ python_modules = [get_python_modules(f) for f in python_files]
 
 print "Relevant Python Files Found: \n%s\n+++++++++++++++++++++" % ", ".join(sorted(python_files))
 
+
 if __name__ == '__main__':
     # The rest is also shared with the setup.py file, in addition to
     # this one, so
 
     def get_include_dirs(m):
-        return [l.strip() for l in extra_include_dirs + include_paths
-                if len(l.strip()) != 0]
+        include_dir_list = extra_include_dirs + include_paths
+        stripped = (d.strip() for d in include_dir_list)
+        return [d for d in stripped if d]
 
     def get_library_dirs(m):
-        return [l.strip() for l in extra_library_dirs + lib_paths
-                if len(l.strip()) != 0]
+        stripped = (d.strip() for d in extra_library_dirs + lib_paths)
+        return [d for d in stripped if d]
 
     def get_libraries(m):
         return library_includes + (specific_libraries[m] if m in specific_libraries else [])
@@ -229,28 +226,38 @@ if __name__ == '__main__':
     ext_modules = []
 
     if cython_mode:
-        from Cython.Distutils import build_ext
+        from Cython.Distutils import build_ext as _build_ext
 
         ext_modules += list(chain(*list(makeExtensionList(d, l)
                                         for d, l in cython_files.iteritems())))
-
-        cmdclass = {'build_ext' : build_ext}
     else:
+        from setuptools.command.build_ext import build_ext as _build_ext
         cmdclass = {}
+
+    class build_ext(_build_ext):
+        def finalize_options(self):
+            _build_ext.finalize_options(self)
+            # Prevent numpy from thinking it is still in its setup process:
+            __builtins__.__NUMPY_SETUP__ = False
+            import numpy
+            self.include_dirs.append(numpy.get_include())
+
 
     ext_modules += list(chain(*list(makeExtensionList(d, l)
                                     for d, l in c_files.iteritems())))
     setup(
         version = version,
         description = description,
+        setup_requires=['numpy>=1.9,<2'],
+        install_requires=['numpy>=1.9,<2'],
         author = author,
         author_email = author_email,
         name = name,
-        cmdclass = cmdclass,
+        cmdclass={'build_ext' : build_ext},
         ext_modules = ext_modules,
         py_modules = python_modules,
         scripts = scripts,
         classifiers = classifiers,
         url = url,
-        download_url = download_url)
-
+        download_url = download_url
+    )
