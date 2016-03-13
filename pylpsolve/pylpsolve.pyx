@@ -171,7 +171,17 @@ cdef struct _Constraint
 ######################################################################
 # Exceptions
 
-class LPException(Exception): pass
+class LPException(Exception):
+    def __init__(self, message, code=None, *args):
+        super(LPException, self).__init__(message, code, *args)
+        self.message = message
+        self.code = code
+
+    def __str__(self):
+        if self.code is None:
+            return self.message
+        return 'Error {}: {}'.format(self.code, self.message)
+
 class LPSuboptimalException(LPException): pass
 class LPInfeasibleException(LPException): pass
 class LPUnboundedException(LPException): pass
@@ -2559,7 +2569,7 @@ cdef class LP(object):
         elif ret == 13:
              # NOFEASFOUND (13)         No feasible B&B solution found
             raise LPInfeasibleException("No feasible B&B solution found", ret)
-        raise LPException("Error {}: Unknown error!".format(ret), ret)
+        raise LPException("Unknown error!", ret)
 
         # And we're done
 
