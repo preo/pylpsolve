@@ -22,7 +22,7 @@
 
 debug_mode_c_code = False
 
-version = "0.1"
+version = "0.11"
 description="PyLPSolve: Object-oriented wrapper for the lpsolve linear programming solver."
 author = "Hoyt Koepke"
 author_email="hoytak@gmail.com"
