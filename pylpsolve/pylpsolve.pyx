@@ -300,6 +300,8 @@ cdef extern from "lp_solve_5.5/lp_lib.h":
     
     void set_verbose(lprec*, int)
 
+    void set_timeout(lprec*, long sectimeout)
+
     # Retrieving statistics
     long long get_total_iter(lprec *lp)
 
@@ -701,6 +703,10 @@ cdef class LP(object):
             Sets the verbosity level of printed information.  Default
             is 1, which only prints errors; levels 1-5 are available,
             with 6 being the most verbose.
+
+          timeout:
+            Number of seconds before either returning best result or
+            raising a timeout error.
 
         """
 
@@ -2266,7 +2272,17 @@ cdef class LP(object):
         if option_dict["verbosity"] not in [1,2,3,4,5]:
             raise ValueError("Verbosity level must be 1,2,3,4, or 5 (highest).")
 
-        # Options are vetted now; basis and others might not be 
+        ####################
+        # Timeout
+
+        try:
+            timeout = int(option_dict["timeout"])
+            if timeout < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError("Timeout must be an integer greater than zero.")
+
+        # Options are vetted now; basis and others might not be
 
         ########################################
         # Now set up the LP
@@ -2345,6 +2361,7 @@ cdef class LP(object):
         set_pivoting(self.lp, pricer_option)
         set_scaling(self.lp, scaling_option)
         set_verbose(self.lp, option_dict["verbosity"])
+        set_timeout(self.lp, timeout)
 
         if start_basis is not None:
             assert start_basis.shape[0] in [full_basis_size, basic_basis_size]

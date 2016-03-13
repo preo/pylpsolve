@@ -70,6 +70,7 @@ _default_options = {
 
     # Bookkeeping stuff
     "verbosity"            :  1,       # Lowest
+    "timeout"              :  0,
     "error_on_bad_guess"   :  False
 }
 
