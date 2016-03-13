@@ -172,6 +172,15 @@ cdef struct _Constraint
 # Exceptions
 
 class LPException(Exception): pass
+class LPSuboptimalException(LPException): pass
+class LPInfeasibleException(LPException): pass
+class LPUnboundedException(LPException): pass
+class LPModelDegenerateException(LPException): pass
+class LPNumericalFailureException(LPException): pass
+class LPUserAbort(LPException): pass
+class LPTimeout(LPException): pass
+class LPProcFail(LPException): pass
+class LPProcBreak(LPException): pass
 
 ######################################################################
 # Constraint types
@@ -2541,26 +2550,25 @@ cdef class LP(object):
             # set_mip_gap was called (-g/-ga/-gr options in lp_solve) to specify a MIP gap
             # An abort function is installed (put_abortfunc) and this function returned TRUE
             # At some point not enough memory could not be allocated
-
-            warnings.warn("Solver solution suboptimal")
+            raise LPSuboptimalException("Solver solution suboptimal", ret)
         elif ret == 2:
             # INFEASIBLE (2)    The model is infeasible
-            raise LPException("Error 2: Model infeasible")
+            raise LPInfeasibleException("Model infeasible", ret)
         elif ret == 3:
             # UNBOUNDED (3)     The model is unbounded
-            raise LPException("Error 3: Model unbounded")
+            raise LPUnboundedException("Model unbounded", ret)
         elif ret == 4:
             # DEGENERATE (4)    The model is degenerative
-            raise LPException("Error 4: Model degenerate")
+            raise LPModelDegenerateException("Model degenerate", ret)
         elif ret == 5:
             # NUMFAILURE (5)    Numerical failure encountered
-            raise LPException("Error 5: Numerical failure encountered")
+            raise LPNumericalFailureException("Numerical failure encountered", ret)
         elif ret == 6:
             # USERABORT (6)     The abort routine returned TRUE. See put_abortfunc
-            raise LPException("Error 6: Solver aborted")
+            raise LPUserAbort("Solver aborted", ret)
         elif ret == 7:
             # TIMEOUT (7)       A timeout occurred. Indicates timeout was set via set_timeout
-            raise LPException("Error 7: Timeout Occurred.")
+            raise LPTimeout("Timeout Occurred.", ret)
         elif ret == 9:
             # PRESOLVED (9) The model could be solved by
             # presolve. This can only happen if presolve is active via
@@ -2568,19 +2576,19 @@ cdef class LP(object):
             return
         elif ret == 10:
             # PROCFAIL (10)     The B&B routine failed
-            raise LPException("Error 10: The B&B routine failed")
+            raise LPProcFail("The B&B routine failed", ret)
         elif ret == 11:
             # PROCBREAK (11) The B&B was stopped because of a
             # break-at-first (see set_break_at_first) or a
             # break-at-value (see set_break_at_value)
-            raise LPException("Error 11: B&B Stopped.")
+            raise LPProcBreak("B&B Stopped.", ret)
         elif ret == 12:
             # FEASFOUND (12)    A feasible B&B solution was found
             return
         elif ret == 13:
              # NOFEASFOUND (13)         No feasible B&B solution found
-            raise LPException("Error 13: No feasible B&B solution found")
-        raise LPException("Error {}: Unknown error!".format(ret))
+            raise LPInfeasibleException("No feasible B&B solution found", ret)
+        raise LPException("Error {}: Unknown error!".format(ret), ret)
 
         # And we're done
 
