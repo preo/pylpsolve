@@ -100,8 +100,7 @@ from os.path import split, join
 from itertools import chain
 import sys
 
-from distutils.core import setup
-from distutils.extension import Extension
+from setuptools import setup, Extension
 
 
 ######################################################
